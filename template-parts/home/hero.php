@@ -128,29 +128,4 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const slides = document.querySelectorAll('.hero-slide');
-            let currentSlide = 0;
-
-            setInterval(() => {
-                slides[currentSlide].classList.replace('opacity-100', 'opacity-0');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.replace('opacity-0', 'opacity-100');
-            }, 6000); // 6 seconds for extra smooth feel
-
-            const tabs = document.querySelectorAll('.filter-tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    tabs.forEach(t => {
-                        t.classList.remove('bg-primary', 'text-primary-foreground');
-                        t.classList.add('bg-white/90', 'text-foreground');
-                    });
-                    this.classList.add('bg-primary', 'text-primary-foreground');
-                    this.classList.remove('bg-white/90', 'text-foreground');
-                    document.getElementById('listing-type-input').value = this.dataset.type;
-                });
-            });
-        });
-    </script>
 </section>

@@ -108,38 +108,3 @@
         </div>
     </header>
 
-    <script>
-        // Drawer Logic
-        const drawer = document.getElementById('mobile-drawer');
-        const content = document.getElementById('drawer-content');
-        const overlay = document.getElementById('drawer-overlay');
-        const toggle = document.getElementById('mobile-toggle');
-        const close = document.getElementById('drawer-close');
-
-        function openDrawer() {
-            drawer.classList.remove('invisible', 'pointer-events-none');
-            drawer.classList.add('visible');
-            overlay.classList.remove('opacity-0');
-            overlay.classList.add('opacity-100');
-            content.classList.remove('-translate-x-full');
-            content.classList.add('translate-x-0');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeDrawer() {
-            overlay.classList.remove('opacity-100');
-            overlay.classList.add('opacity-0');
-            content.classList.remove('translate-x-0');
-            content.classList.add('-translate-x-full');
-            setTimeout(() => {
-                drawer.classList.remove('visible');
-                drawer.classList.add('invisible');
-                drawer.classList.add('pointer-events-none');
-                document.body.style.overflow = '';
-            }, 500);
-        }
-
-        if (toggle) toggle.addEventListener('click', openDrawer);
-        if (close) close.addEventListener('click', closeDrawer);
-        if (overlay) overlay.addEventListener('click', closeDrawer);
-    </script>

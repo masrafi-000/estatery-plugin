@@ -95,3 +95,6 @@ $social_links = [
         </div>
     </div>
 </footer>
+<?php wp_footer(); ?>
+</body>
+</html>

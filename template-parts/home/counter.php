@@ -7,8 +7,6 @@ $stats = [
 ];
 ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <section class="py-20 bg-primary" id="stats-counter-section">
     <div class="container mx-auto px-6">
@@ -26,36 +24,6 @@ $stats = [
     </div>
 </section>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Register ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
-
-        const counters = document.querySelectorAll('.counter-value');
-
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-
-            gsap.to(counter, {
-                innerText: target,
-                duration: 2.5,
-                ease: "power2.out",
-                snap: {
-                    innerText: 1 // Forces whole numbers
-                },
-                scrollTrigger: {
-                    trigger: "#stats-counter-section",
-                    start: "top 80%", // Triggers when section is 80% from top
-                    toggleActions: "play none none none"
-                },
-                onUpdate: function() {
-                    // Update the text content during animation
-                    counter.innerHTML = Math.ceil(counter.innerText);
-                }
-            });
-        });
-    });
-</script>
 
 <style>
     .bg-primary {
