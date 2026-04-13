@@ -8,7 +8,8 @@ namespace Estatery\Core;
 class ThemeSetup {
     public static function init() {
         add_action('after_switch_theme', [__CLASS__, 'bootstrap']);
-        add_action('init', [__CLASS__, 'ensure_pages_exist']);
+        // Removed 'ensure_pages_exist' from 'init' to prevent infinite page creation.
+        // This is handled by 'after_switch_theme' or can be triggered manually if needed.
         add_action('init', [__CLASS__, 'fix_permalinks']);
     }
 
@@ -31,6 +32,7 @@ class ThemeSetup {
     }
 
     public static function ensure_pages_exist() {
+        if (get_option('estatery_pages_bootstrapped')) return;
         if (!function_exists('pll_languages_list')) return;
 
         $pages_to_create = [
@@ -84,5 +86,8 @@ class ThemeSetup {
                 pll_save_post_translations($translations);
             }
         }
+
+        // Mark as bootstrapped to prevent re-running
+        update_option('estatery_pages_bootstrapped', true);
     }
 }
