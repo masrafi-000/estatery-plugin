@@ -1,18 +1,18 @@
 <section class="py-24 bg-white overflow-hidden" id="faq-section">
     <div class="container mx-auto px-6">
         <div class="text-center max-w-2xl mx-auto mb-16">
-            <h2 class="text-4xl font-extrabold text-secondary mb-6">Frequently Asked Questions</h2>
-            <p class="text-secondary">Everything you need to know about the platform.</p>
+            <h2 class="text-4xl font-extrabold text-secondary mb-6"><?php echo esc_html( t('home.faq.title') ); ?></h2>
+            <p class="text-secondary"><?php echo esc_html( t('home.faq.description') ); ?></p>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-12 items-start">
             <div class="lg:w-5/12 w-full">
                 <div class="bg-gray-50 p-10 rounded-[2.5rem] border border-gray-100 sticky top-10">
-                    <h3 class="text-3xl font-bold text-secondary mb-6">Need More Help?</h3>
-                    <p class="text-secondary mb-8">Our support team is here for you.</p>
+                    <h3 class="text-3xl font-bold text-secondary mb-6"><?php echo esc_html( t('home.faq.help_title') ); ?></h3>
+                    <p class="text-secondary mb-8"><?php echo esc_html( t('home.faq.help_description') ); ?></p>
                     <a href="#"
                         class="bg-secondary text-white px-8 py-4 rounded-2xl font-bold inline-block hover:bg-blue-600 transition-all">
-                        Contact Support
+                        <?php echo esc_html( t('home.faq.contact_button') ); ?>
                     </a>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 <?php
 $stats = [
-    ["count" => "800", "suffix" => "+", "label" => "Properties Listed"],
-    ["count" => "1200", "suffix" => "+", "label" => "Happy Families"],
-    ["count" => "15", "suffix" => "K", "label" => "Monthly Visitors"],
-    ["count" => "97", "suffix" => "%", "label" => "Customer Satisfaction"]
+    ["count" => "800", "suffix" => "+", "label" => t('home.stats.listed')],
+    ["count" => "1200", "suffix" => "+", "label" => t('home.stats.families')],
+    ["count" => "15", "suffix" => "K", "label" => t('home.stats.visitors')],
+    ["count" => "97", "suffix" => "%", "label" => t('home.stats.satisfaction')]
 ];
 ?>
 

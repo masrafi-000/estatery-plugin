@@ -1,16 +1,30 @@
 <?php
 $footer_menus = [
     [
-        "title" => "Quick Links",
-        "links" => ["Buy Property", "Rent Property", "Sell Property", "Services"]
+        "title" => t('footer.menus.quick_links'),
+        "links" => [
+            ["label" => t('footer.links.buy'), "url" => "#"],
+            ["label" => t('footer.links.rent'), "url" => "#"],
+            ["label" => t('footer.links.sell'), "url" => "#"],
+            ["label" => t('footer.links.services'), "url" => "#"],
+        ]
     ],
     [
-        "title" => "Company",
-        "links" => ["About Us", "Contact", "Careers", "Blog"]
+        "title" => t('footer.menus.company'),
+        "links" => [
+            ["label" => t('footer.links.about'), "url" => "#"],
+            ["label" => t('footer.links.contact'), "url" => "#"],
+            ["label" => t('footer.links.careers'), "url" => "#"],
+            ["label" => t('footer.links.blog'), "url" => "#"],
+        ]
     ],
     [
-        "title" => "Legal",
-        "links" => ["Privacy Policy", "Terms of Service", "Cookie Policy"]
+        "title" => t('footer.menus.legal'),
+        "links" => [
+            ["label" => t('footer.links.privacy'), "url" => "#"],
+            ["label" => t('footer.links.terms'), "url" => "#"],
+            ["label" => t('footer.links.cookie'), "url" => "#"],
+        ]
     ]
 ];
 
@@ -44,18 +58,18 @@ $social_links = [
                         alt="Capital Union Logo" class="h-auto w-30">
                 </a>
                 <p class="text-text-gray max-w-sm leading-relaxed text-base">
-                    Find your dream home with the most comprehensive real estate platform.
+                    <?php echo esc_html( t('footer.tagline') ); ?>
                 </p>
             </div>
 
             <?php foreach ($footer_menus as $menu): ?>
                 <div>
-                    <h4 class="text-lg font-bold text-secondary mb-6"><?php echo $menu['title']; ?></h4>
+                    <h4 class="text-lg font-bold text-secondary mb-6"><?php echo esc_html( $menu['title'] ); ?></h4>
                     <ul class="space-y-4">
                         <?php foreach ($menu['links'] as $link): ?>
                             <li>
-                                <a href="#" class="text-text-gray hover:text-primary transition-colors duration-300">
-                                    <?php echo $link; ?>
+                                <a href="<?php echo esc_url($link['url']); ?>" class="text-text-gray hover:text-primary transition-colors duration-300">
+                                    <?php echo esc_html( $link['label'] ); ?>
                                 </a>
                             </li>
                         <?php endforeach; ?>
@@ -66,7 +80,7 @@ $social_links = [
 
         <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
             <p class="text-text-gray text-sm">
-                © <?php echo date('Y'); ?> Estatery. All rights reserved.
+                © <?php echo date('Y'); ?> Estatery. <?php echo esc_html( t('footer.copyright') ); ?>
             </p>
 
             <div class="flex items-center gap-6">

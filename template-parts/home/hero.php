@@ -28,25 +28,25 @@
     <div class="container mx-auto px-4 relative z-10 text-center text-white">
         <span
             class="inline-block text-xs md:text-sm font-semibold mb-4 tracking-[0.2em] uppercase opacity-90 border-b border-primary pb-1">
-            Real Estate Agency
+            <?php echo esc_html( t('home.hero.agency_label') ); ?>
         </span>
 
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight leading-[1.1]">
-            Find Your Dream <br class="hidden md:block"> Apartment
+            <?php echo t('home.hero.title'); ?>
         </h1>
 
         <p class="max-w-2xl mx-auto text-gray-200 text-sm md:text-lg mb-12 leading-relaxed opacity-80">
-            Explore our curated list of luxury properties designed for your ultimate comfort and style.
+            <?php echo esc_html( t('home.hero.description') ); ?>
         </p>
 
         <div class="max-w-6xl mx-auto">
             <div class="flex justify-center -mb-[1px] space-x-1">
                 <button type="button"
                     class="filter-tab active px-10 py-3.5 bg-primary text-accent-primary font-bold rounded-t-xl transition-all"
-                    data-type="buy">Buy</button>
+                    data-type="buy"><?php echo esc_html( t('home.hero.tabs.buy') ); ?></button>
                 <button type="button"
                     class="filter-tab px-10 py-3.5 bg-white/90 backdrop-blur-sm text-foreground font-bold rounded-t-xl"
-                    data-type="rent">Rent</button>
+                    data-type="rent"><?php echo esc_html( t('home.hero.tabs.rent') ); ?></button>
             </div>
 
             <div class="bg-white rounded-2xl lg:rounded-b-2xl lg:rounded-tr-none shadow-2xl p-6 lg:p-8">
@@ -54,8 +54,7 @@
                     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
 
                     <div class="flex flex-col gap-2 text-left">
-                        <label class="text-[10px] font-bold text-secondary uppercase tracking-widest ml-1">Search
-                            Property</label>
+                        <label class="text-[10px] font-bold text-secondary uppercase tracking-widest ml-1"><?php echo esc_html( t('home.hero.form.search_label') ); ?></label>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -65,14 +64,14 @@
                                     <path d="m21 21-4.3-4.3" />
                                 </svg>
                             </span>
-                            <input type="text" name="s" placeholder="Property name..."
+                            <input type="text" name="s" placeholder="<?php echo esc_attr( t('home.hero.form.search_placeholder') ); ?>"
                                 class="w-full pl-11 pr-4 py-4 bg-surface rounded-xl border-none focus:ring-2 focus:ring-primary/20 text-foreground text-sm">
                         </div>
                     </div>
 
                     <div class="flex flex-col gap-2 text-left">
                         <label
-                            class="text-[10px] font-bold text-secondary uppercase tracking-widest ml-1">Location</label>
+                            class="text-[10px] font-bold text-secondary uppercase tracking-widest ml-1"><?php echo esc_html( t('home.hero.form.location_label') ); ?></label>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -84,16 +83,15 @@
                             </span>
                             <select name="location"
                                 class="w-full pl-11 pr-4 py-4 bg-surface rounded-xl border-none text-secondary text-sm appearance-none cursor-pointer">
-                                <option value="">Select Location</option>
-                                <option value="dhaka">Dhaka</option>
-                                <option value="chittagong">Chittagong</option>
+                                <option value=""><?php echo esc_html( t('home.hero.form.location_placeholder') ); ?></option>
+                                <option value="dhaka"><?php echo esc_html( t('home.hero.form.location_options.dhaka') ); ?></option>
+                                <option value="chittagong"><?php echo esc_html( t('home.hero.form.location_options.chittagong') ); ?></option>
                             </select>
                         </div>
                     </div>
 
                     <div class="flex flex-col gap-2 text-left">
-                        <label class="text-[10px] font-bold text-secondary uppercase tracking-widest ml-1">Property
-                            Type</label>
+                        <label class="text-[10px] font-bold text-secondary uppercase tracking-widest ml-1"><?php echo esc_html( t('home.hero.form.type_label') ); ?></label>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -105,8 +103,8 @@
                             </span>
                             <select name="type"
                                 class="w-full pl-11 pr-4 py-4 bg-surface rounded-xl border-none text-secondary text-sm appearance-none cursor-pointer">
-                                <option value="apartment">Apartment</option>
-                                <option value="luxury">Luxury Estate</option>
+                                <option value="apartment"><?php echo esc_html( t('home.hero.form.property_types.apartment') ); ?></option>
+                                <option value="luxury"><?php echo esc_html( t('home.hero.form.property_types.luxury') ); ?></option>
                             </select>
                         </div>
                     </div>
@@ -120,7 +118,7 @@
                                 <circle cx="11" cy="11" r="8" />
                                 <path d="m21 21-4.3-4.3" />
                             </svg>
-                            Search Now
+                            <?php echo esc_html( t('home.hero.form.search_button') ); ?>
                         </button>
                     </div>
 

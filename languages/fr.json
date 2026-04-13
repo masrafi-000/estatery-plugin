@@ -17,25 +17,82 @@
   },
   "home": {
     "hero": {
-      "title": "La Vie Moderne Réimaginée",
-      "description": "Bienvenue chez Estatery, où nous combinons l'excellence architecturale avec des opportunités immobilières de premier ordre. Découvrez la maison de vos rêves dès aujourd'hui."
-    },
-    "features": {
-      "title": "Caractéristiques Premium",
-      "gsap": {
-        "title": "GSAP 3",
-        "description": "Des animations fluides et performantes qui impressionnent vos visiteurs au premier coup d'œil."
+      "agency_label": "Agence Immobilière",
+      "title": "Trouvez l'Appartement <br class=\"hidden md:block\"> de vos Rêves",
+      "description": "Explorez notre liste de propriétés de luxe conçues pour votre confort et votre style ultimes.",
+      "tabs": {
+        "buy": "Acheter",
+        "rent": "Louer"
       },
-      "lenis": {
-        "title": "Lenis",
-        "description": "Intégration moderne du défilement fluide pour une expérience numérique boutique."
-      },
-      "tailwind": {
-        "title": "Tailwind v4",
-        "description": "Le dernier né des frameworks utilitaires CSS, offrant une conception rapide et évolutive."
+      "form": {
+        "search_label": "Rechercher une Propriété",
+        "search_placeholder": "Nom de la propriété...",
+        "location_label": "Emplacement",
+        "location_placeholder": "Sélectionner l'Emplacement",
+        "type_label": "Type de Propriété",
+        "location_options": {
+          "dhaka": "Dhaka",
+          "chittagong": "Chittagong"
+        },
+        "property_types": {
+          "apartment": "Appartement",
+          "luxury": "Domaine de Luxe"
+        },
+        "search_button": "Rechercher Maintenant"
       }
     },
-    "cta": "Explorer les Propriétés"
+    "featured": {
+      "label": "Annonces Exclusives",
+      "title": "Propriétés en Vedette",
+      "description": "Des propriétés triées sur le volet juste pour vous.",
+      "beds": "Ch.",
+      "baths": "SdB",
+      "sqft": "m²",
+      "view_all": "TOUTES LES PROPRIÉTÉS"
+    },
+    "why_choose": {
+      "title": "Pourquoi Choisir Capital Union",
+      "description": "Nous fournissons tout ce dont vous avez besoin pour trouver, acheter ou louer votre propriété parfaite en toute confiance.",
+      "features": [
+        {
+          "title": "Annonces Vérifiées",
+          "description": "Toutes les propriétés sont vérifiées et authentifiées pour vous garantir des informations précises."
+        },
+        {
+          "title": "Aperçu du Marché",
+          "description": "Accédez aux données et tendances du marché en temps réel pour prendre des décisions d'investissement éclairées."
+        },
+        {
+          "title": "Agents Experts",
+          "description": "Travaillez avec des professionnels de l'immobilier expérimentés qui comprennent vos besoins."
+        },
+        {
+          "title": "Support 24/7",
+          "description": "Notre équipe de support dédiée est disponible 24h/24 pour vous aider."
+        },
+        {
+          "title": "Meilleures Offres",
+          "description": "Accédez à des annonces exclusives et aux meilleures offres du marché."
+        },
+        {
+          "title": "Service Personnalisé",
+          "description": "Recevez des recommandations personnalisées basées sur vos préférences et vos exigences."
+        }
+      ]
+    },
+    "stats": {
+      "listed": "Propriétés Listées",
+      "families": "Familles Heureuses",
+      "visitors": "Visiteurs Mensuels",
+      "satisfaction": "Satisfaction Client"
+    },
+    "faq": {
+      "title": "Foire Aux Questions",
+      "description": "Tout ce que vous devez savoir sur la plateforme.",
+      "help_title": "Besoin d'Aide Supplémentaire ?",
+      "help_description": "Notre équipe de support est là pour vous.",
+      "contact_button": "Contacter le Support"
+    }
   },
   "pages": {
     "about": {
@@ -43,7 +100,7 @@
       "subtitle": "Redéfinir les standards de l'immobilier.",
       "content": "Fondée sur les principes d'intégrité et de luxe, Estatery est devenue un leader mondial de la gestion et de la vente de propriétés d'élite. Nous ne vendons pas seulement des maisons ; nous créons des styles de vie.",
       "mission": "Notre mission est de fournir un service inégalé et des opportunités exclusives à notre clientèle mondiale.",
-      "vision": "Mener l'évolution de la vie moderne grâce à l'innovation architecturale."
+      "vision": "Mener l'évolution de la live moderne grâce à l'innovation architecturale."
     },
     "properties": {
       "title": "Propriétés Exclusives",
@@ -92,6 +149,25 @@
     }
   },
   "footer": {
-    "copyright": "Tous droits réservés."
+    "tagline": "Trouvez la maison de vos rêves avec la plateforme immobilière la plus complète.",
+    "copyright": "Tous droits réservés.",
+    "menus": {
+      "quick_links": "Liens Rapides",
+      "company": "Entreprise",
+      "legal": "Mentions Légales"
+    },
+    "links": {
+      "buy": "Acheter une Propriété",
+      "rent": "Louer une Propriété",
+      "sell": "Vendre une Propriété",
+      "services": "Services",
+      "about": "À Propos de Nous",
+      "contact": "Contact",
+      "careers": "Carrières",
+      "blog": "Blog",
+      "privacy": "Politique de Confidentialité",
+      "terms": "Conditions d'Utilisation",
+      "cookie": "Politique de Cookies"
+    }
   }
 }

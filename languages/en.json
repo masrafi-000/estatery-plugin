@@ -17,25 +17,82 @@
   },
   "home": {
     "hero": {
-      "title": "Modern Living Reimagined",
-      "description": "Welcome to Estatery, where we combine architectural excellence with premium real estate opportunities. Discover your dream home today."
-    },
-    "features": {
-      "title": "Premium Features",
-      "gsap": {
-        "title": "GSAP 3",
-        "description": "Smooth, high-performance animations that wow your visitors at first sight."
+      "agency_label": "Real Estate Agency",
+      "title": "Find Your Dream <br class=\"hidden md:block\"> Apartment",
+      "description": "Explore our curated list of luxury properties designed for your ultimate comfort and style.",
+      "tabs": {
+        "buy": "Buy",
+        "rent": "Rent"
       },
-      "lenis": {
-        "title": "Lenis",
-        "description": "Modern smooth scrolling integration for a boutique digital experience."
-      },
-      "tailwind": {
-        "title": "Tailwind v4",
-        "description": "The latest in CSS utility frameworks, providing rapid and scalable design."
+      "form": {
+        "search_label": "Search Property",
+        "search_placeholder": "Property name...",
+        "location_label": "Location",
+        "location_placeholder": "Select Location",
+        "type_label": "Property Type",
+        "location_options": {
+          "dhaka": "Dhaka",
+          "chittagong": "Chittagong"
+        },
+        "property_types": {
+          "apartment": "Apartment",
+          "luxury": "Luxury Estate"
+        },
+        "search_button": "Search Now"
       }
     },
-    "cta": "Explore Properties"
+    "featured": {
+      "label": "Exclusive Listings",
+      "title": "Featured Properties",
+      "description": "Handpicked properties just for you.",
+      "beds": "Beds",
+      "baths": "Baths",
+      "sqft": "Sqft",
+      "view_all": "ALL PROPERTIES"
+    },
+    "why_choose": {
+      "title": "Why Choose Capital Union",
+      "description": "We provide everything you need to find, buy, or rent your perfect property with confidence.",
+      "features": [
+        {
+          "title": "Verified Listings",
+          "description": "All properties are verified and authenticated to ensure you get accurate information."
+        },
+        {
+          "title": "Market Insights",
+          "description": "Access real-time market data and trends to make informed investment decisions."
+        },
+        {
+          "title": "Expert Agents",
+          "description": "Work with experienced real estate professionals who understand your needs."
+        },
+        {
+          "title": "24/7 Support",
+          "description": "Our dedicated support team is available around the clock to assist you."
+        },
+        {
+          "title": "Best Deals",
+          "description": "Get access to exclusive listings and the best deals in the market."
+        },
+        {
+          "title": "Personalized Service",
+          "description": "Receive tailored recommendations based on your preferences and requirements."
+        }
+      ]
+    },
+    "stats": {
+      "listed": "Properties Listed",
+      "families": "Happy Families",
+      "visitors": "Monthly Visitors",
+      "satisfaction": "Customer Satisfaction"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "Everything you need to know about the platform.",
+      "help_title": "Need More Help?",
+      "help_description": "Our support team is here for you.",
+      "contact_button": "Contact Support"
+    }
   },
   "pages": {
     "about": {
@@ -92,6 +149,25 @@
     }
   },
   "footer": {
-    "copyright": "All rights reserved."
+    "tagline": "Find your dream home with the most comprehensive real estate platform.",
+    "copyright": "All rights reserved.",
+    "menus": {
+      "quick_links": "Quick Links",
+      "company": "Company",
+      "legal": "Legal"
+    },
+    "links": {
+      "buy": "Buy Property",
+      "rent": "Rent Property",
+      "sell": "Sell Property",
+      "services": "Services",
+      "about": "About Us",
+      "contact": "Contact",
+      "careers": "Careers",
+      "blog": "Blog",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookie": "Cookie Policy"
+    }
   }
 }

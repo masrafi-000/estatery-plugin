@@ -44,11 +44,10 @@ $properties = [
     <div class="container mx-auto px-4">
 
         <div class="text-center max-w-2xl mx-auto mb-12">
-            <span class="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-2 inline-block">Exclusive
-                Listings</span>
-            <h2 class="text-3xl md:text-4xl font-black text-secondary mb-4 leading-tight">Featured Properties</h2>
+            <span class="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-2 inline-block"><?php echo esc_html( t('home.featured.label') ); ?></span>
+            <h2 class="text-3xl md:text-4xl font-black text-secondary mb-4 leading-tight"><?php echo esc_html( t('home.featured.title') ); ?></h2>
             <div class="w-12 h-1 bg-primary mx-auto mb-4 rounded-full"></div>
-            <p class="text-slate-500 text-base leading-relaxed">Handpicked properties just for you.</p>
+            <p class="text-slate-500 text-base leading-relaxed"><?php echo esc_html( t('home.featured.description') ); ?></p>
         </div>
 
         <div class="relative group">
@@ -66,7 +65,11 @@ $properties = [
                                     <div class="absolute top-4 left-4">
                                         <span
                                             class="bg-primary text-white text-[9px] font-black px-3 py-1.5 rounded-lg uppercase tracking-widest shadow-lg">
-                                            <?php echo $property['type']; ?>
+                                            <?php 
+                                                // Dynamic translation for Buy/Rent types
+                                                $type_key = 'home.hero.tabs.' . strtolower($property['type']);
+                                                echo esc_html( t($type_key) ?: $property['type'] ); 
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -92,17 +95,17 @@ $properties = [
                                         <div>
                                             <span
                                                 class="block text-slate-900 font-black text-xs"><?php echo $property['beds']; ?></span>
-                                            <span class="text-[9px] text-slate-400 uppercase font-bold">Beds</span>
+                                            <span class="text-[9px] text-slate-400 uppercase font-bold"><?php echo esc_html( t('home.featured.beds') ); ?></span>
                                         </div>
                                         <div class="border-x border-slate-50">
                                             <span
                                                 class="block text-slate-900 font-black text-xs"><?php echo $property['baths']; ?></span>
-                                            <span class="text-[9px] text-slate-400 uppercase font-bold">Baths</span>
+                                            <span class="text-[9px] text-slate-400 uppercase font-bold"><?php echo esc_html( t('home.featured.baths') ); ?></span>
                                         </div>
                                         <div>
                                             <span
                                                 class="block text-slate-900 font-black text-xs"><?php echo number_format($property['sqft']); ?></span>
-                                            <span class="text-[9px] text-slate-400 uppercase font-bold">Sqft</span>
+                                            <span class="text-[9px] text-slate-400 uppercase font-bold"><?php echo esc_html( t('home.featured.sqft') ); ?></span>
                                         </div>
                                     </div>
 
@@ -129,7 +132,7 @@ $properties = [
         <div class="text-center mt-6">
             <a href="<?php echo home_url('/all-properties'); ?>"
                 class="inline-flex items-center gap-3 bg-primary text-white font-black px-6 py-3 rounded-2xl hover:bg-slate-900 transition-all duration-500 shadow-xl shadow-primary/20 group text-xs">
-                ALL PROPERTIES
+                <?php echo esc_html( t('home.featured.view_all') ); ?>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="3" class="transition-transform group-hover:translate-x-1">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>

@@ -89,3 +89,56 @@ $current_lang = isset($languages[$current_lang_slug]) ? $languages[$current_lang
         </ul>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const trigger = document.getElementById('lang-select-trigger');
+    const menu = document.getElementById('lang-options-list');
+    const chevron = document.getElementById('lang-select-chevron');
+    const optionBtns = document.querySelectorAll('.lang-option-btn');
+
+    if (!trigger || !menu) return;
+
+    function toggleMenu() {
+        const isOpen = menu.classList.contains('active-menu');
+        
+        if (!isOpen) {
+            // Open
+            menu.classList.remove('opacity-0', 'invisible', 'translate-y-6', 'pointer-events-none');
+            menu.classList.add('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto', 'active-menu');
+            if (chevron) chevron.classList.add('rotate-180');
+            trigger.setAttribute('aria-expanded', 'true');
+        } else {
+            // Close
+            menu.classList.add('opacity-0', 'invisible', 'translate-y-6', 'pointer-events-none');
+            menu.classList.remove('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto', 'active-menu');
+            if (chevron) chevron.classList.remove('rotate-180');
+            trigger.setAttribute('aria-expanded', 'false');
+        }
+    }
+
+    trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Language selection
+    optionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const url = this.getAttribute('data-url');
+            if (url) {
+                window.location.href = url;
+            }
+        });
+    });
+
+    // Close on click outside
+    document.addEventListener('click', function(e) {
+        if (!menu.contains(e.target) && !trigger.contains(e.target)) {
+            if (menu.classList.contains('active-menu')) {
+                toggleMenu();
+            }
+        }
+    });
+});
+</script>

@@ -17,25 +17,82 @@
   },
   "home": {
     "hero": {
-      "title": "La Vida Moderna Reimaginada",
-      "description": "Bienvenido a Estatery, donde combinamos la excelencia arquitectónica con oportunidades inmobiliarias de primera clase. Descubra la casa de sus sueños hoy mismo."
-    },
-    "features": {
-      "title": "Características Premium",
-      "gsap": {
-        "title": "GSAP 3",
-        "description": "Animaciones suaves y de alto rendimiento que impresionan a sus visitantes a primera vista."
+      "agency_label": "Agencia Inmobiliaria",
+      "title": "Encuentre el Apartamento <br class=\"hidden md:block\"> de sus Sueños",
+      "description": "Explore nuestra lista curada de propiedades de lujo diseñadas para su máxima comodidad y estilo.",
+      "tabs": {
+        "buy": "Comprar",
+        "rent": "Alquilar"
       },
-      "lenis": {
-        "title": "Lenis",
-        "description": "Integración moderna de desplazamiento suave para una experiencia digital boutique."
-      },
-      "tailwind": {
-        "title": "Tailwind v4",
-        "description": "Lo último en frameworks de utilidades CSS, proporcionando un diseño rápido y escalable."
+      "form": {
+        "search_label": "Buscar Propiedad",
+        "search_placeholder": "Nombre de la propiedad...",
+        "location_label": "Ubicación",
+        "location_placeholder": "Seleccionar Ubicación",
+        "type_label": "Tipo de Propiedad",
+        "location_options": {
+          "dhaka": "Dhaka",
+          "chittagong": "Chittagong"
+        },
+        "property_types": {
+          "apartment": "Apartamento",
+          "luxury": "Propiedad de Lujo"
+        },
+        "search_button": "Buscar Ahora"
       }
     },
-    "cta": "Explorar Propiedades"
+    "featured": {
+      "label": "Listados Exclusivos",
+      "title": "Propiedades Destacadas",
+      "description": "Propiedades seleccionadas especialmente para usted.",
+      "beds": "Hab.",
+      "baths": "Baños",
+      "sqft": "m²",
+      "view_all": "TODAS LAS PROPIEDADES"
+    },
+    "why_choose": {
+      "title": "Por Qué Elegir Capital Union",
+      "description": "Ofrecemos todo lo que necesita para encontrar, comprar o alquilar su propiedad perfecta con confianza.",
+      "features": [
+        {
+          "title": "Listados Verificados",
+          "description": "Todas las propiedades están verificadas y autenticadas para garantizar que obtenga información precisa."
+        },
+        {
+          "title": "Información del Mercado",
+          "description": "Acceda a datos y tendencias del mercado en tiempo real para tomar decisiones de inversión informadas."
+        },
+        {
+          "title": "Agentes Expertos",
+          "description": "Trabaje con profesionales inmobiliarios experimentados que entienden sus necesidades."
+        },
+        {
+          "title": "Soporte 24/7",
+          "description": "Nuestro dedicado equipo de soporte está disponible las 24 horas para ayudarle."
+        },
+        {
+          "title": "Las Mejores Ofertas",
+          "description": "Obtenga acceso a listados exclusivos y las mejores ofertas del mercado."
+        },
+        {
+          "title": "Servicio Personalizado",
+          "description": "Reciba recomendaciones personalizadas basadas en sus preferencias y requisitos."
+        }
+      ]
+    },
+    "stats": {
+      "listed": "Propiedades Listadas",
+      "families": "Familias Felices",
+      "visitors": "Visitantes Mensuales",
+      "satisfaction": "Satisfacción del Cliente"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "description": "Todo lo que necesita saber sobre la plataforma.",
+      "help_title": "¿Necesita Más Ayuda?",
+      "help_description": "Nuestro equipo de soporte está aquí para usted.",
+      "contact_button": "Contactar Soporte"
+    }
   },
   "pages": {
     "about": {
@@ -92,6 +149,25 @@
     }
   },
   "footer": {
-    "copyright": "Todos los derechos reservados."
+    "tagline": "Encuentre la casa de sus sueños con la plataforma inmobiliaria más completa.",
+    "copyright": "Todos los derechos reservados.",
+    "menus": {
+      "quick_links": "Enlaces Rápidos",
+      "company": "Empresa",
+      "legal": "Legal"
+    },
+    "links": {
+      "buy": "Comprar Propiedad",
+      "rent": "Alquilar Propiedad",
+      "sell": "Vender Propiedad",
+      "services": "Servicios",
+      "about": "Sobre Nosotros",
+      "contact": "Contacto",
+      "careers": "Carreras",
+      "blog": "Blog",
+      "privacy": "Política de Privacidad",
+      "terms": "Términos de Servicio",
+      "cookie": "Política de Cookies"
+    }
   }
 }
