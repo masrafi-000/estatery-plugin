@@ -33,6 +33,11 @@ class ThemeSetup {
 
     public static function ensure_pages_exist() {
         if (!function_exists('pll_languages_list')) return;
+        
+        // Prevent re-running if already bootstrapped successfully
+        if (get_option('estatery_pages_bootstrapped')) {
+            return;
+        }
 
         $pages_to_create = [
             'properties' => [
@@ -59,7 +64,16 @@ class ThemeSetup {
         // 1. First, ensure all pages exist
         foreach ($languages as $lang) {
             foreach ($pages_to_create as $slug => $data) {
-                $lang_page_id = pll_get_post(get_page_by_path($slug) ? get_page_by_path($slug)->ID : 0, $lang);
+                // More robust check: Search for a page with this slug and language
+                $existing_pages = get_posts([
+                    'post_type'  => 'page',
+                    'name'       => $slug,
+                    'lang'       => $lang,
+                    'post_status' => 'any',
+                    'numberposts' => 1
+                ]);
+
+                $lang_page_id = !empty($existing_pages) ? $existing_pages[0]->ID : 0;
 
                 if (!$lang_page_id) {
                     $post_id = wp_insert_post([
