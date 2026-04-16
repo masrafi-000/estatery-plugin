@@ -213,6 +213,51 @@
                 }
             });
         }
+
+
+        /**
+         * 8. 404 Page Animations (GSAP)
+         */
+        const $errorPage = $('.error-404-section');
+        if ($errorPage.length && typeof gsap !== 'undefined') {
+            // Parallax 404 Text - Subtle mouse follow
+            const $parallax404 = $('#gsap-404-parallax');
+            $(document).on('mousemove', function(e) {
+                const { clientX, clientY } = e;
+                const xPos = (clientX / window.innerWidth - 0.5) * 80;
+                const yPos = (clientY / window.innerHeight - 0.5) * 80;
+                
+                gsap.to($parallax404[0], {
+                    x: xPos,
+                    y: yPos,
+                    duration: 1.5,
+                    ease: "power2.out"
+                });
+            });
+
+            // Content Reveal Sequence
+            const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+            tl.fromTo(".reveal-fade", 
+                { opacity: 0, scale: 0.8, y: 20 }, 
+                { opacity: 1, scale: 1, y: 0, duration: 1.5, delay: 0.3 }
+            )
+            .fromTo(".reveal-up", 
+                { opacity: 0, y: 40 }, 
+                { opacity: 1, y: 0, duration: 1.2, stagger: 0.15 }, 
+                "-=1"
+            );
+
+            // Floating Background Shapes
+            gsap.to(".error-shape", {
+                y: "random(-40, 40)",
+                x: "random(-30, 30)",
+                rotation: "random(-15, 15)",
+                duration: "random(4, 7)",
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+        }
     });
 
 })(jQuery);

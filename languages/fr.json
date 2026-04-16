@@ -33,11 +33,13 @@
         "type_label": "Type de Propriété",
         "location_options": {
           "dhaka": "Dhaka",
-          "chittagong": "Chittagong"
+          "chittagong": "Chittagong",
+          "mymensingh": "Mymensingh"
         },
         "property_types": {
           "apartment": "Appartement",
-          "luxury": "Domaine de Luxe"
+          "luxury": "Domaine de Luxe",
+          "villa": "Villa"
         },
         "search_button": "Rechercher Maintenant"
       }
@@ -324,6 +326,14 @@
           "footer": "Portail Chiffré et Confidentiel"
         }
       }
+    },
+    "error_404": {
+      "bg_text": "404",
+      "subtitle": "Oups ! Page Introuvable",
+      "message": "Nous avons parcouru tout notre portefeuille, mais nous n'avons rien trouvé à l'adresse",
+      "search_placeholder": "Rechercher des propriétés...",
+      "back_home": "Retour à l'Accueil",
+      "view_properties": "Voir Toutes les Propriétés"
     }
   },
   "footer": {

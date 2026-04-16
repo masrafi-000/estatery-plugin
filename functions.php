@@ -149,6 +149,72 @@ function hero_customizer_settings($wp_customize)
 add_action('customize_register', 'hero_customizer_settings');
 
 
+function luxury_realestate_customize_register($wp_customize)
+{
+    // Hero Section Panel
+    $wp_customize->add_section('hero_section', array(
+        'title'    => __('Hero Section Settings', 'luxury'),
+        'priority' => 30,
+    ));
+
+    // 1. Background Video
+    $wp_customize->add_setting('hero_video_file', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ));
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'hero_video_file', array(
+        'label'     => __('Background Video', 'luxury'),
+        'section'   => 'hero_section',
+        'mime_type' => 'video',
+    )));
+
+    // 2. Subtitle
+    $wp_customize->add_setting('hero_subtitle', array(
+        'default'           => 'Luxury Real Estate Agency',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_subtitle', array(
+        'label'   => __('Hero Subtitle', 'luxury'),
+        'section' => 'hero_section',
+        'type'    => 'text',
+    ));
+
+    // 3. Main Title
+    $wp_customize->add_setting('hero_title', array(
+        'default'           => 'Find Your Dream Apartment',
+        'sanitize_callback' => 'wp_kses_post',
+    ));
+    $wp_customize->add_control('hero_title', array(
+        'label'   => __('Hero Main Title', 'luxury'),
+        'section' => 'hero_section',
+        'type'    => 'textarea',
+    ));
+
+    // 4. Description
+    $wp_customize->add_setting('hero_description', array(
+        'default'           => 'Explore our curated list of luxury properties designed for your ultimate comfort and style.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('hero_description', array(
+        'label'   => __('Hero Description', 'luxury'),
+        'section' => 'hero_section',
+        'type'    => 'textarea',
+    ));
+
+    // 5. Button Text
+    $wp_customize->add_setting('hero_btn_text', array(
+        'default'           => 'Search Now',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_btn_text', array(
+        'label'   => __('Search Button Text', 'luxury'),
+        'section' => 'hero_section',
+        'type'    => 'text',
+    ));
+}
+add_action('customize_register', 'luxury_realestate_customize_register');
+
+
 // dynamic banner function with default values
 /**
  * Global Page Banner Function with Default Values
