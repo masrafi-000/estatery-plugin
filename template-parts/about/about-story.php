@@ -75,3 +75,52 @@
         </div>
     </div>
 </section>
+
+<script>
+    (function() {
+        const initAboutStory = () => {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+            
+            gsap.registerPlugin(ScrollTrigger);
+            const section = document.querySelector(".reveal-images").closest('section');
+            if (!section) return;
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            });
+
+            // 1. Reveal Images (Staggered slide and fade)
+            if (document.querySelectorAll(".reveal-images img").length) {
+                tl.from(".reveal-images img", {
+                    y: 40,
+                    scale: 1.05,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "power4.out"
+                });
+            }
+
+            // 2. Reveal Text Content (Staggered side entrance)
+            if (document.querySelector(".reveal-text")) {
+                tl.from(".reveal-text > *", {
+                    x: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "power4.out"
+                }, "-=0.6");
+            }
+        };
+
+        if (document.readyState === 'complete') {
+            initAboutStory();
+        } else {
+            window.addEventListener('load', initAboutStory);
+        }
+    })();
+</script>

@@ -60,52 +60,65 @@
     </div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
 <script>
-    gsap.registerPlugin(ScrollTrigger);
+    (function() {
+        const initLeadership = () => {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+            
+            gsap.registerPlugin(ScrollTrigger);
+            const trigger = document.querySelector(".reveal-image-container");
+            if (!trigger) return;
 
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".reveal-image-container",
-            start: "top 80%",
-        }
-    });
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: trigger,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            });
 
-    // 1. Image Container Slide Up
-    tl.from(".reveal-image-container", {
-            y: 80,
-            opacity: 0,
-            duration: 1.2,
-            ease: "power4.out"
-        })
-        // 2. Staggered Text Entry
-        .from(".reveal-content > *", {
-            x: 40,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: "power3.out"
-        }, "-=0.9")
-        // 3. Floating Card Pop-in
-        .from(".reveal-card", {
-            scale: 0.8,
-            opacity: 0,
-            duration: 0.6,
-            ease: "back.out(1.7)"
-        }, "-=0.6")
-        // 4. Numerical Counter Animation
-        .to(".count-up", {
-            innerText: (i, target) => target.getAttribute('data-target'),
-            duration: 2,
-            snap: {
-                innerText: 1
-            },
-            ease: "power1.inOut",
-            onUpdate: function() {
-                // Optional: Ensure the number remains an integer during tween
-                this.targets()[0].innerHTML = Math.ceil(this.targets()[0].innerText);
+            // 1. Image Container Slide Up
+            tl.from(".reveal-image-container", {
+                    y: 60,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power4.out"
+                })
+                // 2. Staggered Text Entry
+                .from(".reveal-content > *", {
+                    x: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "power4.out"
+                }, "-=0.6")
+                // 3. Floating Card Pop-in
+                .from(".reveal-card", {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "back.out(1.7)"
+                }, "-=0.6");
+
+            // 4. Numerical Counter Animation
+            const counter = document.querySelector(".count-up");
+            if (counter) {
+                tl.to(counter, {
+                    innerText: (i, target) => target.getAttribute('data-target'),
+                    duration: 1.5,
+                    snap: { innerText: 1 },
+                    ease: "power2.inOut",
+                    onUpdate: function() {
+                        this.targets()[0].innerHTML = Math.ceil(this.targets()[0].innerText);
+                    }
+                }, "-=0.4");
             }
-        }, "-=0.4");
+        };
+
+        if (document.readyState === 'complete') {
+            initLeadership();
+        } else {
+            window.addEventListener('load', initLeadership);
+        }
+    })();
 </script>

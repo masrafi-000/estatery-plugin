@@ -33,8 +33,6 @@
                     <p class="body-copy mb-0 text-gray-500 leading-relaxed">
                         <?php echo esc_html($step['description']); ?>
                     </p>
-
-
                 </div>
             <?php endforeach; ?>
         </div>
@@ -42,44 +40,68 @@
 </section>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        gsap.registerPlugin(ScrollTrigger);
+    (function() {
+        const initHowWeWork = () => {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+            
+            gsap.registerPlugin(ScrollTrigger);
+            const section = document.querySelector("#process-section");
+            if (!section) return;
 
-        const processTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "#process-section",
-                start: "top 70%", // Starts slightly earlier for smoother flow
-                toggleActions: "play none none none"
+            const processTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            });
+
+            // 1. Smooth Header Reveal
+            if (document.querySelector(".reveal-header")) {
+                processTl.from(".reveal-header > *", { 
+                    y: 30, 
+                    opacity: 0, 
+                    duration: 0.8, 
+                    stagger: 0.1, 
+                    ease: "power4.out" 
+                });
             }
-        });
 
-        // 1. Reveal Header First
-        processTl.from(".reveal-header", {
-                y: 30,
-                opacity: 0,
-                duration: 0.4,
-                ease: "power3.out"
-            })
             // 2. Animate the horizontal line across (Desktop)
-            .to(".process-line", {
-                width: "100%",
-                duration: 0.6,
-                ease: "expo.inOut"
-            }, "-=0.4")
+            if (document.querySelector(".process-line")) {
+                processTl.to(".process-line", { 
+                    width: "100%", 
+                    duration: 0.8, 
+                    ease: "power4.inOut" 
+                }, "-=0.4");
+            }
+
             // 3. Staggered reveal of the cards
-            .to(".process-step", {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "power3.out"
-            }, "-=0.8")
-            // 4. Pop the dots into existence
-            .to(".step-dot", {
-                scale: 1,
-                duration: 1,
-                stagger: 0.2,
-                ease: "back.out(2)"
-            }, "-=0.6");
-    });
+            if (document.querySelectorAll(".process-step").length) {
+                processTl.to(".process-step", { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 0.8, 
+                    stagger: 0.1, 
+                    ease: "power4.out" 
+                }, "-=0.6");
+            }
+
+            // 4. Pop the dots into existence (if restored later)
+            if (document.querySelectorAll(".step-dot").length) {
+                processTl.to(".step-dot", { 
+                    scale: 1, 
+                    duration: 1, 
+                    stagger: 0.1, 
+                    ease: "back.out(2)" 
+                }, "-=0.6");
+            }
+        };
+
+        if (document.readyState === 'complete') {
+            initHowWeWork();
+        } else {
+            window.addEventListener('load', initHowWeWork);
+        }
+    })();
 </script>

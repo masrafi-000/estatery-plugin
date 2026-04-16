@@ -1,7 +1,7 @@
 <?php $philosophy = t('pages.about.philosophy'); ?>
 <section class="py-24 bg-[#FCFCFC] overflow-hidden" id="values-section">
     <div class="container mx-auto px-6">
-        <div class="container mb-16">
+        <div class="container mb-16 philosophy-header">
             <h4 class="text-secondary font-bold uppercase tracking-[0.3em] text-center pb-4 text-xs"><?php echo esc_html($philosophy['badge']); ?></h4>
             <h2 class="text-4xl font-extrabold text-center text-secondary mb-6">
                 <?php echo $philosophy['title']; ?>
@@ -53,16 +53,51 @@
 </section>
 
 <script>
-    // Reveal animation for cards
-    gsap.from(".value-card", {
-        scrollTrigger: {
-            trigger: "#values-section",
-            start: "top 75%",
-        },
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out"
-    });
+    (function() {
+        const initPhilosophy = () => {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+            
+            gsap.registerPlugin(ScrollTrigger);
+            const section = document.querySelector("#values-section");
+            if (!section) return;
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                }
+            });
+
+            // 1. Smooth Header Reveal
+            if (document.querySelector(".philosophy-header")) {
+                tl.from(".philosophy-header > *", {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "power4.out"
+                });
+            }
+
+            // 2. Classic Card Reveal
+            if (document.querySelectorAll(".value-card").length) {
+                tl.from(".value-card", {
+                    y: 40,
+                    scale: 0.98,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "power4.out",
+                    clearProps: "transform,opacity"
+                }, "-=0.4");
+            }
+        };
+
+        if (document.readyState === 'complete') {
+            initPhilosophy();
+        } else {
+            window.addEventListener('load', initPhilosophy);
+        }
+    })();
 </script>

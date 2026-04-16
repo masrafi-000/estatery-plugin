@@ -134,14 +134,20 @@
 
             if (typeof gsap !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
-                gsap.to(".reveal", {
-                    scrollTrigger: { trigger: "#why-choose", start: "top 80%", toggleActions: "play none none none" },
-                    opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out"
-                });
-                gsap.to(".feature-box", {
-                    scrollTrigger: { trigger: "#dynamic-features-wrapper", start: "top 75%", toggleActions: "play none none none" },
-                    opacity: 1, y: 0, stagger: 0.15, duration: 1, ease: "power4.out"
-                });
+                
+                if (document.querySelector('.reveal')) {
+                    gsap.to(".reveal", {
+                        scrollTrigger: { trigger: "#why-choose", start: "top 80%", toggleActions: "play none none none" },
+                        opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+                    });
+                }
+                
+                if (document.querySelector('.feature-box')) {
+                    gsap.to(".feature-box", {
+                        scrollTrigger: { trigger: "#dynamic-features-wrapper", start: "top 75%", toggleActions: "play none none none" },
+                        opacity: 1, y: 0, stagger: 0.15, duration: 1, ease: "power4.out"
+                    });
+                }
             }
         }
 
@@ -151,20 +157,23 @@
          */
         if ($('#stats-counter-section').length && typeof gsap !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
-            $('.counter-value').each(function() {
-                const $this = $(this);
-                const targetValue = parseInt($this.data('target'));
-                gsap.to(this, {
-                    innerText: targetValue,
-                    duration: 2.5,
-                    ease: "power2.out",
-                    snap: { innerText: 1 },
-                    scrollTrigger: { trigger: "#stats-counter-section", start: "top 80%", toggleActions: "play none none none" },
-                    onUpdate: function() {
-                        $this.text(Math.ceil(this.targets()[0].innerText));
-                    }
+            const $counters = $('.counter-value');
+            if ($counters.length) {
+                $counters.each(function() {
+                    const $this = $(this);
+                    const targetValue = parseInt($this.data('target'));
+                    gsap.to(this, {
+                        innerText: targetValue,
+                        duration: 2.5,
+                        ease: "power2.out",
+                        snap: { innerText: 1 },
+                        scrollTrigger: { trigger: "#stats-counter-section", start: "top 80%", toggleActions: "play none none none" },
+                        onUpdate: function() {
+                            $this.text(Math.ceil(this.targets()[0].innerText));
+                        }
+                    });
                 });
-            });
+            }
         }
 
 
