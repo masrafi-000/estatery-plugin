@@ -80,22 +80,11 @@
 
 
         /**
-         * 3. Home Hero Slider & Filter Tabs
+         * 3. Hero Filter Tabs Logic
          */
-        const $heroSlides = $('.hero-slide');
-        let currentHeroSlide = 0;
-
-        if ($heroSlides.length > 1) {
-            setInterval(() => {
-                $heroSlides.eq(currentHeroSlide).removeClass('opacity-100').addClass('opacity-0');
-                currentHeroSlide = (currentHeroSlide + 1) % $heroSlides.length;
-                $heroSlides.eq(currentHeroSlide).removeClass('opacity-0').addClass('opacity-100');
-            }, 6000);
-        }
-
         $('.filter-tab').on('click', function() {
-            $('.filter-tab').removeClass('bg-primary text-primary-foreground').addClass('bg-white/90 text-foreground');
-            $(this).addClass('bg-primary text-primary-foreground').removeClass('bg-white/90 text-foreground');
+            $('.filter-tab').removeClass('bg-primary text-white active').addClass('bg-white/90 text-slate-900');
+            $(this).addClass('bg-primary text-white active').removeClass('bg-white/90 text-slate-900');
             $('#listing-type-input').val($(this).data('type'));
         });
 
