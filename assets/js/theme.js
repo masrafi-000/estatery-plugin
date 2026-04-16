@@ -33,11 +33,14 @@
 
 
         /**
-         * 2. Premium Language Switcher
+         * 2. Language Switcher — jQuery CSS layer ONLY
+         * This handler manages the dropdown's CSS state (open/close classes).
+         * ALL cookie-setting, AJAX, and navigation is owned exclusively by
+         * LanguageSwitcher.js (ES module) to avoid race conditions.
          */
-        const $langTrigger = $('#lang-select-trigger');
-        const $langMenu = $('#lang-options-list');
-        const $langChevron = $('#lang-select-chevron');
+        const $langTrigger    = $('#lang-select-trigger');
+        const $langMenu       = $('#lang-options-list');
+        const $langChevron    = $('#lang-select-chevron');
         const $langOptionBtns = $('.lang-option-btn');
 
         function toggleLangMenu() {
@@ -61,13 +64,14 @@
                 toggleLangMenu();
             });
 
+            // Option click: Only close the CSS menu state.
+            // LanguageSwitcher.js will handle AJAX save + navigation.
             $langOptionBtns.on('click', function() {
-                const url = $(this).data('url');
-                if (url) window.location.href = url;
+                if ($langMenu.hasClass('active-menu')) toggleLangMenu();
             });
 
             $(document).on('click', function(e) {
-                if (!$langMenu.is(e.target) && $langMenu.has(e.target).length === 0 && 
+                if (!$langMenu.is(e.target) && $langMenu.has(e.target).length === 0 &&
                     !$langTrigger.is(e.target) && $langTrigger.has(e.target).length === 0) {
                     if ($langMenu.hasClass('active-menu')) toggleLangMenu();
                 }

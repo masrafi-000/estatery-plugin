@@ -26,6 +26,40 @@ function t($key) {
 
 
 
+// ─────────────────────────────────────────────────────────────────────────────
+// LANGUAGE SWITCH HANDLER  (replaces AJAX — zero race conditions)
+// ─────────────────────────────────────────────────────────────────────────────
+add_action( 'init', 'estatery_handle_lang_switch', 1 );
+
+function estatery_handle_lang_switch() {
+    // Only intercept frontend requests that have ?set_lang
+    if ( is_admin() || ! isset( $_GET['set_lang'] ) ) {
+        return;
+    }
+
+    $lang = sanitize_key( $_GET['set_lang'] );
+
+    // Validate: must have a matching JSON locale file
+    if ( ! file_exists( get_template_directory() . '/languages/' . $lang . '.json' ) ) {
+        return;
+    }
+
+    // Set OUR cookie — 'estatery_lang', NOT 'pll_language'.
+    // Polylang owns pll_language and resets it on every response to match
+    // the URL language, which would overwrite our choice on every page load.
+    // 'estatery_lang' is our own cookie that Polylang never touches.
+    setcookie( 'estatery_lang', $lang, time() + 365 * DAY_IN_SECONDS, '/' );
+
+    // Also make it available in $_COOKIE for any code running in THIS request
+    $_COOKIE['estatery_lang'] = $lang;
+
+    // Redirect to clean URL (removes ?set_lang parameter)
+    $clean_url = remove_query_arg( 'set_lang' );
+    wp_redirect( $clean_url, 302 );
+    exit;
+}
+
+
 // FAQ Custom Post Type Register
 function register_faq_custom_post_type()
 {

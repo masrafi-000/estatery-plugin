@@ -2,87 +2,128 @@
 namespace Estatery\Core;
 
 /**
- * Translator Controller
- * Handles JSON-based i18n dictionary loading and retrieval.
+ * Translator — JSON-based i18n engine
+ *
+ * COOKIE STRATEGY:
+ *   We use 'estatery_lang' (NOT 'pll_language') as our cookie name.
+ *   Polylang owns 'pll_language' and resets it on every page to match
+ *   the Polylang URL — using the same name caused our preference to be
+ *   overwritten on every navigation. With 'estatery_lang', Polylang
+ *   never touches our cookie and the user's choice persists forever.
+ *
+ * BOOT PRIORITY ORDER:
+ *   0. $_GET['set_lang']         ← current switch request (renders immediately)
+ *   1. $_COOKIE['estatery_lang'] ← persisted user preference (survives navigation)
+ *   2. pll_current_language()   ← Polylang URL detection (first visit, no cookie)
+ *   3. 'en'                     ← hard fallback
  */
 class Translator {
     private static $instance = null;
-    private $data = [];
-    private $lang = 'en';
+    private $data   = [];
+    private $lang   = 'en';
+    private $loaded = false;
 
-    public function __construct() {
-        $this->init();
-    }
+    private function __construct() {}
 
     public static function getInstance() {
-        if (self::$instance === null) {
+        if ( self::$instance === null ) {
             self::$instance = new self();
         }
         return self::$instance;
     }
 
-    private function init() {
-        // Detect language via Polylang
-        if ( function_exists('pll_current_language') ) {
-            $this->lang = pll_current_language();
+    private function boot() {
+        if ( $this->loaded ) return;
+        $this->loaded = true;
+
+        // ── Priority 0: Current switch request (?set_lang=fr in URL) ─────────
+        // This makes the CURRENT page render in the new language instantly,
+        // even before the redirect fires (handles edge cases and is a safety net).
+        if ( isset( $_GET['set_lang'] ) ) {
+            $req_lang = sanitize_key( $_GET['set_lang'] );
+            if ( $this->localeExists( $req_lang ) ) {
+                $this->lang = $req_lang;
+                $this->loadLocale( $req_lang );
+                return;
+            }
         }
 
-        $this->loadLocale($this->lang);
+        // ── Priority 1: Our cookie — estatery_lang (Polylang never touches this) ─
+        // Set by functions.php estatery_handle_lang_switch() via PHP setcookie().
+        // Persists across ALL page navigations. Polylang cannot overwrite it.
+        if ( isset( $_COOKIE['estatery_lang'] ) ) {
+            $cookie_lang = sanitize_key( $_COOKIE['estatery_lang'] );
+            if ( $this->localeExists( $cookie_lang ) ) {
+                $this->lang = $cookie_lang;
+                $this->loadLocale( $cookie_lang );
+                return;
+            }
+        }
+
+        // ── Priority 2: Polylang URL detection (first visit, no cookie yet) ──
+        if ( function_exists( 'pll_current_language' ) ) {
+            $detected = pll_current_language();
+            if ( $detected && $this->localeExists( $detected ) ) {
+                $this->lang = $detected;
+                $this->loadLocale( $detected );
+                return;
+            }
+        }
+
+        // ── Priority 3: English fallback ──────────────────────────────────────
+        $this->lang = 'en';
+        $this->loadLocale( 'en' );
     }
 
-    private function loadLocale($lang) {
+    private function localeExists( $lang ) {
+        if ( empty( $lang ) ) return false;
+        return file_exists( get_template_directory() . '/languages/' . $lang . '.json' );
+    }
+
+    private function loadLocale( $lang ) {
         $path = get_template_directory() . '/languages/' . $lang . '.json';
-        
-        if ( file_exists($path) ) {
-            $json = file_get_contents($path);
-            $this->data = json_decode($json, true);
+        if ( file_exists( $path ) ) {
+            $json       = file_get_contents( $path );
+            $this->data = json_decode( $json, true ) ?: [];
         } else {
-            // Fallback to English
-            $fallback_path = get_template_directory() . '/languages/en.json';
-            if ( file_exists($fallback_path) ) {
-                $json = file_get_contents($fallback_path);
-                $this->data = json_decode($json, true);
+            $fallback = get_template_directory() . '/languages/en.json';
+            if ( file_exists( $fallback ) ) {
+                $this->data = json_decode( file_get_contents( $fallback ), true ) ?: [];
             }
         }
     }
 
-    /**
-     * Translate function (t method)
-     * Supports dot notation: home.hero.title
-     */
-    public function t($key) {
-        $keys = explode('.', $key);
-        $temp = $this->data;
+    public function getLang() {
+        $this->boot();
+        return $this->lang;
+    }
 
-        foreach ($keys as $k) {
-            if (isset($temp[$k])) {
+    public function t( $key ) {
+        $this->boot();
+        $keys = explode( '.', $key );
+        $temp = $this->data;
+        foreach ( $keys as $k ) {
+            if ( isset( $temp[$k] ) ) {
                 $temp = $temp[$k];
             } else {
-                return $key; // Return key name if not found
+                return $key;
             }
         }
-
-        return (is_string($temp) || is_array($temp)) ? $temp : $key;
+        return ( is_string( $temp ) || is_array( $temp ) ) ? $temp : $key;
     }
 
-    /**
-     * Resolve a path (slug) to its localized URL
-     */
-    public function resolve_nav_url($path) {
-        if ($path === '/') return home_url('/');
-        
-        $slug = ltrim($path, '/');
-        $page = get_page_by_path($slug);
-        
-        if ($page) {
-            // Get the translated version of the page for the current language
-            $translated_id = pll_get_post($page->ID, $this->lang);
-            if ($translated_id) {
-                return get_permalink($translated_id);
+    public function resolve_nav_url( $path ) {
+        $this->boot();
+        if ( $path === '/' ) return home_url( '/' );
+        $slug = ltrim( $path, '/' );
+        $page = get_page_by_path( $slug );
+        if ( $page ) {
+            if ( function_exists( 'pll_get_post' ) ) {
+                $translated_id = pll_get_post( $page->ID, $this->lang );
+                if ( $translated_id ) return get_permalink( $translated_id );
             }
-            return get_permalink($page->ID);
+            return get_permalink( $page->ID );
         }
-
-        return home_url($path);
+        return home_url( $path );
     }
 }

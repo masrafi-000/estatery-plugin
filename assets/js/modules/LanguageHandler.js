@@ -1,36 +1,20 @@
 /**
- * Language selection handler (Polylang Cookie Persistence)
+ * LanguageHandler — Boot-time language state utility
+ *
+ * Reads the active language from the pll_language cookie (which PHP sets
+ * via the ?set_lang redirect flow) and exposes it as a data-lang attribute
+ * on <html> so any JS module can read the current locale without fetching.
  */
 export default class LanguageHandler {
     constructor() {
-        this.init();
+        // Read OUR cookie — 'estatery_lang', not 'pll_language' (Polylang's)
+        this.activeLang = this.readCookie('estatery_lang') || 'en';
+        document.documentElement.setAttribute('data-lang', this.activeLang);
+        console.log(`[LangHandler] Active: ${this.activeLang}`);
     }
 
-    init() {
-        const langLinks = document.querySelectorAll('.language-switcher a');
-        langLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const langCode = link.textContent.trim().toLowerCase();
-                this.setCookie('estatery_selected_lang', langCode, 365);
-                console.log(`Language switched to: ${langCode}`);
-            });
-        });
-
-        const savedLang = this.getCookie('estatery_selected_lang');
-        if (savedLang) {
-            console.log(`Active Language Preference: ${savedLang}`);
-        }
-    }
-
-    setCookie(name, value, days) {
-        const d = new Date();
-        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-        document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/`;
-    }
-
-    getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
+    readCookie(name) {
+        const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : null;
     }
 }
