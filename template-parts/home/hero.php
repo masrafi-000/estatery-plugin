@@ -23,7 +23,7 @@ $video_url   = $video_id ? wp_get_attachment_url($video_id) : get_template_direc
             <?php echo esc_html( t('home.hero.agency_label') ); ?>
         </span>
 
-        <h1 class="reveal-up text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight leading-[1.1]">
+        <h1 class="reveal-up text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 tracking-tight leading-[1.1]">
             <?php echo t('home.hero.title'); ?>
         </h1>
 

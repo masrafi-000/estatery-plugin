@@ -7,6 +7,6 @@
 get_header();
 
 // Load the properties view component
-get_template_part( 'template-parts/pages/properties', 'listing' );
+get_template_part( 'template-parts/properties/properties-content' );
 
 get_footer();

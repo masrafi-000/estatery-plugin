@@ -22,7 +22,7 @@
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 no-underline group">
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/LOGO-3.png' ); ?>" 
                          alt="<?php bloginfo( 'name' ); ?>" 
-                         class="h-16 w-auto object-contain scale-[2.5] origin-left transition-transform duration-500 max-w-none">
+                         class="h-14 w-auto object-contain scale-[2.5] origin-left transition-transform duration-500 max-w-none">
                 </a>
                 <button id="drawer-close" class="p-2 text-gray-400 hover:text-primary transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -62,7 +62,7 @@
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 group no-underline">
                         <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/LOGO-3.png' ); ?>" 
                              alt="<?php bloginfo( 'name' ); ?>" 
-                             class="h-16 md:h-20 w-auto object-contain scale-[2.5] md:scale-[3] origin-left transition-transform duration-500 max-w-none">
+                             class="h-12 md:h-20 w-auto object-contain scale-[2] md:scale-[3] origin-left transition-transform duration-500 max-w-none">
                     </a>
                 </div>
 

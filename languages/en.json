@@ -174,30 +174,110 @@
     "properties": {
       "title": "Exclusive Properties",
       "subtitle": "Discover a curated selection of our finest listings.",
+      "filters": {
+        "all": "All Properties",
+        "buy": "For Sale",
+        "rent": "For Rent",
+        "type": "Property Type",
+        "location": "Location",
+        "price": "Price Range",
+        "search": "Search Properties",
+        "min_price": "Min Price",
+        "max_price": "Max Price",
+        "beds": "Bedrooms",
+        "baths": "Bathrooms",
+        "status": "Property Status",
+        "features": "Amenities",
+        "reset": "Reset Filters",
+        "apply": "Apply Filters"
+      },
+      "categories": {
+        "title": "Explore by Category",
+        "subtitle": "Find the perfect type of home that suits your lifestyle.",
+        "types": [
+          { "name": "Apartments", "count": "12 Properties", "icon": "building" },
+          { "name": "Villas", "count": "8 Properties", "icon": "home" },
+          { "name": "Townhouses", "count": "5 Properties", "icon": "townhouse" },
+          { "name": "Commercial", "count": "3 Properties", "icon": "office" }
+        ]
+      },
+      "cta": {
+        "title": "List Your Property with Us",
+        "subtitle": "Join thousands of satisfied homeowners who found the right buyers through our platform.",
+        "button": "Get Started Now"
+      },
       "items": [
         {
           "id": 1,
           "title": "Azure Sea Villa",
           "price": "$4,500,000",
           "location": "Malibu, California",
+          "type": "Buy",
+          "beds": 5,
+          "baths": 4,
+          "sqft": 6500,
           "description": "A stunning waterfront masterpiece with infinity pool and private beach access.",
-          "image": "property_villa_modern"
+          "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200"
         },
         {
           "id": 2,
           "title": "Skyline Penthouse",
           "price": "$2,800,000",
           "location": "Downtown Dubai",
+          "type": "Buy",
+          "beds": 4,
+          "baths": 3,
+          "sqft": 4200,
           "description": "High-altitude luxury with 360-degree views of the city skyline and Burj Khalifa.",
-          "image": "property_penthouse_luxury"
+          "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200"
         },
         {
           "id": 3,
           "title": "Urban Loft",
-          "price": "$1,200,000",
+          "price": "$3,500/mo",
           "location": "SoHo, New York",
+          "type": "Rent",
+          "beds": 2,
+          "baths": 2,
+          "sqft": 1800,
           "description": "Sleek industrial design meets modern comfort in the heart of the art district.",
-          "image": "property_apartment_urban_interiors"
+          "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200"
+        },
+        {
+          "id": 4,
+          "title": "Modern Forest Retreat",
+          "price": "$1,850,000",
+          "location": "Aspen, Colorado",
+          "type": "Buy",
+          "beds": 3,
+          "baths": 2.5,
+          "sqft": 2800,
+          "description": "Experimental architecture blending seamlessly with the natural mountain environment.",
+          "image": "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1200"
+        },
+        {
+          "id": 5,
+          "title": "Garden Terrace Apt",
+          "price": "$2,200/mo",
+          "location": "Austin, Texas",
+          "type": "Rent",
+          "beds": 1,
+          "baths": 1,
+          "sqft": 950,
+          "description": "Charming apartment with a private oversized terrace and lush garden views.",
+          "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200"
+        },
+        {
+          "id": 6,
+          "title": "The Glass House",
+          "price": "$6,200,000",
+          "location": "Beverly Hills, CA",
+          "type": "Buy",
+          "beds": 6,
+          "baths": 5,
+          "sqft": 8200,
+          "description": "An architectural marvel featuring floor-to-ceiling glass walls and panoramic canyon views.",
+          "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1200"
         }
       ]
     },
