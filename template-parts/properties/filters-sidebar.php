@@ -4,7 +4,7 @@
  */
 ?>
 
-<h2 class="sr-only">Property search filter sidebar with status, type, price, bedrooms, and bathrooms filters</h2>
+<h2 class="sr-only"><?php echo esc_html( t('pages.properties.filters.sidebar_sr_description') ?? 'Property search filter sidebar' ); ?></h2>
 
 <aside class="lg:w-[400px]">
     <div data-aos="fade-right">
@@ -104,10 +104,10 @@
                     <div class="text-[11px] font-medium text-slate-400 tracking-[0.06em] uppercase mb-2.5"><?php echo esc_html( t('pages.properties.filters.beds') ); ?></div>
                     <div class="flex gap-[5px] flex-wrap" id="beds-chips">
                         <button class="chip active py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="any"><?php echo esc_html( t('pages.properties.filters.any') ); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="1">1+</button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="2">2+</button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="3">3+</button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="4">4+</button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="1"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '1'); ?></button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="2"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '2'); ?></button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="3"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '3'); ?></button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="4"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '4'); ?></button>
                     </div>
                 </div>
 
@@ -116,10 +116,10 @@
                     <div class="text-[11px] font-medium text-slate-400 tracking-[0.06em] uppercase mb-2.5"><?php echo esc_html( t('pages.properties.filters.baths') ); ?></div>
                     <div class="flex gap-[5px] flex-wrap" id="baths-chips">
                         <button class="chip active py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="any"><?php echo esc_html( t('pages.properties.filters.any') ); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="1">1+</button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="2">2+</button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="3">3+</button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="4">4+</button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="1"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '1'); ?></button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="2"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '2'); ?></button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="3"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '3'); ?></button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="4"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '4'); ?></button>
                     </div>
                 </div>
 
@@ -140,33 +140,39 @@
     const i18n = <?php echo json_encode( t('pages.properties.js') ); ?>;
 
     document.addEventListener('DOMContentLoaded', function() {
+        // Initialize state from URL
+        const urlParams = new URLSearchParams(window.location.search);
         const state = {
-            search: '',
-            status: 'all',
-            types: [],
-            priceMin: '',
-            priceMax: '',
-            beds: 'any',
-            baths: 'any'
+            search:   urlParams.get('search')    || '',
+            status:   urlParams.get('status')    || 'all',
+            types:    urlParams.get('types')     ? urlParams.get('types').split(',') : [],
+            min_price: urlParams.get('min_price') || '',
+            max_price: urlParams.get('max_price') || '',
+            beds:     urlParams.get('beds')      || 'any',
+            baths:    urlParams.get('baths')     || 'any'
         };
 
         const selectors = {
             searchInput: document.getElementById('search-input'),
-            statusTabs: document.querySelectorAll('#status-tabs .tab-btn'),
-            typeItems: document.querySelectorAll('#type-list .type-item'),
-            priceMin: document.getElementById('price-min'),
-            priceMax: document.getElementById('price-max'),
+            statusTabs:  document.querySelectorAll('#status-tabs .tab-btn'),
+            typeItems:   document.querySelectorAll('#type-list .type-item'),
+            priceMin:    document.getElementById('price-min'),
+            priceMax:    document.getElementById('price-max'),
             activeBadge: document.getElementById('active-badge'),
-            summaryBar: document.getElementById('summary-bar'),
-            summaryText: document.getElementById('summary-text')
+            summaryBar:  document.getElementById('summary-bar') || null, // Might be in another template
+            summaryText: document.getElementById('summary-text') || null
         };
 
-        selectors.searchInput.addEventListener('input', e => {
-            state.search = e.target.value;
-            updateUI();
-        });
+        // 1. Sync Inputs with Initial State
+        if (selectors.searchInput) selectors.searchInput.value = state.search;
+        if (selectors.priceMin)    selectors.priceMin.value = state.min_price;
+        if (selectors.priceMax)    selectors.priceMax.value = state.max_price;
 
         selectors.statusTabs.forEach(btn => {
+            if (btn.dataset.val === state.status) {
+                selectors.statusTabs.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
             btn.addEventListener('click', () => {
                 state.status = btn.dataset.val;
                 selectors.statusTabs.forEach(b => b.classList.remove('active'));
@@ -176,27 +182,37 @@
         });
 
         selectors.typeItems.forEach(item => {
+            const type = item.dataset.type;
+            if (state.types.includes(type)) item.classList.add('selected');
+            
             item.addEventListener('click', () => {
-                const t = item.dataset.type;
-                if (state.types.includes(t)) {
-                    state.types = state.types.filter(x => x !== t);
+                if (state.types.includes(type)) {
+                    state.types = state.types.filter(x => x !== type);
                     item.classList.remove('selected');
                 } else {
-                    state.types.push(t);
+                    state.types.push(type);
                     item.classList.add('selected');
                 }
                 updateUI();
             });
         });
 
-        selectors.priceMin.addEventListener('input', e => { state.priceMin = e.target.value; updateUI(); });
-        selectors.priceMax.addEventListener('input', e => { state.priceMax = e.target.value; updateUI(); });
+        selectors.searchInput.addEventListener('input', e => { state.search = e.target.value; updateUI(); });
+        selectors.priceMin.addEventListener('input', e => { state.min_price = e.target.value; updateUI(); });
+        selectors.priceMax.addEventListener('input', e => { state.max_price = e.target.value; updateUI(); });
 
         function setupChips(groupId, stateKey) {
-            document.querySelectorAll('#' + groupId + ' .chip').forEach(chip => {
+            const container = document.getElementById(groupId);
+            if (!container) return;
+            const chips = container.querySelectorAll('.chip');
+            chips.forEach(chip => {
+                if (chip.dataset.val === state[stateKey]) {
+                    chips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                }
                 chip.addEventListener('click', () => {
                     state[stateKey] = chip.dataset.val;
-                    document.querySelectorAll('#' + groupId + ' .chip').forEach(c => c.classList.remove('active'));
+                    chips.forEach(c => c.classList.remove('active'));
                     chip.classList.add('active');
                     updateUI();
                 });
@@ -210,7 +226,7 @@
             if (state.search.trim()) n++;
             if (state.status !== 'all') n++;
             n += state.types.length;
-            if (state.priceMin || state.priceMax) n++;
+            if (state.min_price || state.max_price) n++;
             if (state.beds !== 'any') n++;
             if (state.baths !== 'any') n++;
             return n;
@@ -218,61 +234,42 @@
 
         function updateUI() {
             const count = countActiveFilters();
-            if (count > 0) {
-                selectors.activeBadge.classList.replace('hidden', 'inline-flex');
-                selectors.activeBadge.textContent = count;
-            } else {
-                selectors.activeBadge.classList.replace('inline-flex', 'hidden');
-            }
-
-            const parts = [];
-            if (state.search.trim()) parts.push('"' + state.search.trim() + '"');
-            if (state.status !== 'all') parts.push(state.status);
-            if (state.types.length) parts.push(state.types.join(', '));
-            if (state.priceMin && state.priceMax) parts.push('$' + Number(state.priceMin).toLocaleString() + ' – $' + Number(state.priceMax).toLocaleString());
-            else if (state.priceMin) parts.push(i18n.from + ' $' + Number(state.priceMin).toLocaleString());
-            else if (state.priceMax) parts.push(i18n.up_to + ' $' + Number(state.priceMax).toLocaleString());
-            if (state.beds !== 'any') parts.push(state.beds + '+ ' + i18n.beds_label);
-            if (state.baths !== 'any') parts.push(state.baths + '+ ' + i18n.baths_label);
-
-            if (parts.length > 0) {
-                selectors.summaryBar.classList.add('visible');
-                selectors.summaryBar.classList.remove('hidden');
-                selectors.summaryText.textContent = parts.join(' · ');
-            } else {
-                selectors.summaryBar.classList.remove('visible');
-                selectors.summaryBar.classList.add('hidden');
+            if (selectors.activeBadge) {
+                if (count > 0) {
+                    selectors.activeBadge.classList.remove('hidden');
+                    selectors.activeBadge.classList.add('inline-flex');
+                    selectors.activeBadge.textContent = count;
+                } else {
+                    selectors.activeBadge.classList.add('hidden');
+                    selectors.activeBadge.classList.remove('inline-flex');
+                }
             }
         }
 
         window.applyFilters = function() {
-            const data = { ...state };
-            console.log('%c[Property Filters] Applied', 'color:#0ea5e9;font-weight:bold', data);
-            const btn = document.querySelector('button[onclick="applyFilters()"]');
-            const orig = btn.textContent;
-            btn.textContent = i18n.applied;
-            btn.style.opacity = '0.7';
-            setTimeout(() => { btn.textContent = orig; btn.style.opacity = ''; }, 1200);
+            const params = new URLSearchParams();
+            if (state.search.trim()) params.set('search', state.search.trim());
+            if (state.status !== 'all') params.set('status', state.status);
+            if (state.types.length) params.set('types', state.types.join(','));
+            if (state.min_price) params.set('min_price', state.min_price);
+            if (state.max_price) params.set('max_price', state.max_price);
+            if (state.beds !== 'any') params.set('beds', state.beds);
+            if (state.baths !== 'any') params.set('baths', state.baths);
+            
+            // Keep existing sort and view if present
+            const currentUrl = new URL(window.location.href);
+            if (currentUrl.searchParams.has('sort')) params.set('sort', currentUrl.searchParams.get('sort'));
+            if (currentUrl.searchParams.has('view')) params.set('view', currentUrl.searchParams.get('view'));
+            
+            // Re-map into clear URL
+            window.location.href = window.location.pathname + '?' + params.toString();
         };
 
         window.resetFilters = function() {
-            state.search = '';
-            state.status = 'all';
-            state.types = [];
-            state.priceMin = '';
-            state.priceMax = '';
-            state.beds = 'any';
-            state.baths = 'any';
-
-            selectors.searchInput.value = '';
-            selectors.priceMin.value = '';
-            selectors.priceMax.value = '';
-            selectors.statusTabs.forEach(b => b.classList.toggle('active', b.dataset.val === 'all'));
-            selectors.typeItems.forEach(i => i.classList.remove('selected'));
-            document.querySelectorAll('#beds-chips .chip').forEach(c => c.classList.toggle('active', c.dataset.val === 'any'));
-            document.querySelectorAll('#baths-chips .chip').forEach(c => c.classList.toggle('active', c.dataset.val === 'any'));
-            updateUI();
-            console.log('%c[Property Filters] Reset', 'color:#f97316;font-weight:bold', state);
+            window.location.href = window.location.pathname;
         };
+
+        // Initial UI update
+        updateUI();
     });
 </script>

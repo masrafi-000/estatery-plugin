@@ -14,7 +14,7 @@ $property = $args['property'];
         
         <div class="absolute top-6 left-6 flex flex-col gap-2">
             <span class="bg-primary text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-xl">
-                <?php echo esc_html( $property['type'] ); ?>
+                <?php echo esc_html( t('pages.properties.filters.' . strtolower($property['type'])) ?? $property['type'] ); ?>
             </span>
         </div>
 

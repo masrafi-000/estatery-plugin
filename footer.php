@@ -54,7 +54,7 @@ $social_links = [
 
             <div class="lg:col-span-2">
                 <a href="index.php" class="inline-block mb-3">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Logo.png"
+                    <img src="<?php echo get_template_directory_uri(); ?>/public/images/Logo.png"
                         alt="Capital Union Logo" class="h-auto w-30">
                 </a>
                 <p class="text-text-gray max-w-sm leading-relaxed text-base">

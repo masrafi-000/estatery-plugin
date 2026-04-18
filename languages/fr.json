@@ -189,129 +189,255 @@
         "properties": {
             "title": "Propriétés Exclusives",
             "subtitle": "Découvrez une sélection rigoureuse de nos plus belles annonces.",
+            "hero_banner": {
+                "bg_text": "Marché"
+            },
+            "grid_header": {
+                "showing_result": "Résultats de recherche",
+                "items_available": "Propriétés trouvées",
+                "range": "Affichage de %1$s–%2$s",
+                "no_results": "Essayez d'ajuster vos filtres.",
+                "view_grid": "Vue en grille",
+                "view_list": "Vue en liste",
+                "sort_by": "Trier par",
+                "filters_active": "Filtres actifs"
+            },
+            "sort": {
+                "label": "Trier par",
+                "newest": "Le plus récent",
+                "oldest": "Le plus ancien",
+                "price_low": "Prix : croissant",
+                "price_high": "Prix : décroissant",
+                "area_low": "Surface : croissante",
+                "area_high": "Surface : décroissante"
+            },
+            "pagination": {
+                "prev": "Page précédente",
+                "next": "Page suivante",
+                "go_to": "Aller à la page %s"
+            },
             "items": [
                 {
                     "id": 1,
-                    "title": "Azure Sea Villa",
+                    "title": "Villa de la Mer Azure",
                     "price": "$4,500,000",
-                    "location": "Malibu, California",
+                    "location": "Malibu, Californie",
                     "type": "Buy",
+                    "category": "villa",
                     "beds": 5,
                     "baths": 4,
                     "sqft": 6500,
-                    "description": "A stunning waterfront masterpiece with infinity pool and private beach access.",
-                    "image": "https:\/\/images.unsplash.com\/photo-1613490493576-7fde63acd811?q=80&w=1200"
+                    "description": "Un chef-d'œuvre éblouissant en bord de mer avec piscine à débordement et accès privé à la plage.",
+                    "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200"
                 },
                 {
                     "id": 2,
-                    "title": "Skyline Penthouse",
+                    "title": "Penthouse Skyline",
                     "price": "$2,800,000",
-                    "location": "Downtown Dubai",
+                    "location": "Centre-ville de Dubaï",
                     "type": "Buy",
+                    "category": "apartment",
                     "beds": 4,
                     "baths": 3,
                     "sqft": 4200,
-                    "description": "High-altitude luxury with 360-degree views of the city skyline and Burj Khalifa.",
-                    "image": "https:\/\/images.unsplash.com\/photo-1512917774080-9991f1c4c750?q=80&w=1200"
+                    "description": "Luxe en haute altitude avec vue à 360 degrés sur la ligne d'horizon et le Burj Khalifa.",
+                    "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200"
                 },
                 {
                     "id": 3,
-                    "title": "Urban Loft",
-                    "price": "$3,500\/mo",
+                    "title": "Loft Urbain",
+                    "price": "$3,500/mois",
                     "location": "SoHo, New York",
                     "type": "Rent",
+                    "category": "apartment",
                     "beds": 2,
                     "baths": 2,
                     "sqft": 1800,
-                    "description": "Sleek industrial design meets modern comfort in the heart of the art district.",
-                    "image": "https:\/\/images.unsplash.com\/photo-1502672260266-1c1ef2d93688?q=80&w=1200"
+                    "description": "Design industriel élégant et confort moderne au cœur du quartier des arts.",
+                    "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200"
                 },
                 {
                     "id": 4,
-                    "title": "Modern Forest Retreat",
+                    "title": "Retraite Forestière Moderne",
                     "price": "$1,850,000",
                     "location": "Aspen, Colorado",
                     "type": "Buy",
+                    "category": "villa",
                     "beds": 3,
                     "baths": 2.5,
                     "sqft": 2800,
-                    "description": "Experimental architecture blending seamlessly with the natural mountain environment.",
-                    "image": "https:\/\/images.unsplash.com\/photo-1518780664697-55e3ad937233?q=80&w=1200"
+                    "description": "Architecture expérimentale s'intégrant parfaitement à l'environnement naturel de la montagne.",
+                    "image": "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1200"
                 },
                 {
                     "id": 5,
-                    "title": "Garden Terrace Apt",
-                    "price": "$2,200\/mo",
+                    "title": "Appt avec Terrasse Jardin",
+                    "price": "$2,200/mois",
                     "location": "Austin, Texas",
                     "type": "Rent",
+                    "category": "apartment",
                     "beds": 1,
                     "baths": 1,
                     "sqft": 950,
-                    "description": "Charming apartment with a private oversized terrace and lush garden views.",
-                    "image": "https:\/\/images.unsplash.com\/photo-1493809842364-78817add7ffb?q=80&w=1200"
+                    "description": "Charmant appartement avec une grande terrasse privée et une vue luxuriante sur le jardin.",
+                    "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200"
                 },
                 {
                     "id": 6,
-                    "title": "The Glass House",
+                    "title": "La Maison de Verre",
                     "price": "$6,200,000",
                     "location": "Beverly Hills, CA",
                     "type": "Buy",
+                    "category": "villa",
                     "beds": 6,
                     "baths": 5,
                     "sqft": 8200,
-                    "description": "An architectural marvel featuring floor-to-ceiling glass walls and panoramic canyon views.",
-                    "image": "https:\/\/images.unsplash.com\/photo-1564013799919-ab600027ffc6?q=80&w=1200"
+                    "description": "Une merveille architecturale avec des parois de verre du sol au plafond et des vues panoramiques.",
+                    "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1200"
+                },
+                {
+                    "id": 7,
+                    "title": "Oasis du Désert",
+                    "price": "$1,200,000",
+                    "location": "Palm Springs, CA",
+                    "type": "Buy",
+                    "category": "villa",
+                    "beds": 3,
+                    "baths": 2,
+                    "sqft": 2400,
+                    "description": "Un oasis moderne dans le désert avec design minimaliste et piscine privée.",
+                    "image": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1200"
+                },
+                {
+                    "id": 8,
+                    "title": "Chalet Alpin",
+                    "price": "$850,000",
+                    "location": "Zermatt, Suisse",
+                    "type": "Buy",
+                    "category": "villa",
+                    "beds": 4,
+                    "baths": 3,
+                    "sqft": 3100,
+                    "description": "Un chalet luxueux avec vue sur le Cervin et accès direct aux pistes.",
+                    "image": "https://images.unsplash.com/photo-1510627489930-0c5669501806?q=80&w=1200"
+                },
+                {
+                    "id": 9,
+                    "title": "Maisonnette Côtière",
+                    "price": "$1,500/mois",
+                    "location": "Santorin, Grèce",
+                    "type": "Rent",
+                    "category": "apartment",
+                    "beds": 1,
+                    "baths": 1,
+                    "sqft": 750,
+                    "description": "Appartement blanc traditionnel avec vue sur la mer Égée et couchers de soleil emblématiques.",
+                    "image": "https://images.unsplash.com/photo-1502672023488-70e25813efdf?q=80&w=1200"
+                },
+                {
+                    "id": 10,
+                    "title": "Studio Industriel",
+                    "price": "$2,100/mois",
+                    "location": "Berlin, Allemagne",
+                    "type": "Rent",
+                    "category": "commercial",
+                    "beds": 0,
+                    "baths": 1,
+                    "sqft": 1200,
+                    "description": "Espace de travail créatif dans un entrepôt rénové avec de hauts plafonds.",
+                    "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200"
+                },
+                {
+                    "id": 11,
+                    "title": "Manoir de Campagne",
+                    "price": "$3,200,000",
+                    "location": "Cotswolds, Royaume-Uni",
+                    "type": "Buy",
+                    "category": "townhouse",
+                    "beds": 7,
+                    "baths": 5,
+                    "sqft": 5800,
+                    "description": "Un manoir historique en pierre entouré de prairies vertes et de jardins classiques.",
+                    "image": "https://images.unsplash.com/photo-1512918766671-ad6507962077?q=80&w=1200"
+                },
+                {
+                    "id": 12,
+                    "title": "Refuge du Lac",
+                    "price": "$950,000",
+                    "location": "Lac de Côme, Italie",
+                    "type": "Buy",
+                    "category": "villa",
+                    "beds": 3,
+                    "baths": 3,
+                    "sqft": 2600,
+                    "description": "Un refuge paisible avec embarcadère privé et vue cristalline sur la montagne.",
+                    "image": "https://images.unsplash.com/photo-1513584684374-8bdb7489feef?q=80&w=1200"
                 }
             ],
             "filters": {
-                "all": "All Properties",
-                "buy": "For Sale",
-                "rent": "For Rent",
-                "type": "Property Type",
-                "location": "Location",
-                "price": "Price Range",
-                "search": "Search Properties",
-                "min_price": "Min Price",
-                "max_price": "Max Price",
-                "beds": "Bedrooms",
-                "baths": "Bathrooms",
-                "status": "Property Status",
-                "features": "Amenities",
-                "reset": "Reset Filters",
-                "apply": "Apply Filters"
+                "all": "Toutes les propriétés",
+                "buy": "À vendre",
+                "rent": "À louer",
+                "type": "Type de propriété",
+                "location": "Emplacement",
+                "location_placeholder": "Ville, adresse, CP…",
+                "search": "Rechercher des propriétés",
+                "price": "Tranche de prix",
+                "min_price": "Prix min",
+                "max_price": "Prix max",
+                "min_placeholder": "Min",
+                "max_placeholder": "Max",
+                "beds": "Chambres",
+                "baths": "Salles de bain",
+                "any": "Peu importe",
+                "status": "Statut de la propriété",
+                "all_tabs": "Toutes",
+                "features": "Équipements",
+                "reset": "Réinitialiser",
+                "reset_button": "Tout réinitialiser",
+                "apply": "Appliquer",
+                "apply_button": "Appliquer les filtres",
+                "filter_results": "Filtrer les résultats",
+                "refine_search": "Affinez votre recherche",
+                "sidebar_sr_description": "Boîte latérale de filtres pour la recherche de propriétés avec statut, type, prix, chambres et salles de bain",
+                "plus_label": "%s+"
+            },
+            "js": {
+                "applied": "Appliqué !",
+                "from": "de",
+                "up_to": "jusqu'à",
+                "beds_label": "ch.",
+                "baths_label": "sdb"
             },
             "categories": {
-                "title": "Explore by Category",
-                "subtitle": "Find the perfect type of home that suits your lifestyle.",
+                "title": "Explorer par catégorie",
+                "subtitle": "Trouvez le type de maison idéal qui correspond à votre style de vie.",
                 "types": [
-                    {
-                        "name": "Apartments",
-                        "count": "12 Properties",
-                        "icon": "building"
-                    },
-                    {
-                        "name": "Villas",
-                        "count": "8 Properties",
-                        "icon": "home"
-                    },
-                    {
-                        "name": "Townhouses",
-                        "count": "5 Properties",
-                        "icon": "townhouse"
-                    },
-                    {
-                        "name": "Commercial",
-                        "count": "3 Properties",
-                        "icon": "office"
-                    }
+                    { "name": "Appartements", "count": "12 Propriétés", "icon": "building" },
+                    { "name": "Villas", "count": "8 Propriétés", "icon": "home" },
+                    { "name": "Maisons", "count": "5 Propriétés", "icon": "townhouse" },
+                    { "name": "Commercial", "count": "3 Propriétés", "icon": "office" }
                 ]
             },
+            "actions": {
+                "view_details": "Voir les détails"
+            },
             "cta": {
-                "title": "List Your Property with Us",
-                "subtitle": "Join thousands of satisfied homeowners who found the right buyers through our platform.",
-                "button": "Get Started Now"
+                "eyebrow": "L'opportunité vous attend",
+                "title": "Trouvez la propriété de vos rêves",
+                "subtitle": "Explorez des milliers d'annonces sélectionnées et connectez-vous avec des agents de confiance.",
+                "stat_listings": "Annonces actives",
+                "stat_clients": "Clients satisfaits",
+                "stat_experience": "Années d'expérience",
+                "button_primary": "Voir les annonces",
+                "button_secondary": "Parler à un agent",
+                "badge_licensed": "Licencié et régulé",
+                "badge_secure": "Transactions sécurisées",
+                "badge_support": "Support 24/7",
+                "badge_verified": "Annonces vérifiées uniquement"
             }
         },
+
         "contact": {
             "hero": {
                 "title": "Contactez-nous",
