@@ -6,7 +6,7 @@ $video_id    = get_theme_mod('hero_video_file');
 $video_url   = $video_id ? wp_get_attachment_url($video_id) : get_template_directory_uri() . '/assets/images/hero-video.mp4';
 ?>
 
-<section class="relative min-h-[700px] lg:h-[90vh] flex items-center justify-center overflow-hidden bg-[#0a1d23]">
+<section class="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-[#0a1d23]">
 
     <div id="hero-bg-container" class="absolute inset-0 z-0">
         <div class="absolute inset-0 z-10 bg-gradient-to-b from-[#0a1d23]/80 via-transparent to-[#0a1d23]"></div>
@@ -19,7 +19,7 @@ $video_url   = $video_id ? wp_get_attachment_url($video_id) : get_template_direc
 
     <div class="container mx-auto px-4 relative z-20 text-center text-white">
         <span
-            class="reveal-fade inline-block text-xs md:text-sm font-semibold mb-4 tracking-[0.2em] uppercase opacity-90 border-b border-primary pb-1">
+            class="reveal-fade inline-block text-xs md:text-sm font-semibold mt-12 md:mt-0 mb-4 tracking-[0.2em] uppercase opacity-90 border-b border-primary pb-1">
             <?php echo esc_html( t('home.hero.agency_label') ); ?>
         </span>
 
@@ -31,7 +31,8 @@ $video_url   = $video_id ? wp_get_attachment_url($video_id) : get_template_direc
             <?php echo esc_html( t('home.hero.description') ); ?>
         </p>
 
-        <div class="reveal-up max-w-6xl mx-auto">
+        <div class="reveal-up max-w-6xl mx-auto mb-12 md:mb-0">
+            <!--
             <div class="flex justify-center -mb-[1px] space-x-1">
                 <button type="button"
                     class="filter-tab active px-10 py-3.5 bg-primary text-white font-bold rounded-t-xl transition-all"
@@ -40,6 +41,7 @@ $video_url   = $video_id ? wp_get_attachment_url($video_id) : get_template_direc
                     class="filter-tab px-10 py-3.5 bg-white/90 text-slate-900 font-bold rounded-t-xl transition-all"
                     data-type="rent"><?php echo esc_html( t('home.hero.tabs.rent') ); ?></button>
             </div>
+            -->
 
             <div
                 class="bg-white/95 backdrop-blur-md rounded-2xl lg:rounded-b-2xl lg:rounded-tr-none shadow-2xl p-6 lg:p-8">
