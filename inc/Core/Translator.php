@@ -153,4 +153,45 @@ class Translator {
         
         return home_url( $path );
     }
+
+    /**
+     * Helper to map raw JSON property data to a clean array
+     */
+    public static function map_property_data($prop, $lang = 'en') {
+        $id = $prop['id'][0] ?? '';
+        $title = ucfirst($prop['type'][0] ?? 'Property') . ' ' . ($prop['town'][0] ?? '');
+        
+        $price_raw = $prop['price'][0] ?? '0';
+        $currency = $prop['currency'][0] ?? 'EUR';
+        $symbol = $currency === 'EUR' ? '€' : ($currency === 'USD' ? '$' : $currency);
+        $price = number_format((float)$price_raw, 0, '.', ',') . ' ' . $symbol;
+        
+        $location = ($prop['town'][0] ?? '') . ', ' . ($prop['province'][0] ?? '');
+        $description = $prop['desc'][0][$lang][0] ?? '';
+        
+        $beds = $prop['beds'][0] ?? '0';
+        $baths = $prop['baths'][0] ?? '0';
+        $sqft = $prop['surface_area'][0]['built'][0] ?? '0';
+        
+        $type = (strtolower($prop['price_freq'][0] ?? '') === 'sale') ? 'buy' : 'rent';
+        
+        $image = '';
+        if (isset($prop['images'][0]['image'][0]['url'][0])) {
+            $image = $prop['images'][0]['image'][0]['url'][0];
+        }
+        
+        return [
+            'id' => $id,
+            'title' => $title,
+            'price' => $price,
+            'location' => $location,
+            'description' => $description,
+            'type' => $type,
+            'beds' => $beds,
+            'baths' => $baths,
+            'sqft' => $sqft,
+            'image' => $image,
+            'new_build' => ($prop['new_build'][0] ?? '0') === '1'
+        ];
+    }
 }
