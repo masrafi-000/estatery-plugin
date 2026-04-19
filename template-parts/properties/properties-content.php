@@ -18,7 +18,35 @@
                 <main class="lg:w-3/4">
                     <?php 
                     // 1. Data Source
-                    $all_properties = t('pages.properties.items') ?: [];
+                    $json_file = get_template_directory() . '/data/properties.json';
+                    $all_properties = [];
+                    if (file_exists($json_file)) {
+                        $json_data = file_get_contents($json_file);
+                        $parsed_data = json_decode($json_data, true);
+                        $raw_properties = $parsed_data['root']['property'] ?? [];
+
+                        foreach ($raw_properties as $prop) {
+                            $price = $prop['price'][0] ?? '';
+                            $currency = $prop['currency'][0] ?? '';
+                            $currency_symbol = $currency === 'EUR' ? '€' : ($currency === 'USD' ? '$' : $currency);
+                            
+                            $formatted_price = number_format((float)$price, 0, '.', ',') . ' ' . $currency_symbol;
+
+                            $all_properties[] = [
+                                'id' => $prop['id'][0] ?? '',
+                                'title' => ucfirst($prop['type'][0] ?? 'Property') . ' ' . ($prop['town'][0] ?? ''),
+                                'price' => $formatted_price,
+                                'location' => ($prop['town'][0] ?? '') . ', ' . ($prop['province'][0] ?? ''),
+                                'description' => $prop['desc'][0]['en'][0] ?? '',
+                                'type' => ($prop['price_freq'][0] ?? '') === 'sale' ? 'buy' : 'rent',
+                                'category' => $prop['type'][0] ?? '',
+                                'beds' => $prop['beds'][0] ?? '0',
+                                'baths' => $prop['baths'][0] ?? '0',
+                                'pool' => $prop['pool'][0] ?? '0',
+                                'image' => $prop['images'][0]['image'][0]['url'][0] ?? ''
+                            ];
+                        }
+                    }
                     
                     // 1.5 Apply Filters
                     $search    = strtolower($_GET['search'] ?? '');
@@ -49,7 +77,7 @@
                         }
 
                         // Price
-                        $price = (float)str_replace(['$',',','/mo'], '', $item['price']);
+                        $price = (float)str_replace(['$',',','€',' ','/mo'], '', $item['price']);
                         if ($min_price > 0 && $price < $min_price) return false;
                         if ($max_price > 0 && $price > $max_price) return false;
 
@@ -76,9 +104,9 @@
 
                     // 3. Sorting logic
                     if ($current_sort === 'price_asc') {
-                        usort($all_properties, fn($a, $b) => (float)str_replace(['$',','], '', $a['price']) <=> (float)str_replace(['$',','], '', $b['price']));
+                        usort($all_properties, fn($a, $b) => (float)str_replace(['$',',','€',' '], '', $a['price']) <=> (float)str_replace(['$',',','€',' '], '', $b['price']));
                     } elseif ($current_sort === 'price_desc') {
-                        usort($all_properties, fn($a, $b) => (float)str_replace(['$',','], '', $b['price']) <=> (float)str_replace(['$',','], '', $a['price']));
+                        usort($all_properties, fn($a, $b) => (float)str_replace(['$',',','€',' '], '', $b['price']) <=> (float)str_replace(['$',',','€',' '], '', $a['price']));
                     }
 
                     // 4. Pagination slicing

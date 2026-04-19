@@ -50,6 +50,7 @@
       "description": "Handpicked properties just for you.",
       "beds": "Beds",
       "baths": "Baths",
+      "pool": "Pool",
       "sqft": "Sqft",
       "view_all": "ALL PROPERTIES"
     },

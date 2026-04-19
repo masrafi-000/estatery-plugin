@@ -65,6 +65,7 @@
             "description": "Des propriétés triées sur le volet juste pour vous.",
             "beds": "Ch.",
             "baths": "SdB",
+            "pool": "piscine",
             "sqft": "m²",
             "view_all": "TOUTES LES PROPRIÉTÉS"
         },

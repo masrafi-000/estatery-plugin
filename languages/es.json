@@ -65,6 +65,7 @@
             "description": "Propiedades seleccionadas especialmente para usted.",
             "beds": "Hab.",
             "baths": "Baños",
+            "pool": "pileta",
             "sqft": "m²",
             "view_all": "TODAS LAS PROPIEDADES"
         },
