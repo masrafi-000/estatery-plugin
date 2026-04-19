@@ -44,6 +44,10 @@ class ThemeSetup {
                 'title'    => 'Properties',
                 'template' => 'page-properties.php'
             ],
+            'property-details' => [
+                'title'    => 'Property Details',
+                'template' => 'page-property-details.php'
+            ],
             'about' => [
                 'title'    => 'About',
                 'template' => 'page-about.php'

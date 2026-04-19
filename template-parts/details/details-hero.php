@@ -5,16 +5,24 @@
  */
 
 // 1. Get Dynamic Data from the current post/property
-$banner_title    = get_the_title();
-$banner_bg_text   = "Details";
-$banner_subtitle  = "Explore the premium details and investment potential of this property";
+$property_data = get_query_var( 'property_data' );
 
-// 2. Get Featured Image (Fallback to a default image if no featured image is set)
-if (has_post_thumbnail()) {
-    $banner_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+if ( $property_data ) {
+    $banner_title    = ucfirst($property_data['type'][0] ?? 'Property') . ' ' . ($property_data['town'][0] ?? '');
+    $banner_bg_text  = $property_data['town'][0] ?? 'Details';
+    $banner_subtitle = $property_data['location_detail'][0] ?? 'Explore the premium details and investment potential of this property';
+    
+    $banner_image = $property_data['images'][0]['image'][0]['url'][0] ?? "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600";
 } else {
+    $banner_title    = get_the_title();
+    $banner_bg_text   = "Details";
+    $banner_subtitle  = "Explore the premium details and investment potential of this property";
 
-    $banner_image = "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600";
+    if (has_post_thumbnail()) {
+        $banner_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+    } else {
+        $banner_image = "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600";
+    }
 }
 
 $shared_banner_path = get_template_directory() . '/shared/dynamic-banner.php';
