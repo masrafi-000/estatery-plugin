@@ -75,7 +75,7 @@ $gallery_images_json = json_encode($images);
                     class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white transition-all group-hover:bg-black/40 backdrop-blur-[2px]">
                     <i data-lucide="plus-square" class="w-8 h-8 mb-1 text-primary"></i>
                     <span id="photo-count-label"
-                        class="font-bold text-xs uppercase tracking-widest text-center px-2">View Photos</span>
+                        class="font-bold text-xs uppercase tracking-widest text-center px-2"><?php echo esc_html(t('pages.property_details.view_photos')); ?></span>
                 </div>
             </div>
         </div>
@@ -88,28 +88,28 @@ $gallery_images_json = json_encode($images);
                     <i data-lucide="bed" class="w-6 h-6 text-primary"></i>
                     <div>
                         <p class="text-lg font-bold"><?php echo esc_html(str_pad($beds, 2, '0', STR_PAD_LEFT)); ?></p>
-                        <p class="text-xs text-slate-500 uppercase font-semibold">Bedrooms</p>
+                        <p class="text-xs text-slate-500 uppercase font-semibold"><?php echo esc_html(t('pages.property_details.bedrooms')); ?></p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3 border-l-0 md:border-l border-slate-200 md:pl-6">
                     <i data-lucide="bath" class="w-6 h-6 text-primary"></i>
                     <div>
                         <p class="text-lg font-bold"><?php echo esc_html(str_pad($baths, 2, '0', STR_PAD_LEFT)); ?></p>
-                        <p class="text-xs text-slate-500 uppercase font-semibold">Bathrooms</p>
+                        <p class="text-xs text-slate-500 uppercase font-semibold"><?php echo esc_html(t('pages.property_details.bathrooms')); ?></p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3 border-l-0 md:border-l border-slate-200 md:pl-6">
                     <i data-lucide="maximize" class="w-6 h-6 text-primary"></i>
                     <div>
                         <p class="text-lg font-bold"><?php echo esc_html(number_format((float)$surface_built)); ?>m²</p>
-                        <p class="text-xs text-slate-500 uppercase font-semibold">Building</p>
+                        <p class="text-xs text-slate-500 uppercase font-semibold"><?php echo esc_html(t('pages.property_details.building')); ?></p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3 border-l-0 md:border-l border-slate-200 md:pl-6">
                     <i data-lucide="layers" class="w-6 h-6 text-primary"></i>
                     <div>
                         <p class="text-lg font-bold"><?php echo esc_html(number_format((float)$surface_plot)); ?>m²</p>
-                        <p class="text-xs text-slate-500 uppercase font-semibold">Lot Size</p>
+                        <p class="text-xs text-slate-500 uppercase font-semibold"><?php echo esc_html(t('pages.property_details.lot_size')); ?></p>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@ $gallery_images_json = json_encode($images);
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
                     <div>
                         <?php if(!empty($property_data['new_build'][0])): ?>
-                            <span class="inline-block bg-primary text-white text-[10px] font-black px-3 py-1 rounded-xl uppercase tracking-widest mb-2">New Build</span>
+                            <span class="inline-block bg-primary text-white text-[10px] font-black px-3 py-1 rounded-xl uppercase tracking-widest mb-2"><?php echo esc_html(t('pages.property_details.new_build')); ?></span>
                         <?php endif; ?>
                         <h2 class="text-3xl font-serif font-bold text-slate-900"><?php echo esc_html(ucfirst($property_data['type'][0] ?? 'Property')); ?></h2>
                         <p class="text-slate-500 mt-1 flex items-center gap-1 text-sm font-medium">
@@ -135,7 +135,7 @@ $gallery_images_json = json_encode($images);
                             ?>
                         </div>
                         <p class="text-xs text-slate-500 uppercase font-bold tracking-widest">
-                            For <?php echo esc_html($property_data['price_freq'][0] ?? 'sale'); ?>
+                            <?php echo esc_html(t('pages.property_details.for')); ?> <?php echo esc_html($property_data['price_freq'][0] ?? 'sale'); ?>
                         </p>
                     </div>
                 </div>
@@ -143,7 +143,7 @@ $gallery_images_json = json_encode($images);
                 <hr class="border-slate-200">
 
                 <div>
-                    <h2 class="text-2xl font-serif font-bold mb-4">Description</h2>
+                    <h2 class="text-2xl font-serif font-bold mb-4"><?php echo esc_html(t('pages.property_details.description')); ?></h2>
                     <?php foreach ($description_parts as $part): ?>
                         <p class="text-slate-600 leading-relaxed mb-4">
                             <?php echo esc_html($part); ?>
@@ -154,7 +154,7 @@ $gallery_images_json = json_encode($images);
                 <hr class="border-slate-200">
 
                 <div>
-                    <h3 class="text-xl font-bold mb-6">Features</h3>
+                    <h3 class="text-xl font-bold mb-6"><?php echo esc_html(t('pages.property_details.features')); ?></h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4">
                         <?php foreach ($features as $feature): ?>
                             <div class="flex items-center gap-3 group">
@@ -193,19 +193,19 @@ $gallery_images_json = json_encode($images);
         <div class="lg:w-1/3">
             <div class="sticky top-8 bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-100">
                 <div class="p-8">
-                    <h5 class="font-bold mb-4 text-slate-800">Contact Us</h5>
+                    <h5 class="font-bold mb-4 text-slate-800"><?php echo esc_html(t('pages.property_details.form.contact_us')); ?></h5>
                     <form class="space-y-4">
-                        <input type="text" placeholder="Name"
+                        <input type="text" placeholder="<?php echo esc_attr(t('pages.property_details.form.name')); ?>"
                             class="w-full px-4 py-3 bg-slate-50 border rounded-lg outline-none focus:border-primary">
-                        <input type="text" placeholder="Number"
+                        <input type="text" placeholder="<?php echo esc_attr(t('pages.property_details.form.number')); ?>"
                             class="w-full px-4 py-3 bg-slate-50 border rounded-lg outline-none focus:border-primary">
-                        <input type="email" placeholder="Email"
+                        <input type="email" placeholder="<?php echo esc_attr(t('pages.property_details.form.email')); ?>"
                             class="w-full px-4 py-3 bg-slate-50 border rounded-lg outline-none focus:border-primary">
-                        <textarea rows="4" placeholder="I'm interested in this property."
+                        <textarea rows="4" placeholder="<?php echo esc_attr(t('pages.property_details.form.message')); ?>"
                             class="w-full px-4 py-3 bg-slate-50 border rounded-lg outline-none focus:border-primary resize-none"></textarea>
                         <button
                             class="w-full py-4 bg-primary  hover:text-gray-50 font-bold rounded-lg hover:bg-slate-800 text-white transition-all flex items-center justify-center gap-2">
-                            <i data-lucide="send" class="w-4 h-4"></i> SEND MESSAGE
+                            <i data-lucide="send" class="w-4 h-4"></i> <?php echo esc_html(t('pages.property_details.form.submit')); ?>
                         </button>
                     </form>
                 </div>
@@ -280,7 +280,10 @@ $gallery_images_json = json_encode($images);
             const modalThumbContainer = document.getElementById('modal-thumbnails-container');
             const photoLabel = document.getElementById('photo-count-label');
 
-            if (photoLabel) photoLabel.innerText = `View ${propertyImages.length} Photos`;
+            if (photoLabel) {
+                const viewPhotosText = <?php echo json_encode( t('pages.property_details.view_photos') ); ?>;
+                photoLabel.innerText = `${viewPhotosText} (${propertyImages.length})`;
+            }
 
             const sideImages = propertyImages.slice(1, 3);
             let sideHtml = '<div class="grid grid-cols-2 md:grid-cols-1 md:col-span-1 gap-4">';

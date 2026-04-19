@@ -59,6 +59,18 @@ class ThemeSetup {
             'invest' => [
                 'title'    => 'Invest',
                 'template' => 'page-invest.php'
+            ],
+            'privacy-policy' => [
+                'title'    => 'Privacy Policy',
+                'template' => 'page-privacy-policy.php'
+            ],
+            'terms-of-service' => [
+                'title'    => 'Terms of Service',
+                'template' => 'page-terms-of-service.php'
+            ],
+            'cookie-policy' => [
+                'title'    => 'Cookie Policy',
+                'template' => 'page-cookie-policy.php'
             ]
         ];
 

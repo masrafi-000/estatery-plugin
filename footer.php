@@ -3,27 +3,25 @@ $footer_menus = [
     [
         "title" => t('footer.menus.quick_links'),
         "links" => [
-            ["label" => t('footer.links.buy'), "url" => "#"],
-            ["label" => t('footer.links.rent'), "url" => "#"],
-            ["label" => t('footer.links.sell'), "url" => "#"],
-            ["label" => t('footer.links.services'), "url" => "#"],
+            ["label" => t('footer.links.buy'), "url" => \Estatery\Core\Translator::getInstance()->resolve_nav_url('/properties')],
+            ["label" => t('footer.links.rent'), "url" => \Estatery\Core\Translator::getInstance()->resolve_nav_url('/properties')],
+            ["label" => t('footer.links.sell'), "url" => \Estatery\Core\Translator::getInstance()->resolve_nav_url('/contact')],
+            ["label" => t('footer.links.services'), "url" => \Estatery\Core\Translator::getInstance()->resolve_nav_url('/invest')],
         ]
     ],
     [
         "title" => t('footer.menus.company'),
         "links" => [
-            ["label" => t('footer.links.about'), "url" => "#"],
-            ["label" => t('footer.links.contact'), "url" => "#"],
-            ["label" => t('footer.links.careers'), "url" => "#"],
-            ["label" => t('footer.links.blog'), "url" => "#"],
+            ["label" => t('footer.links.about'), "url" => \Estatery\Core\Translator::getInstance()->resolve_nav_url('/about')],
+            ["label" => t('footer.links.contact'), "url" => \Estatery\Core\Translator::getInstance()->resolve_nav_url('/contact')],
         ]
     ],
     [
         "title" => t('footer.menus.legal'),
         "links" => [
-            ["label" => t('footer.links.privacy'), "url" => "#"],
-            ["label" => t('footer.links.terms'), "url" => "#"],
-            ["label" => t('footer.links.cookie'), "url" => "#"],
+            ["label" => t('footer.links.privacy'), "url" => \Estatery\Core\Translator::getInstance()->resolve_nav_url('/privacy-policy')],
+            ["label" => t('footer.links.terms'), "url" => \Estatery\Core\Translator::getInstance()->resolve_nav_url('/terms-of-service')],
+            ["label" => t('footer.links.cookie'), "url" => \Estatery\Core\Translator::getInstance()->resolve_nav_url('/cookie-policy')],
         ]
     ]
 ];

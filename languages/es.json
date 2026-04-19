@@ -229,7 +229,7 @@
                     "baths": 4,
                     "sqft": 6500,
                     "description": "Una impresionante obra maestra frente al mar con piscina infinita y acceso privado a la playa.",
-                    "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1613490493576-7fde63acd811?q=80&w=1200"
                 },
                 {
                     "id": 2,
@@ -242,12 +242,12 @@
                     "baths": 3,
                     "sqft": 4200,
                     "description": "Lujo a gran altura con vistas de 360 grados del horizonte de la ciudad y el Burj Khalifa.",
-                    "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1512917774080-9991f1c4c750?q=80&w=1200"
                 },
                 {
                     "id": 3,
                     "title": "Loft Urbano",
-                    "price": "$3,500/mes",
+                    "price": "$3,500\/mes",
                     "location": "SoHo, Nueva York",
                     "type": "Rent",
                     "category": "apartment",
@@ -255,7 +255,7 @@
                     "baths": 2,
                     "sqft": 1800,
                     "description": "Diseño industrial elegante combinado con el confort moderno en el corazón del distrito de arte.",
-                    "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1502672260266-1c1ef2d93688?q=80&w=1200"
                 },
                 {
                     "id": 4,
@@ -268,12 +268,12 @@
                     "baths": 2.5,
                     "sqft": 2800,
                     "description": "Arquitectura experimental que se integra perfectamente con el entorno natural de la montaña.",
-                    "image": "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1518780664697-55e3ad937233?q=80&w=1200"
                 },
                 {
                     "id": 5,
                     "title": "Apto. con Terraza Jardín",
-                    "price": "$2,200/mes",
+                    "price": "$2,200\/mes",
                     "location": "Austin, Texas",
                     "type": "Rent",
                     "category": "apartment",
@@ -281,7 +281,7 @@
                     "baths": 1,
                     "sqft": 950,
                     "description": "Encantador apartamento con una terraza privada de gran tamaño y exuberantes vistas al jardín.",
-                    "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1493809842364-78817add7ffb?q=80&w=1200"
                 },
                 {
                     "id": 6,
@@ -294,7 +294,7 @@
                     "baths": 5,
                     "sqft": 8200,
                     "description": "Una maravilla arquitectónica con paredes de vidrio de piso a techo y vistas panorámicas.",
-                    "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1564013799919-ab600027ffc6?q=80&w=1200"
                 },
                 {
                     "id": 7,
@@ -307,7 +307,7 @@
                     "baths": 2,
                     "sqft": 2400,
                     "description": "Un oasis moderno en el desierto con diseño minimalista y piscina privada.",
-                    "image": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1523217582562-09d0def993a6?q=80&w=1200"
                 },
                 {
                     "id": 8,
@@ -320,12 +320,12 @@
                     "baths": 3,
                     "sqft": 3100,
                     "description": "Una cabaña lujosa con vistas al Cervino y acceso directo a las pistas de esquí.",
-                    "image": "https://images.unsplash.com/photo-1510627489930-0c5669501806?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1510627489930-0c5669501806?q=80&w=1200"
                 },
                 {
                     "id": 9,
                     "title": "Casita Costera",
-                    "price": "$1,500/mes",
+                    "price": "$1,500\/mes",
                     "location": "Santorini, Grecia",
                     "type": "Rent",
                     "category": "apartment",
@@ -333,12 +333,12 @@
                     "baths": 1,
                     "sqft": 750,
                     "description": "Tradicional apartamento blanco con vistas al mar Egeo y puestas de sol icónicas.",
-                    "image": "https://images.unsplash.com/photo-1502672023488-70e25813efdf?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1502672023488-70e25813efdf?q=80&w=1200"
                 },
                 {
                     "id": 10,
                     "title": "Estudio Industrial",
-                    "price": "$2,100/mes",
+                    "price": "$2,100\/mes",
                     "location": "Berlín, Alemania",
                     "type": "Rent",
                     "category": "commercial",
@@ -346,7 +346,7 @@
                     "baths": 1,
                     "sqft": 1200,
                     "description": "Espacio de trabajo creativo en un almacén reformado con techos altos.",
-                    "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1497366754035-f200968a6e72?q=80&w=1200"
                 },
                 {
                     "id": 11,
@@ -359,7 +359,7 @@
                     "baths": 5,
                     "sqft": 5800,
                     "description": "Una histórica mansión de piedra rodeada de prados verdes y jardines clásicos.",
-                    "image": "https://images.unsplash.com/photo-1512918766671-ad6507962077?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1512918766671-ad6507962077?q=80&w=1200"
                 },
                 {
                     "id": 12,
@@ -372,7 +372,7 @@
                     "baths": 3,
                     "sqft": 2600,
                     "description": "Un refugio tranquilo con muelle privado y vistas cristalinas a la montaña.",
-                    "image": "https://images.unsplash.com/photo-1513584684374-8bdb7489feef?q=80&w=1200"
+                    "image": "https:\/\/images.unsplash.com\/photo-1513584684374-8bdb7489feef?q=80&w=1200"
                 }
             ],
             "filters": {
@@ -414,10 +414,26 @@
                 "title": "Explorar por categoría",
                 "subtitle": "Encuentre el tipo de hogar perfecto que se adapte a su estilo de vida.",
                 "types": [
-                    { "name": "Apartamentos", "count": "12 Propiedades", "icon": "building" },
-                    { "name": "Villas", "count": "8 Propiedades", "icon": "home" },
-                    { "name": "Casas", "count": "5 Propiedades", "icon": "townhouse" },
-                    { "name": "Comercial", "count": "3 Propiedades", "icon": "office" }
+                    {
+                        "name": "Apartamentos",
+                        "count": "12 Propiedades",
+                        "icon": "building"
+                    },
+                    {
+                        "name": "Villas",
+                        "count": "8 Propiedades",
+                        "icon": "home"
+                    },
+                    {
+                        "name": "Casas",
+                        "count": "5 Propiedades",
+                        "icon": "townhouse"
+                    },
+                    {
+                        "name": "Comercial",
+                        "count": "3 Propiedades",
+                        "icon": "office"
+                    }
                 ]
             },
             "actions": {
@@ -434,11 +450,10 @@
                 "button_secondary": "Hablar con un agente",
                 "badge_licensed": "Licenciado y regulado",
                 "badge_secure": "Transacciones seguras",
-                "badge_support": "Soporte 24/7",
+                "badge_support": "Soporte 24\/7",
                 "badge_verified": "Solo listados verificados"
             }
         },
-
         "contact": {
             "hero": {
                 "title": "Ponerse en Contacto",
@@ -572,6 +587,100 @@
             "search_placeholder": "Buscar propiedades...",
             "back_home": "Volver al Inicio",
             "view_properties": "Ver Todas las Propiedades"
+        },
+        "property_details": {
+            "new_build": "Obra Nueva",
+            "for": "Para",
+            "description": "Descripción",
+            "features": "Características",
+            "bedrooms": "Dormitorios",
+            "bathrooms": "Baños",
+            "building": "Construcción",
+            "lot_size": "Parcela",
+            "view_photos": "Ver Fotos",
+            "form": {
+                "contact_us": "Contáctenos",
+                "name": "Nombre",
+                "number": "Número",
+                "email": "Correo Electrónico",
+                "message": "Estoy interesado en esta propiedad.",
+                "submit": "ENVIAR MENSAJE"
+            }
+        },
+        "privacy_policy": {
+            "hero": {
+                "title": "Política de Privacidad",
+                "bg_text": "Privacidad",
+                "subtitle": "Cómo recopilamos, usamos y manejamos sus datos."
+            },
+            "content": {
+                "title": "Política de Privacidad",
+                "description": "Esta Política de Privacidad describe cómo se administran sus datos en nuestras plataformas. Respetamos su privacidad y nos comprometemos a protegerla mediante nuestro cumplimiento de esta política.",
+                "sections": [
+                    {
+                        "title": "1. Recopilación de Información",
+                        "text": "Recopilamos varios tipos diferentes de información con diversos fines para proporcionarle y mejorar nuestro Servicio. Esto incluye información de identificación personal como dirección de correo electrónico, nombre y apellido, número de teléfono y dirección."
+                    },
+                    {
+                        "title": "2. Cómo Usamos Sus Datos",
+                        "text": "Capital Union utiliza los datos recopilados para diversos fines: para proporcionar y mantener nuestro Servicio, notificarle sobre cambios, brindar atención al cliente, recopilar análisis para que podamos mejorar nuestro Servicio y monitorear el uso de nuestro Servicio."
+                    },
+                    {
+                        "title": "3. Seguridad de Datos",
+                        "text": "La seguridad de sus datos es importante para nosotros, pero recuerde que ningún método de transmisión a través de Internet o método de almacenamiento electrónico es 100% seguro. Aunque nos esforzamos por utilizar medios comercialmente aceptables para proteger sus datos personales, no podemos garantizar su absoluta seguridad."
+                    }
+                ]
+            }
+        },
+        "terms_of_service": {
+            "hero": {
+                "title": "Términos de Servicio",
+                "bg_text": "Términos",
+                "subtitle": "Reglas y pautas para usar nuestra plataforma."
+            },
+            "content": {
+                "title": "Términos de Servicio",
+                "description": "Al acceder o utilizar nuestra plataforma, usted acepta estar sujeto a estos Términos. Si no está de acuerdo con alguna parte de los términos, no podrá acceder a nuestros servicios.",
+                "sections": [
+                    {
+                        "title": "1. Propiedad Intelectual",
+                        "text": "El Servicio y su contenido, características y funcionalidad originales son y seguirán siendo propiedad exclusiva de Capital Union y sus licenciantes. El Servicio está protegido por derechos de autor, marcas registradas y otras leyes tanto nacionales como extranjeras."
+                    },
+                    {
+                        "title": "2. Obligaciones del Usuario",
+                        "text": "Cuando crea una cuenta con nosotros, debe proporcionarnos información que sea precisa, completa y actual en todo momento. El no hacerlo constituye un incumplimiento de los Términos, lo que puede resultar en la terminación inmediata de su cuenta en nuestro Servicio."
+                    },
+                    {
+                        "title": "3. Limitación de Responsabilidad",
+                        "text": "En ningún caso Capital Union, ni sus directores, empleados, socios, agentes, proveedores o afiliados, serán responsables de ningún daño indirecto, incidental, especial, consecuente o punitivo, incluidos, entre otros, la pérdida de beneficios, datos, uso, fondo de comercio u otras pérdidas intangibles."
+                    }
+                ]
+            }
+        },
+        "cookie_policy": {
+            "hero": {
+                "title": "Política de Cookies",
+                "bg_text": "Cookies",
+                "subtitle": "Información sobre nuestro uso de cookies."
+            },
+            "content": {
+                "title": "Política de Cookies",
+                "description": "Nuestro sitio utiliza cookies para distinguirlo de otros usuarios. Esto nos ayuda a brindarle una buena experiencia al navegar por nuestro sitio web y también nos permite mejorarlo.",
+                "sections": [
+                    {
+                        "title": "1. Tipos de Cookies que Usamos",
+                        "text": "Usamos Cookies de Sesión para operar nuestro Servicio. Usamos Cookies de Preferencia para recordar sus preferencias y varias configuraciones. Usamos Cookies de Seguridad por motivos de seguridad. Todo esto garantiza una experiencia de navegación óptima y fluida."
+                    },
+                    {
+                        "title": "2. Cookies de Terceros",
+                        "text": "Además de nuestras propias cookies, también podemos usar varias cookies de terceros para informar las estadísticas de uso del Servicio, entregar anuncios en y a través del Servicio, etc. Estos proveedores tienen sus propias políticas estrictas de datos."
+                    },
+                    {
+                        "title": "3. Gestión de sus Cookies",
+                        "text": "Puede indicarle a su navegador que rechace todas las cookies o que indique cuándo se envía una cookie. Sin embargo, si no acepta las cookies, es posible que no pueda usar algunas partes de nuestro Servicio. Recomendamos mantenerlas para el uso completo de la plataforma."
+                    }
+                ]
+            }
         }
     },
     "footer": {

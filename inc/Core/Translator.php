@@ -114,26 +114,33 @@ class Translator {
 
     public function resolve_nav_url( $path ) {
         $this->boot();
-        if ( $path === '/' ) return home_url( '/' );
-        $slug = ltrim( $path, '/' );
-        
-        $page = get_page_by_path( $slug );
-        
-        if (!$page) {
-            $page = get_page_by_path( $slug . '-' . $this->lang );
+        if ( $path === '/' ) {
+            if ( function_exists('pll_home_url') ) {
+                return pll_home_url( $this->lang );
+            }
+            return home_url( '/' );
         }
         
+        $slug = ltrim( $path, '/' );
+        $template_name = 'page-' . $slug . '.php';
+        
+        // 1. Direct template match scoped to current language (Most resilient)
+        $pages = get_posts([
+            'post_type'   => 'page',
+            'meta_key'    => '_wp_page_template',
+            'meta_value'  => $template_name,
+            'lang'        => $this->lang,
+            'numberposts' => 1
+        ]);
+
+        if ( !empty($pages) ) {
+            return get_permalink( $pages[0]->ID );
+        }
+        
+        // 2. Strict slug matching fallback
+        $page = get_page_by_path( $slug );
         if (!$page) {
-            $template_name = 'page-' . $slug . '.php';
-            $pages = get_posts([
-                'post_type' => 'page',
-                'meta_key' => '_wp_page_template',
-                'meta_value' => $template_name,
-                'numberposts' => 1
-            ]);
-            if (!empty($pages)) {
-                $page = $pages[0];
-            }
+            $page = get_page_by_path( $slug . '-' . $this->lang );
         }
 
         if ( $page ) {
@@ -143,6 +150,7 @@ class Translator {
             }
             return get_permalink( $page->ID );
         }
+        
         return home_url( $path );
     }
 }
