@@ -116,7 +116,26 @@ class Translator {
         $this->boot();
         if ( $path === '/' ) return home_url( '/' );
         $slug = ltrim( $path, '/' );
+        
         $page = get_page_by_path( $slug );
+        
+        if (!$page) {
+            $page = get_page_by_path( $slug . '-' . $this->lang );
+        }
+        
+        if (!$page) {
+            $template_name = 'page-' . $slug . '.php';
+            $pages = get_posts([
+                'post_type' => 'page',
+                'meta_key' => '_wp_page_template',
+                'meta_value' => $template_name,
+                'numberposts' => 1
+            ]);
+            if (!empty($pages)) {
+                $page = $pages[0];
+            }
+        }
+
         if ( $page ) {
             if ( function_exists( 'pll_get_post' ) ) {
                 $translated_id = pll_get_post( $page->ID, $this->lang );
