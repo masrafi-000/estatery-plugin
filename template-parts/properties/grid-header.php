@@ -122,9 +122,8 @@ function view_url( string $view ): string {
             <?php echo esc_html( t('pages.properties.grid_header.sort_by') ?? 'Sort by' ); ?>
         </span>
 
-        <!-- Sort Dropdown -->
         <div class="relative">
-            <select onchange="const url = new URL(this.value); const sort = url.searchParams.get('sort'); const currentUrl = new URL(window.location.href); currentUrl.searchParams.set('sort', sort); window.history.pushState({path: currentUrl.href}, '', currentUrl.href); updateProperties(1);"
+            <select onchange="if(window.filterState){ window.filterState.sort = new URL(this.value, window.location.origin).searchParams.get('sort'); updateProperties(1); }"
                     class="appearance-none bg-white border border-slate-200 pl-4 pr-10 h-10 text-[11px] font-black uppercase tracking-[0.15em] text-slate-700 outline-none cursor-pointer hover:border-slate-400 focus:border-slate-900 transition-colors duration-150">
                 <?php foreach ( $sort_options as $key => $label ) : ?>
                     <option value="<?php echo sort_url($key); ?>"

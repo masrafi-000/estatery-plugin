@@ -116,42 +116,46 @@ class AjaxHandler {
             }
 
             // Price
-            $price_val = (float)str_replace(['$',',','€',' ','/mo'], '', $item['price']);
-            if ($min_price > 0 && $price_val < $min_price) continue;
-            if ($max_price > 0 && $price_val > $max_price) continue;
+            if ($min_price > 0 && $item['raw_price'] < $min_price) continue;
+            if ($max_price > 0 && $item['raw_price'] > $max_price) continue;
 
             // Beds & Baths Logic
-            // If value is 4, treat as 4+ (at least 4)
-            // If value is 1, 2, or 3, treat as exact match
             if ($beds > 0) {
-                $item_beds = (int)$item['beds'];
-                if ($beds === 4) {
-                    if ($item_beds < 4) continue;
-                } else {
-                    if ($item_beds !== $beds) continue;
-                }
+                if ($beds === 4) { if ($item['beds'] < 4) continue; }
+                else { if ((int)$item['beds'] !== $beds) continue; }
             }
             if ($baths > 0) {
-                $item_baths = (int)$item['baths'];
-                if ($baths === 4) {
-                    if ($item_baths < 4) continue;
-                } else {
-                    if ($item_baths !== $baths) continue;
-                }
+                if ($baths === 4) { if ($item['baths'] < 4) continue; }
+                else { if ((int)$item['baths'] !== $baths) continue; }
             }
 
             $filtered[] = $item;
         }
 
         // 3. Sorting
-        if ($sort === 'price_asc') {
-            usort($filtered, fn($a, $b) => (float)str_replace(['$',',','€',' '], '', $a['price']) <=> (float)str_replace(['$',',','€',' '], '', $b['price']));
-        } elseif ($sort === 'price_desc') {
-            usort($filtered, fn($a, $b) => (float)str_replace(['$',',','€',' '], '', $b['price']) <=> (float)str_replace(['$',',','€',' '], '', $a['price']));
+        switch ( $sort ) {
+            case 'newest':
+                usort($filtered, fn($a, $b) => $b['unix_date'] <=> $a['unix_date']);
+                break;
+            case 'oldest':
+                usort($filtered, fn($a, $b) => $a['unix_date'] <=> $b['unix_date']);
+                break;
+            case 'price_asc':
+                usort($filtered, fn($a, $b) => $a['raw_price'] <=> $b['raw_price']);
+                break;
+            case 'price_desc':
+                usort($filtered, fn($a, $b) => $b['raw_price'] <=> $a['raw_price']);
+                break;
+            case 'area_asc':
+                usort($filtered, fn($a, $b) => $a['raw_sqft'] <=> $b['raw_sqft']);
+                break;
+            case 'area_desc':
+                usort($filtered, fn($a, $b) => $b['raw_sqft'] <=> $a['raw_sqft']);
+                break;
         }
 
         // 4. Pagination
-        $per_page = 6;
+        $per_page = 12;
         $total_results = count($filtered);
         $total_pages = ceil($total_results / $per_page);
         $current_page = max(1, min($total_pages ?: 1, $paged));

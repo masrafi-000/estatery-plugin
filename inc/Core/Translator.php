@@ -183,7 +183,9 @@ class Translator {
         return [
             'id' => $id,
             'title' => $title,
+            'category' => $prop['type'][0] ?? '',
             'price' => $price,
+            'raw_price' => (float)$price_raw,
             'location' => $location,
             'location_detail' => $prop['location_detail'][0] ?? '',
             'description' => $description,
@@ -191,9 +193,11 @@ class Translator {
             'beds' => $beds,
             'baths' => $baths,
             'sqft' => $sqft,
+            'raw_sqft' => (float)$sqft,
             'pool' => ($prop['pool'][0] ?? '0') === '1',
             'image' => $image,
-            'new_build' => ($prop['new_build'][0] ?? '0') === '1'
+            'new_build' => ($prop['new_build'][0] ?? '0') === '1',
+            'unix_date' => strtotime($prop['date'][0] ?? 'now')
         ];
     }
 }

@@ -28,29 +28,7 @@
                         $current_lang = \Estatery\Core\Translator::getInstance()->getLang();
 
                         foreach ($raw_properties as $prop) {
-                            $price = $prop['price'][0] ?? '';
-                            $currency = $prop['currency'][0] ?? '';
-                            $currency_symbol = $currency === 'EUR' ? '€' : ($currency === 'USD' ? '$' : $currency);
-                            
-                            $formatted_price = number_format((float)$price, 0, '.', ',') . ' ' . $currency_symbol;
-
-                            // Use dynamic language description, or stay empty if missing
-                            $desc_data = $prop['desc'][0] ?? [];
-                            $description = $desc_data[$current_lang][0] ?? '';
-
-                            $all_properties[] = [
-                                'id' => $prop['id'][0] ?? '',
-                                'title' => ucfirst($prop['type'][0] ?? 'Property') . ' ' . ($prop['town'][0] ?? ''),
-                                'price' => $formatted_price,
-                                'location' => ($prop['town'][0] ?? '') . ', ' . ($prop['province'][0] ?? ''),
-                                'description' => $description,
-                                'type' => ($prop['price_freq'][0] ?? '') === 'sale' ? 'buy' : 'rent',
-                                'category' => $prop['type'][0] ?? '',
-                                'beds' => $prop['beds'][0] ?? '0',
-                                'baths' => $prop['baths'][0] ?? '0',
-                                'pool' => $prop['pool'][0] ?? '0',
-                                'image' => $prop['images'][0]['image'][0]['url'][0] ?? ''
-                            ];
+                            $all_properties[] = \Estatery\Core\Translator::map_property_data($prop, $current_lang);
                         }
                     }
                     
@@ -64,17 +42,22 @@
                     $baths     = (int)($_GET['baths'] ?? 0);
 
                     $all_properties = array_filter($all_properties, function($item) use ($search, $status, $types, $min_price, $max_price, $beds, $baths) {
-                        // Search text (Title, Location, or Description)
+                        // Search text
                         if ($search && 
                             stripos($item['title'], $search) === false && 
                             stripos($item['location'], $search) === false &&
+                            stripos($item['location_detail'], $search) === false &&
                             stripos($item['description'], $search) === false) {
                             return false;
                         }
 
-                        // Status (Buy/Rent)
-                        if ($status !== 'all' && strtolower($item['type']) !== strtolower($status)) {
-                            return false;
+                        // Status
+                        if ($status !== 'all') {
+                            if ($status === 'new_build') {
+                                if (!$item['new_build']) return false;
+                            } elseif (strtolower($item['type']) !== strtolower($status)) {
+                                return false;
+                            }
                         }
 
                         // Property Types (Category)
@@ -83,37 +66,54 @@
                         }
 
                         // Price
-                        $price = (float)str_replace(['$',',','€',' ','/mo'], '', $item['price']);
-                        if ($min_price > 0 && $price < $min_price) return false;
-                        if ($max_price > 0 && $price > $max_price) return false;
+                        if ($min_price > 0 && $item['raw_price'] < $min_price) return false;
+                        if ($max_price > 0 && $item['raw_price'] > $max_price) return false;
 
-                        // Beds & Baths
-                        if ($beds > 0 && ($item['beds'] ?? 0) < $beds) return false;
-                        if ($baths > 0 && ($item['baths'] ?? 0) < $baths) return false;
+                        // Beds & Baths logic (at least for others, exact for 1-3)
+                        if ($beds > 0) {
+                            if ($beds === 4) { if ($item['beds'] < 4) return false; }
+                            else { if ((int)$item['beds'] !== $beds) return false; }
+                        }
+                        if ($baths > 0) {
+                            if ($baths === 4) { if ($item['baths'] < 4) return false; }
+                            else { if ((int)$item['baths'] !== $baths) return false; }
+                        }
 
                         return true;
                     });
-                    
-                    // 2. State management
-                    $per_page      = 6; 
-                    $total_results = count($all_properties);
-                    
-                    // Standard WordPress way to get the current page (works for /page/2/ and ?paged=2)
-                    $paged         = get_query_var('paged') ?: (get_query_var('page') ?: 1);
-                    $total_pages   = ceil($total_results / $per_page);
-                    
-                    // Clamp page between 1 and max pages
-                    $current_page  = max(1, min(max(1, $total_pages), (int)$paged));
                     
                     $current_sort  = $_GET['sort'] ?? 'newest';
                     $current_view  = $_GET['view'] ?? 'grid';
 
                     // 3. Sorting logic
-                    if ($current_sort === 'price_asc') {
-                        usort($all_properties, fn($a, $b) => (float)str_replace(['$',',','€',' '], '', $a['price']) <=> (float)str_replace(['$',',','€',' '], '', $b['price']));
-                    } elseif ($current_sort === 'price_desc') {
-                        usort($all_properties, fn($a, $b) => (float)str_replace(['$',',','€',' '], '', $b['price']) <=> (float)str_replace(['$',',','€',' '], '', $a['price']));
+                    switch ( $current_sort ) {
+                        case 'newest':
+                            usort($all_properties, fn($a, $b) => $b['unix_date'] <=> $a['unix_date']);
+                            break;
+                        case 'oldest':
+                            usort($all_properties, fn($a, $b) => $a['unix_date'] <=> $b['unix_date']);
+                            break;
+                        case 'price_asc':
+                            usort($all_properties, fn($a, $b) => $a['raw_price'] <=> $b['raw_price']);
+                            break;
+                        case 'price_desc':
+                            usort($all_properties, fn($a, $b) => $b['raw_price'] <=> $a['raw_price']);
+                            break;
+                        case 'area_asc':
+                            usort($all_properties, fn($a, $b) => $a['raw_sqft'] <=> $b['raw_sqft']);
+                            break;
+                        case 'area_desc':
+                            usort($all_properties, fn($a, $b) => $b['raw_sqft'] <=> $a['raw_sqft']);
+                            break;
                     }
+
+                    // 2. State management
+                    $per_page      = 12; 
+                    $total_results = count($all_properties);
+                    
+                    $paged         = get_query_var('paged') ?: (get_query_var('page') ?: 1);
+                    $total_pages   = ceil($total_results / $per_page);
+                    $current_page  = max(1, min(max(1, $total_pages), (int)$paged));
 
                     // 4. Pagination slicing
                     $offset = ($current_page - 1) * $per_page;

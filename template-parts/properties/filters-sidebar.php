@@ -126,8 +126,7 @@
 
                 <!-- Footer Buttons -->
                 <div class="flex flex-col gap-2 pt-1">
-                    <button class="w-full p-[11px] text-[13px] font-medium bg-slate-900 text-white border-none rounded-2xl transition-all hover:opacity-85 active:scale-[0.98] tracking-[0.01em]" onclick="applyFilters()"><?php echo esc_html( t('pages.properties.filters.apply_button') ); ?></button>
-                    <button class="w-full p-2.25 text-[12px] font-medium bg-transparent text-slate-400 border-[0.5px] border-slate-100 rounded-2xl transition-all hover:text-slate-900 hover:border-slate-300" onclick="resetFilters()"><?php echo esc_html( t('pages.properties.filters.reset_button') ); ?></button>
+                    <button class="w-full p-3.5 text-[13px] font-bold uppercase tracking-widest bg-slate-100 text-slate-500 border-none rounded-2xl transition-all hover:bg-slate-200 hover:text-slate-900 active:scale-[0.98]" onclick="resetFilters()"><?php echo esc_html( t('pages.properties.filters.reset_button') ); ?></button>
                 </div>
 
             </div>
@@ -138,18 +137,31 @@
 <script>
     const i18n = <?php echo json_encode( t('pages.properties.js') ); ?>;
 
+    // Debounce Utility
+    function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize state from URL
         const urlParams = new URLSearchParams(window.location.search);
-        const state = {
+        // Declare state globally so grid-header.php can access it
+        window.filterState = {
             search:   urlParams.get('search')    || '',
             status:   urlParams.get('status')    || 'all',
             types:    urlParams.get('types')     ? urlParams.get('types').split(',') : [],
             min_price: urlParams.get('min_price') || '',
             max_price: urlParams.get('max_price') || '',
             beds:     urlParams.get('beds')      || 'any',
-            baths:    urlParams.get('baths')     || 'any'
+            baths:    urlParams.get('baths')     || 'any',
+            sort:     urlParams.get('sort')      || 'newest',
+            view:     urlParams.get('view')      || 'grid'
         };
+        const state = window.filterState;
 
         const selectors = {
             searchInput: document.getElementById('search-input'),
@@ -177,6 +189,7 @@
                 selectors.statusTabs.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 updateUI();
+                autoUpdateFast();
             });
         });
 
@@ -193,12 +206,25 @@
                     item.classList.add('selected');
                 }
                 updateUI();
+                autoUpdateFast();
             });
         });
 
-        selectors.searchInput.addEventListener('input', e => { state.search = e.target.value; updateUI(); });
-        selectors.priceMin.addEventListener('input', e => { state.min_price = e.target.value; updateUI(); });
-        selectors.priceMax.addEventListener('input', e => { state.max_price = e.target.value; updateUI(); });
+        selectors.searchInput.addEventListener('input', e => { 
+            state.search = e.target.value; 
+            updateUI(); 
+            autoUpdateSlow(); 
+        });
+        selectors.priceMin.addEventListener('input', e => { 
+            state.min_price = e.target.value; 
+            updateUI(); 
+            autoUpdateSlow(); 
+        });
+        selectors.priceMax.addEventListener('input', e => { 
+            state.max_price = e.target.value; 
+            updateUI(); 
+            autoUpdateSlow(); 
+        });
 
         function setupChips(groupId, stateKey) {
             const container = document.getElementById(groupId);
@@ -214,6 +240,7 @@
                     chips.forEach(c => c.classList.remove('active'));
                     chip.classList.add('active');
                     updateUI();
+                    autoUpdateFast();
                 });
             });
         }
@@ -245,6 +272,10 @@
             }
         }
 
+        // Auto-Update Functions
+        const autoUpdateSlow = debounce(() => updateProperties(1), 300);
+        const autoUpdateFast = debounce(() => updateProperties(1), 150);
+
         /**
          * AJAX: Update properties without reload
          */
@@ -268,13 +299,8 @@
             if (state.beds !== 'any') params.set('beds', state.beds);
             if (state.baths !== 'any') params.set('baths', state.baths);
             
-            // Current sort and view
-            const currentUrl = new URL(window.location.href);
-            const sort = currentUrl.searchParams.get('sort') || 'newest';
-            const view = currentUrl.searchParams.get('view') || 'grid';
-            
-            params.set('sort', sort);
-            params.set('view', view);
+            params.set('sort', state.sort);
+            params.set('view', state.view);
             params.set('paged', paged);
 
             // Update URL without reload
@@ -293,8 +319,8 @@
             formData.append('beds', state.beds === 'any' ? 0 : state.beds);
             formData.append('baths', state.baths === 'any' ? 0 : state.baths);
             formData.append('paged', paged);
-            formData.append('sort', sort);
-            formData.append('view', view);
+            formData.append('sort', state.sort);
+            formData.append('view', state.view);
 
             fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
                 method: 'POST',
@@ -385,6 +411,8 @@
             state.max_price = urlParams.get('max_price') || '';
             state.beds      = urlParams.get('beds')      || 'any';
             state.baths     = urlParams.get('baths')     || 'any';
+            state.sort      = urlParams.get('sort')      || 'newest';
+            state.view      = urlParams.get('view')      || 'grid';
             
             // Sync UI back
             if (selectors.searchInput) selectors.searchInput.value = state.search;
