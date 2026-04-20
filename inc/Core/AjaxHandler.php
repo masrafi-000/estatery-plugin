@@ -14,7 +14,7 @@ class AjaxHandler {
 
     public function get_featured_properties() {
         $lang = sanitize_key($_POST['lang'] ?? 'en');
-        $cache_key = 'estatery_featured_properties_' . $lang;
+        $cache_key = 'estatery_featured_properties_v3_' . $lang;
         
         $featured = get_transient($cache_key);
 

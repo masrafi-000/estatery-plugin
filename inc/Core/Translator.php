@@ -199,7 +199,7 @@ class Translator {
             'baths' => $baths,
             'sqft' => $sqft,
             'raw_sqft' => (float)$sqft_clean,
-            'pool' => ($prop['pool'][0] ?? '0') === '1',
+            'pool' => (int)($prop['pool'][0] ?? 0),
             'image' => $image,
             'new_build' => ($prop['new_build'][0] ?? '0') === '1',
             'unix_date' => strtotime($prop['date'][0] ?? 'now')

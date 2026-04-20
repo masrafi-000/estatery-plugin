@@ -56,7 +56,7 @@ $property = $args['property'];
                 <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest"><?php echo esc_html( t('home.featured.baths') ); ?></span>
             </div>
             <div class="flex flex-col gap-1">
-                <span class="text-slate-900 font-black text-sm"><?php echo esc_html($property['pool'] ? 'Yes' : 'No'); ?></span>
+                <span class="text-slate-900 font-black text-sm"><?php echo (int)($property['pool'] ?? 0); ?></span>
                 <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest"><?php echo esc_html( t('home.featured.pool') ?: 'POOL' ); ?></span>
             </div>
         </div>

@@ -40,8 +40,8 @@
                     <span class="text-[9px] text-slate-400 uppercase font-bold"><?php echo esc_html( t('home.featured.baths') ); ?></span>
                 </div>
                 <div>
-                    <span class="block text-slate-900 font-black text-xs"><?php echo esc_html(number_format((float)$property['sqft'])); ?></span>
-                    <span class="text-[9px] text-slate-400 uppercase font-bold"><?php echo esc_html( t('home.featured.sqft') ); ?></span>
+                    <span class="block text-slate-900 font-black text-xs"><?php echo (int)($property['pool'] ?? 0); ?></span>
+                    <span class="text-[9px] text-slate-400 uppercase font-bold"><?php echo esc_html( t('home.featured.pool') ); ?></span>
                 </div>
             </div>
 
