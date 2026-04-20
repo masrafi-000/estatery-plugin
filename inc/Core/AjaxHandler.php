@@ -8,6 +8,8 @@ class AjaxHandler {
     public function __construct() {
         add_action('wp_ajax_get_featured_properties', [$this, 'get_featured_properties']);
         add_action('wp_ajax_nopriv_get_featured_properties', [$this, 'get_featured_properties']);
+        add_action('wp_ajax_get_filtered_properties', [$this, 'get_filtered_properties']);
+        add_action('wp_ajax_nopriv_get_filtered_properties', [$this, 'get_filtered_properties']);
     }
 
     public function get_featured_properties() {
@@ -59,5 +61,131 @@ class AjaxHandler {
         $html = ob_get_clean();
 
         wp_send_json_success(['html' => $html]);
+    }
+
+    public function get_filtered_properties() {
+        $lang      = sanitize_key($_POST['lang'] ?? 'en');
+        $search    = strtolower(sanitize_text_field($_POST['search'] ?? ''));
+        $status    = sanitize_text_field($_POST['status'] ?? 'all');
+        $types     = isset($_POST['types']) ? array_filter(explode(',', $_POST['types'])) : [];
+        $min_price = (float)($_POST['min_price'] ?? 0);
+        $max_price = (float)($_POST['max_price'] ?? 0);
+        $beds      = (int)($_POST['beds'] ?? 0);
+        $baths     = (int)($_POST['baths'] ?? 0);
+        $paged     = (int)($_POST['paged'] ?? 1);
+        $sort      = sanitize_text_field($_POST['sort'] ?? 'newest');
+        $view      = sanitize_text_field($_POST['view'] ?? 'grid');
+
+        // 1. Data Source
+        $json_file = get_template_directory() . '/data/properties.json';
+        if (!file_exists($json_file)) {
+            wp_send_json_error('Data file not found');
+        }
+
+        $json_data = file_get_contents($json_file);
+        $parsed_data = json_decode($json_data, true);
+        $raw_properties = $parsed_data['root']['property'] ?? [];
+
+        // 2. Filter & Map
+        $filtered = [];
+        foreach ($raw_properties as $prop) {
+            $item = Translator::map_property_data($prop, $lang);
+            $item['category'] = strtolower($prop['type'][0] ?? ''); // Use lowercase for robust matching
+
+            // Search text
+            if ($search && 
+                stripos($item['title'], $search) === false && 
+                stripos($item['location'], $search) === false &&
+                stripos($item['location_detail'], $search) === false &&
+                stripos($item['description'], $search) === false) {
+                continue;
+            }
+
+            // Status
+            if ($status !== 'all') {
+                if ($status === 'new_build') {
+                    if (!$item['new_build']) continue;
+                } elseif (strtolower($item['type']) !== strtolower($status)) {
+                    continue;
+                }
+            }
+
+            // Property Types
+            if (!empty($types) && !in_array($item['category'], array_map('strtolower', $types))) {
+                continue;
+            }
+
+            // Price
+            $price_val = (float)str_replace(['$',',','€',' ','/mo'], '', $item['price']);
+            if ($min_price > 0 && $price_val < $min_price) continue;
+            if ($max_price > 0 && $price_val > $max_price) continue;
+
+            // Beds & Baths Logic
+            // If value is 4, treat as 4+ (at least 4)
+            // If value is 1, 2, or 3, treat as exact match
+            if ($beds > 0) {
+                $item_beds = (int)$item['beds'];
+                if ($beds === 4) {
+                    if ($item_beds < 4) continue;
+                } else {
+                    if ($item_beds !== $beds) continue;
+                }
+            }
+            if ($baths > 0) {
+                $item_baths = (int)$item['baths'];
+                if ($baths === 4) {
+                    if ($item_baths < 4) continue;
+                } else {
+                    if ($item_baths !== $baths) continue;
+                }
+            }
+
+            $filtered[] = $item;
+        }
+
+        // 3. Sorting
+        if ($sort === 'price_asc') {
+            usort($filtered, fn($a, $b) => (float)str_replace(['$',',','€',' '], '', $a['price']) <=> (float)str_replace(['$',',','€',' '], '', $b['price']));
+        } elseif ($sort === 'price_desc') {
+            usort($filtered, fn($a, $b) => (float)str_replace(['$',',','€',' '], '', $b['price']) <=> (float)str_replace(['$',',','€',' '], '', $a['price']));
+        }
+
+        // 4. Pagination
+        $per_page = 6;
+        $total_results = count($filtered);
+        $total_pages = ceil($total_results / $per_page);
+        $current_page = max(1, min($total_pages ?: 1, $paged));
+        $offset = ($current_page - 1) * $per_page;
+        $paged_properties = array_slice($filtered, $offset, $per_page);
+
+        // 5. Render HTML
+        ob_start();
+        get_template_part('template-parts/properties/grid', 'header', [
+            'total_results' => $total_results,
+            'current_page'  => $current_page,
+            'per_page'      => $per_page,
+            'current_sort'  => $sort,
+            'current_view'  => $view
+        ]);
+        get_template_part('template-parts/properties/grid', 'results', [
+            'properties' => $paged_properties,
+            'view'       => $view
+        ]);
+        $html_results = ob_get_clean();
+
+        ob_start();
+        get_template_part('template-parts/properties/pagination', null, [
+            'current_page' => $current_page,
+            'total_pages'  => $total_pages
+        ]);
+        $html_pagination = ob_get_clean();
+
+        wp_send_json_success([
+            'html_results'    => $html_results,
+            'html_pagination' => $html_pagination,
+            'total_results'   => $total_results,
+            'current_page'    => $current_page,
+            'total_pages'     => $total_pages
+        ]);
     }
 }

@@ -185,11 +185,13 @@ class Translator {
             'title' => $title,
             'price' => $price,
             'location' => $location,
+            'location_detail' => $prop['location_detail'][0] ?? '',
             'description' => $description,
             'type' => $type,
             'beds' => $beds,
             'baths' => $baths,
             'sqft' => $sqft,
+            'pool' => ($prop['pool'][0] ?? '0') === '1',
             'image' => $image,
             'new_build' => ($prop['new_build'][0] ?? '0') === '1'
         ];

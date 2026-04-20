@@ -52,6 +52,7 @@
                         <button class="tab-btn active flex-1 py-[7px] px-1 text-[11px] font-medium rounded-[6px] transition-all bg-transparent text-slate-600 [&.active]:bg-white [&.active]:text-slate-900 [&.active]:border-[0.5px] [&.active]:border-slate-100" data-val="all"><?php echo esc_html( t('pages.properties.filters.all_tabs') ); ?></button>
                         <button class="tab-btn flex-1 py-[7px] px-1 text-[11px] font-medium rounded-[6px] transition-all bg-transparent text-slate-600 [&.active]:bg-white [&.active]:text-slate-900 [&.active]:border-[0.5px] [&.active]:border-slate-100" data-val="buy"><?php echo esc_html( t('pages.properties.filters.buy') ); ?></button>
                         <button class="tab-btn flex-1 py-[7px] px-1 text-[11px] font-medium rounded-[6px] transition-all bg-transparent text-slate-600 [&.active]:bg-white [&.active]:text-slate-900 [&.active]:border-[0.5px] [&.active]:border-slate-100" data-val="rent"><?php echo esc_html( t('pages.properties.filters.rent') ); ?></button>
+                        <button class="tab-btn flex-1 py-[7px] px-1 text-[11px] font-medium rounded-[6px] transition-all bg-transparent text-slate-600 [&.active]:bg-white [&.active]:text-slate-900 [&.active]:border-[0.5px] [&.active]:border-slate-100" data-val="new_build"><?php echo esc_html( t('pages.properties.filters.new_build') ); ?></button>
                     </div>
                 </div>
 
@@ -71,7 +72,7 @@
                                         </svg>
                                     </div>
                                     <span class="text-[13px] text-slate-900 ml-2.5 flex-1"><?php echo esc_html($type['name']); ?></span>
-                                    <span class="text-[11px] text-slate-400"><?php echo (int) $type['count']; ?></span>
+                                    <span class="text-[11px] text-slate-400"><?php echo esc_html($type['count']); ?></span>
                                 </div>
                                 <?php
                             endforeach;
@@ -104,10 +105,10 @@
                     <div class="text-[11px] font-medium text-slate-400 tracking-[0.06em] uppercase mb-2.5"><?php echo esc_html( t('pages.properties.filters.beds') ); ?></div>
                     <div class="flex gap-[5px] flex-wrap" id="beds-chips">
                         <button class="chip active py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="any"><?php echo esc_html( t('pages.properties.filters.any') ); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="1"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '1'); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="2"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '2'); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="3"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '3'); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="4"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '4'); ?></button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="1">1</button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="2">2</button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="3">3</button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="4">4+</button>
                     </div>
                 </div>
 
@@ -116,10 +117,10 @@
                     <div class="text-[11px] font-medium text-slate-400 tracking-[0.06em] uppercase mb-2.5"><?php echo esc_html( t('pages.properties.filters.baths') ); ?></div>
                     <div class="flex gap-[5px] flex-wrap" id="baths-chips">
                         <button class="chip active py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="any"><?php echo esc_html( t('pages.properties.filters.any') ); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="1"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '1'); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="2"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '2'); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="3"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '3'); ?></button>
-                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="4"><?php printf(t('pages.properties.filters.plus_label') ?? '%s+', '4'); ?></button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="1">1</button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="2">2</button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="3">3</button>
+                        <button class="chip py-1.5 px-3 text-[12px] border-[0.5px] border-slate-100 rounded-[20px] transition-all bg-transparent text-slate-600 hover:border-slate-300 hover:text-slate-900 [&.active]:bg-primary/10 [&.active]:border-primary/20 [&.active]:text-primary" data-val="4">4+</button>
                     </div>
                 </div>
 
@@ -246,7 +247,20 @@
             }
         }
 
-        window.applyFilters = function() {
+        /**
+         * AJAX: Update properties without reload
+         */
+        window.updateProperties = function(paged = 1) {
+            const container = document.getElementById('properties-results-container');
+            const ajaxContent = document.getElementById('properties-content-ajax');
+            const loading = document.getElementById('properties-loading');
+            
+            if (!container || !loading) return;
+
+            // Show loading
+            loading.classList.remove('opacity-0', 'pointer-events-none');
+            ajaxContent.classList.add('opacity-40');
+
             const params = new URLSearchParams();
             if (state.search.trim()) params.set('search', state.search.trim());
             if (state.status !== 'all') params.set('status', state.status);
@@ -256,20 +270,187 @@
             if (state.beds !== 'any') params.set('beds', state.beds);
             if (state.baths !== 'any') params.set('baths', state.baths);
             
-            // Keep existing sort and view if present
+            // Current sort and view
             const currentUrl = new URL(window.location.href);
-            if (currentUrl.searchParams.has('sort')) params.set('sort', currentUrl.searchParams.get('sort'));
-            if (currentUrl.searchParams.has('view')) params.set('view', currentUrl.searchParams.get('view'));
+            const sort = currentUrl.searchParams.get('sort') || 'newest';
+            const view = currentUrl.searchParams.get('view') || 'grid';
             
-            // Re-map into clear URL
-            window.location.href = window.location.pathname + '?' + params.toString();
+            params.set('sort', sort);
+            params.set('view', view);
+            params.set('paged', paged);
+
+            // Update URL without reload
+            const newUrl = window.location.pathname + '?' + params.toString();
+            window.history.pushState({ path: newUrl }, '', newUrl);
+
+            // Prepare POST data
+            const formData = new FormData();
+            formData.append('action', 'get_filtered_properties');
+            formData.append('lang', '<?php echo \Estatery\Core\Translator::getInstance()->getLang(); ?>');
+            formData.append('search', state.search.trim());
+            formData.append('status', state.status);
+            formData.append('types', state.types.join(','));
+            formData.append('min_price', state.min_price);
+            formData.append('max_price', state.max_price);
+            formData.append('beds', state.beds === 'any' ? 0 : state.beds);
+            formData.append('baths', state.baths === 'any' ? 0 : state.baths);
+            formData.append('paged', paged);
+            formData.append('sort', sort);
+            formData.append('view', view);
+
+            fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.success) {
+                    ajaxContent.innerHTML = response.data.html_results + response.data.html_pagination;
+                    
+                    // Update Grid Header if exists (it's inside response.data.html_results but let's be sure)
+                    // Actually, the AJAX handler returns grid results + pagination.
+                    // We need the Header too. I added it to AjaxHandler.php.
+                    
+                    // Scroll to top of container
+                    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            })
+            .catch(err => console.error('Error fetching properties:', err))
+            .finally(() => {
+                loading.classList.add('opacity-0', 'pointer-events-none');
+                ajaxContent.classList.remove('opacity-40');
+                
+                // Re-initialize any JS needed for the new elements (like pagination links)
+                initPaginationLinks();
+            });
+        };
+
+        window.applyFilters = function() {
+            updateProperties(1);
         };
 
         window.resetFilters = function() {
-            window.location.href = window.location.pathname;
+            state.search = '';
+            state.status = 'all';
+            state.types = [];
+            state.min_price = '';
+            state.max_price = '';
+            state.beds = 'any';
+            state.baths = 'any';
+            
+            // Reset UI elements
+            if (selectors.searchInput) selectors.searchInput.value = '';
+            if (selectors.priceMin)    selectors.priceMin.value = '';
+            if (selectors.priceMax)    selectors.priceMax.value = '';
+            
+            selectors.statusTabs.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.val === 'all') btn.classList.add('active');
+            });
+            
+            selectors.typeItems.forEach(item => item.classList.remove('selected'));
+            
+            const bedsChips = document.querySelectorAll('#beds-chips .chip');
+            bedsChips.forEach(c => {
+                c.classList.remove('active');
+                if (c.dataset.val === 'any') c.classList.add('active');
+            });
+
+            const bathsChips = document.querySelectorAll('#baths-chips .chip');
+            bathsChips.forEach(c => {
+                c.classList.remove('active');
+                if (c.dataset.val === 'any') c.classList.add('active');
+            });
+
+            updateUI();
+            updateProperties(1);
         };
 
-        // Initial UI update
+        function initPaginationLinks() {
+            const paginationLinks = document.querySelectorAll('.pagination-ajax-link');
+            paginationLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    updateProperties(page);
+                });
+            });
+        }
+
+        // Listen for browser Back/Forward buttons
+        window.addEventListener('popstate', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            state.search    = urlParams.get('search')    || '';
+            state.status    = urlParams.get('status')    || 'all';
+            state.types     = urlParams.get('types')     ? urlParams.get('types').split(',') : [];
+            state.min_price = urlParams.get('min_price') || '';
+            state.max_price = urlParams.get('max_price') || '';
+            state.beds      = urlParams.get('beds')      || 'any';
+            state.baths     = urlParams.get('baths')     || 'any';
+            
+            // Sync UI back
+            if (selectors.searchInput) selectors.searchInput.value = state.search;
+            if (selectors.priceMin)    selectors.priceMin.value = state.min_price;
+            if (selectors.priceMax)    selectors.priceMax.value = state.max_price;
+            
+            selectors.statusTabs.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.val === state.status) btn.classList.add('active');
+            });
+            
+            selectors.typeItems.forEach(item => {
+                if (state.types.includes(item.dataset.type)) item.classList.add('selected');
+                else item.classList.remove('selected');
+            });
+
+            updateUI();
+            
+            // Re-fetch without pushing state again
+            const container = document.getElementById('properties-results-container');
+            const ajaxContent = document.getElementById('properties-content-ajax');
+            const loading = document.getElementById('properties-loading');
+            if (!container || !loading) return;
+
+            loading.classList.remove('opacity-0', 'pointer-events-none');
+            ajaxContent.classList.add('opacity-40');
+
+            const paged = urlParams.get('paged') || 1;
+            const sortSelection = urlParams.get('sort') || 'newest';
+            const viewSelection = urlParams.get('view') || 'grid';
+
+            const formData = new FormData();
+            formData.append('action', 'get_filtered_properties');
+            formData.append('lang', '<?php echo \Estatery\Core\Translator::getInstance()->getLang(); ?>');
+            formData.append('search', state.search);
+            formData.append('status', state.status);
+            formData.append('types', state.types.join(','));
+            formData.append('min_price', state.min_price);
+            formData.append('max_price', state.max_price);
+            formData.append('beds', state.beds === 'any' ? 0 : state.beds);
+            formData.append('baths', state.baths === 'any' ? 0 : state.baths);
+            formData.append('paged', paged);
+            formData.append('sort', sortSelection);
+            formData.append('view', viewSelection);
+
+            fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.success) {
+                    ajaxContent.innerHTML = response.data.html_results + response.data.html_pagination;
+                    initPaginationLinks();
+                }
+            })
+            .finally(() => {
+                loading.classList.add('opacity-0', 'pointer-events-none');
+                ajaxContent.classList.remove('opacity-40');
+            });
+        });
+
+        // Initial init
+        initPaginationLinks();
         updateUI();
     });
 </script>

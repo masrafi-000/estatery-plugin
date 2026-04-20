@@ -58,7 +58,8 @@ $has_next   = $current_page < $total_pages;
         <!-- Prev Button -->
         <?php if ( $has_prev ) : ?>
             <a href="<?php echo pagination_url( $base_url, $prev_page ); ?>"
-               class="group w-11 h-11 flex items-center justify-center border border-slate-200 bg-white text-slate-400 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all duration-200"
+               class="pagination-ajax-link group w-11 h-11 flex items-center justify-center border border-slate-200 bg-white text-slate-400 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all duration-200"
+               data-page="<?php echo $prev_page; ?>"
                aria-label="<?php echo esc_attr( t('pages.properties.pagination.prev') ?? 'Previous page' ); ?>">
                 <svg class="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-0.5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 3L5.70711 7.29289C5.31658 7.68342 5.31658 8.31658 5.70711 8.70711L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -91,7 +92,8 @@ $has_next   = $current_page < $total_pages;
 
             <?php else : ?>
                 <a href="<?php echo pagination_url( $base_url, (int) $page ); ?>"
-                   class="w-11 h-11 flex items-center justify-center border border-slate-200 bg-white text-slate-500 text-sm font-bold hover:border-primary hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                   class="pagination-ajax-link w-11 h-11 flex items-center justify-center border border-slate-200 bg-white text-slate-500 text-sm font-bold hover:border-primary hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                   data-page="<?php echo (int) $page; ?>"
                    aria-label="<?php echo esc_attr( sprintf( t('pages.properties.pagination.go_to') ?? 'Go to page %s', $page ) ); ?>">
                     <?php echo (int) $page; ?>
                 </a>
@@ -101,7 +103,8 @@ $has_next   = $current_page < $total_pages;
         <!-- Next Button -->
         <?php if ( $has_next ) : ?>
             <a href="<?php echo pagination_url( $base_url, $next_page ); ?>"
-               class="group w-11 h-11 flex items-center justify-center border border-slate-200 bg-white text-slate-400 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all duration-200"
+               class="pagination-ajax-link group w-11 h-11 flex items-center justify-center border border-slate-200 bg-white text-slate-400 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all duration-200"
+               data-page="<?php echo $next_page; ?>"
                aria-label="<?php echo esc_attr( t('pages.properties.pagination.next') ?? 'Next page' ); ?>">
                 <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 3L10.2929 7.29289C10.6834 7.68342 10.6834 8.31658 10.2929 8.70711L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>

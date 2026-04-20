@@ -118,28 +118,45 @@
                     // 4. Pagination slicing
                     $offset = ($current_page - 1) * $per_page;
                     $paged_properties = array_slice($all_properties, $offset, $per_page);
-
-                    // 5. Grid Header Component
-                    get_template_part('template-parts/properties/grid', 'header', [
-                        'total_results' => $total_results,
-                        'current_page'  => $current_page,
-                        'per_page'      => $per_page,
-                        'current_sort'  => $current_sort,
-                        'current_view'  => $current_view
-                    ]); 
-
-                    // 6. Main Grid Component
-                    get_template_part('template-parts/properties/grid', 'results', [
-                        'properties' => $paged_properties,
-                        'view'       => $current_view
-                    ]); 
-
-                    // 7. Pagination Component
-                    get_template_part('template-parts/properties/pagination', null, [
-                        'current_page' => $current_page,
-                        'total_pages'  => $total_pages
-                    ]); 
                     ?>
+
+                    <!-- AJAX Target Container -->
+                    <div id="properties-results-container" class="relative min-h-[400px] transition-all duration-300">
+                        
+                        <!-- Loading Overlay -->
+                        <div id="properties-loading" class="absolute inset-0 bg-white/60 backdrop-blur-[2px] z-20 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+                            <div class="flex flex-col items-center gap-3">
+                                <div class="w-10 h-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
+                                <span class="text-[11px] font-bold text-primary uppercase tracking-widest"><?php echo esc_html( t('pages.properties.js.loading') ?? 'Loading...' ); ?></span>
+                            </div>
+                        </div>
+
+                        <div id="properties-content-ajax">
+                            <?php 
+                            // Initial Render for SEO
+                            // 5. Grid Header Component
+                            get_template_part('template-parts/properties/grid', 'header', [
+                                'total_results' => $total_results,
+                                'current_page'  => $current_page,
+                                'per_page'      => $per_page,
+                                'current_sort'  => $current_sort,
+                                'current_view'  => $current_view
+                            ]); 
+
+                            // 6. Main Grid Component
+                            get_template_part('template-parts/properties/grid', 'results', [
+                                'properties' => $paged_properties,
+                                'view'       => $current_view
+                            ]); 
+
+                            // 7. Pagination Component
+                            get_template_part('template-parts/properties/pagination', null, [
+                                'current_page' => $current_page,
+                                'total_pages'  => $total_pages
+                            ]); 
+                            ?>
+                        </div>
+                    </div>
                 </main>
 
             </div>

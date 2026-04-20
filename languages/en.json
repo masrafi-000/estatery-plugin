@@ -235,6 +235,7 @@
                 "any": "Any",
                 "status": "Property Status",
                 "all_tabs": "All",
+                "new_build": "New Build",
                 "features": "Amenities",
                 "reset": "Reset Filters",
                 "reset_button": "Reset all",
@@ -257,24 +258,29 @@
                 "subtitle": "Find the perfect type of home that suits your lifestyle.",
                 "types": [
                     {
-                        "name": "Apartments",
-                        "count": "12 Properties",
-                        "icon": "building"
-                    },
-                    {
-                        "name": "Villas",
-                        "count": "8 Properties",
+                        "name": "Villa",
+                        "count": "View All",
                         "icon": "home"
                     },
                     {
-                        "name": "Townhouses",
-                        "count": "5 Properties",
+                        "name": "Apartment",
+                        "count": "View All",
+                        "icon": "building"
+                    },
+                    {
+                        "name": "Shop",
+                        "count": "View All",
+                        "icon": "office"
+                    },
+                    {
+                        "name": "Townhouse",
+                        "count": "View All",
                         "icon": "townhouse"
                     },
                     {
-                        "name": "Commercial",
-                        "count": "3 Properties",
-                        "icon": "office"
+                        "name": "Bungalow",
+                        "count": "View All",
+                        "icon": "home"
                     }
                 ]
             },
