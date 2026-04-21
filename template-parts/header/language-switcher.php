@@ -14,23 +14,8 @@ if ( empty( $all_languages ) ) {
     return;
 }
 
-// ── Active language: our cookie → Polylang → 'en' ────────────────────────────
-// NOTE: We read 'estatery_lang', NOT 'pll_language'.
-// Polylang resets pll_language on every response to the URL's page language,
-// which would make it appear to always be 'en' on non-prefixed pages.
-$current_lang_slug = '';
-
-if ( isset( $_COOKIE['estatery_lang'] ) ) {
-    $current_lang_slug = sanitize_key( $_COOKIE['estatery_lang'] );
-}
-
-if ( empty( $current_lang_slug ) && function_exists( 'pll_current_language' ) ) {
-    $current_lang_slug = pll_current_language( 'slug' );
-}
-
-if ( empty( $current_lang_slug ) ) {
-    $current_lang_slug = 'en';
-}
+// ── Active language source of truth: our Translator instance ──────────────────
+$current_lang_slug = \Estatery\Core\Translator::getInstance()->getLang();
 // ─────────────────────────────────────────────────────────────────────────────
 
 $languages = array();

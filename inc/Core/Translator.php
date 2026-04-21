@@ -36,9 +36,7 @@ class Translator {
         if ( $this->loaded ) return;
         $this->loaded = true;
 
-        // ── Priority 0: Current switch request (?set_lang=fr in URL) ─────────
-        // This makes the CURRENT page render in the new language instantly,
-        // even before the redirect fires (handles edge cases and is a safety net).
+        // ── Priority 0: Explicit switch request (?set_lang=fr) ───────────────
         if ( isset( $_GET['set_lang'] ) ) {
             $req_lang = sanitize_key( $_GET['set_lang'] );
             if ( $this->localeExists( $req_lang ) ) {
@@ -48,9 +46,7 @@ class Translator {
             }
         }
 
-        // ── Priority 1: Our cookie — estatery_lang (Polylang never touches this) ─
-        // Set by functions.php estatery_handle_lang_switch() via PHP setcookie().
-        // Persists across ALL page navigations. Polylang cannot overwrite it.
+        // ── Priority 1: User preference cookie — estatery_lang ───────────────
         if ( isset( $_COOKIE['estatery_lang'] ) ) {
             $cookie_lang = sanitize_key( $_COOKIE['estatery_lang'] );
             if ( $this->localeExists( $cookie_lang ) ) {
@@ -60,17 +56,29 @@ class Translator {
             }
         }
 
-        // ── Priority 2: Polylang URL detection (first visit, no cookie yet) ──
+        // ── Priority 2: Polylang (ONLY if URL slug or hard default needed) ────
         if ( function_exists( 'pll_current_language' ) ) {
             $detected = pll_current_language();
+            
+            // If the cookie is missing (First Visit), we want English as Primary.
+            // We ONLY use the detected language if the URL actually starts with it.
+            // This ignores "random" browser header detection for first-timers.
+            $uri = $_SERVER['REQUEST_URI'] ?? '';
+            $path = trim(parse_url($uri, PHP_URL_PATH), '/');
+            $path_segments = explode('/', $path);
+            $lang_in_url = $path_segments[0] ?? '';
+
             if ( $detected && $this->localeExists( $detected ) ) {
-                $this->lang = $detected;
-                $this->loadLocale( $detected );
-                return;
+                // If it's English, or if it's in the URL, or if we have no choice
+                if ( $detected === 'en' || ($lang_in_url === $detected) ) {
+                    $this->lang = $detected;
+                    $this->loadLocale( $detected );
+                    return;
+                }
             }
         }
 
-        // ── Priority 3: English fallback ──────────────────────────────────────
+        // ── Priority 3: Primary Language (English) Fallback ──────────────────
         $this->lang = 'en';
         $this->loadLocale( 'en' );
     }
