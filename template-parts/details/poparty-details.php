@@ -267,7 +267,7 @@ $gallery_images_json = json_encode($images);
                         setTimeout(() => {
                             modal.classList.add('hidden');
                             document.body.style.overflow = 'auto';
-                        }, 300);
+                        }, 400);
                     }
 
                     document.getElementById('property-inquiry-form').addEventListener('submit', function(e) {
@@ -323,8 +323,8 @@ $gallery_images_json = json_encode($images);
     </div>
 
     <!-- Inquiry Success Modal -->
-    <div id="inquirySuccessModal" class="fixed inset-0 z-[10000] bg-slate-900/60 backdrop-blur-xl flex items-center justify-center p-4 hidden transition-opacity duration-300 opacity-0">
-        <div class="modal-content relative w-full max-w-sm bg-white/95 rounded-[2.5rem] p-10 text-center shadow-[0_32px_64px_-15px_rgba(0,0,0,0.3)] border border-white/40 transform scale-95 opacity-0 transition-all duration-500">
+    <div id="inquirySuccessModal" class="fixed inset-0 z-[10000] bg-slate-900/60 backdrop-blur-xl flex items-center justify-center p-4 hidden transition-opacity duration-400 opacity-0">
+        <div class="modal-content relative w-full max-w-sm bg-white/95 rounded-[2.5rem] p-10 text-center shadow-[0_32px_64px_-15px_rgba(0,0,0,0.3)] border border-white/40 transform scale-95 opacity-0 origin-center transition-all duration-400">
             
             <!-- Success Icon -->
             <div class="mb-8 inline-flex items-center justify-center w-24 h-24 bg-green-50 rounded-full text-green-500 shadow-inner">
@@ -335,29 +335,29 @@ $gallery_images_json = json_encode($images);
             </div>
 
             <h3 class="text-3xl font-bold text-slate-800 mb-4 tracking-tight">
-                <?php echo esc_html(t('pages.properties.js.applied')); ?>
+                <?php echo esc_html(t('js.applied')); ?>
             </h3>
             <p class="text-slate-600 mb-10 leading-relaxed text-lg">
-                <?php echo esc_html(t('pages.properties.js.success_inquiry')); ?>
+                <?php echo esc_html(t('js.success_inquiry')); ?>
             </p>
 
             <button onclick="closeInquirySuccess()" 
                 class="w-full py-5 bg-primary text-white font-bold rounded-2xl hover:bg-slate-900 transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 group">
                 <span class="group-hover:-translate-y-0.5 transition-transform">
-                    <?php echo esc_html(t('pages.properties.js.close') ?: 'Close'); ?>
+                    <?php echo esc_html(t('js.close') ?: 'Close'); ?>
                 </span>
             </button>
         </div>
     </div>
 
     <div id="galleryModal"
-        class="fixed inset-0 z-[9999] bg-slate-900/40 hidden backdrop-blur-md items-center justify-center p-4 transition-all duration-500 opacity-0">
+        class="fixed inset-0 z-[9999] bg-slate-900/60 backdrop-blur-xl flex items-center justify-center p-4 hidden transition-opacity duration-400 opacity-0">
 
-        <div class="relative w-full max-w-5xl bg-white/90 p-4 md:p-6 rounded-[2.5rem] border border-white/30 shadow-[0_32px_64px_-15px_rgba(0,0,0,0.5)] flex flex-col gap-5 scale-90 transition-all duration-500"
+        <div class="modal-content relative w-full max-w-5xl bg-white/90 p-4 md:p-6 rounded-[2.5rem] border border-white/30 shadow-[0_32px_64px_-15px_rgba(0,0,0,0.5)] flex flex-col gap-5 transform scale-95 opacity-0 origin-center transition-all duration-400"
             id="modalContainer">
 
             <button onclick="closeModal()"
-                class="absolute -top-3 -right-3 md:top-6 md:right-6 p-3  rounded-full shadow-2xl transition-all z-[100001] flex items-center justify-center border-slate-200">
+                class="absolute -top-3 -right-3 md:top-6 md:right-6 p-3 rounded-full shadow-2xl transition-all z-[100001] flex items-center justify-center border-slate-200">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -397,15 +397,6 @@ $gallery_images_json = json_encode($images);
         .scrollbar-hide {
             -ms-overflow-style: none;
             scrollbar-width: none;
-        }
-
-        #galleryModal.show {
-            opacity: 1;
-            display: flex;
-        }
-
-        #galleryModal.show #modalContainer {
-            scale: 1;
         }
     </style>
 
@@ -458,22 +449,30 @@ $gallery_images_json = json_encode($images);
         }
 
         const modal = document.getElementById('galleryModal');
+        const modalContainer = modal.querySelector('.modal-content');
         const modalMainImg = document.getElementById('modal-main-img');
 
         function openModal() {
             modal.classList.remove('hidden');
-            setTimeout(() => modal.classList.add('show'), 10);
             document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                modalContainer.classList.add('scale-100', 'opacity-100');
+                modalContainer.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+
             const firstThumb = document.querySelector('.modal-thumb');
             if (firstThumb) updateModalImg(firstThumb, propertyImages[0]);
         }
 
         function closeModal() {
-            modal.classList.remove('show');
+            modal.classList.remove('opacity-100');
+            modalContainer.classList.remove('scale-100', 'opacity-100');
+            modalContainer.classList.add('scale-95', 'opacity-0');
             setTimeout(() => {
                 modal.classList.add('hidden');
                 document.body.style.overflow = 'auto';
-            }, 500);
+            }, 400);
         }
 
         function updateModalImg(el, fullUrl) {
@@ -498,6 +497,12 @@ $gallery_images_json = json_encode($images);
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
         });
     </script>
     <script>
