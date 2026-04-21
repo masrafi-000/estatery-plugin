@@ -18,16 +18,13 @@ $surface_built = $property_data['surface_area'][0]['built'][0] ?? '0';
 $surface_plot = $property_data['surface_area'][0]['plot'][0] ?? '0';
 $has_pool = $property_data['pool'][0] ?? '0';
 
-// Features mapping
+// Features mapping — raw strings directly from properties.json
 $raw_features = $property_data['features'][0]['feature'] ?? [];
 $features = [];
 foreach ($raw_features as $feature_name) {
     if (empty($feature_name)) continue;
-    $slug = strtolower(str_replace([' ', '-'], '_', $feature_name));
-    $display_label = t("pages.properties.amenities.{$slug}") ?: $feature_name;
-    
     $features[] = [
-        'name' => $display_label,
+        'name' => $feature_name,
         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />'
     ];
 }

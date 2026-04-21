@@ -191,7 +191,7 @@ class Translator {
             'category' => $prop['type'][0] ?? '',
             'price' => $price,
             'raw_price' => (float)$price_clean,
-            'location' => ($prop['town'][0] ?? '') . ', ' . ($prop['province'][0] ?? ''),
+            'location' => ($prop['town'][0] ?? '') . ', ' . ($prop['province'][0] ?? '') . ', ' . ($prop['country'][0] ?? ''),
             'location_detail' => $prop['location_detail'][0] ?? '',
             'description' => $prop['desc'][0][$lang][0] ?? '',
             'type' => $type,
