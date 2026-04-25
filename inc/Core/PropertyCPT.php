@@ -160,6 +160,17 @@ class PropertyCPT {
         <?php
     }
 
+    public function render_details_metabox($post) {
+        wp_nonce_field('estatery_property_nonce', 'property_nonce');
+        $this->render_specs_fields($post);
+        echo '<hr style="margin: 20px 0; border: none; border-top: 1px solid #e2e8f0;">';
+        $this->render_pricing_fields($post);
+        echo '<hr style="margin: 20px 0; border: none; border-top: 1px solid #e2e8f0;">';
+        $this->render_location_fields($post);
+        echo '<hr style="margin: 20px 0; border: none; border-top: 1px solid #e2e8f0;">';
+        $this->render_featured_image_section($post);
+    }
+
     public function render_specs_fields($post) {
         $beds       = get_post_meta($post->ID, '_beds', true) ?: '0';
         $baths      = get_post_meta($post->ID, '_baths', true) ?: '0';
@@ -167,6 +178,7 @@ class PropertyCPT {
         $plot       = get_post_meta($post->ID, '_plot', true) ?: '0';
         $pool       = get_post_meta($post->ID, '_pool', true);
         $new_build  = get_post_meta($post->ID, '_new_build', true);
+        $resale     = get_post_meta($post->ID, '_resale', true);
         $features   = get_post_meta($post->ID, '_features', true);
         ?>
         <div class="estatery-meta-grid">
@@ -183,6 +195,7 @@ class PropertyCPT {
                 <div style="display: flex; gap: 20px; padding-top: 10px;">
                     <label style="font-size: 14px; text-transform: none; color: #1e293b;"><input type="checkbox" name="property_pool" value="1" <?php checked($pool, '1'); ?>> Has Pool</label>
                     <label style="font-size: 14px; text-transform: none; color: #1e293b;"><input type="checkbox" name="property_new_build" value="1" <?php checked($new_build, '1'); ?>> New Build</label>
+                    <label style="font-size: 14px; text-transform: none; color: #1e293b;"><input type="checkbox" name="property_resale" value="1" <?php checked($resale, '1'); ?>> Resale</label>
                 </div>
             </div>
         </div>
@@ -225,7 +238,7 @@ class PropertyCPT {
                 <label>Type / Frequency</label>
                 <select name="property_price_freq" class="estatery-control-alt">
                     <option value="sale" <?php selected($price_freq, 'sale'); ?>>For Sale</option>
-                    <option value="rent" <?php selected($price_freq, 'rent'); ?>>For Rent</option>
+                    <option value="resale" <?php selected($price_freq, 'resale'); ?>>For Resale</option>
                 </select>
             </div>
         </div>
@@ -362,6 +375,7 @@ class PropertyCPT {
             '_plot'             => 'property_plot',
             '_pool'             => 'property_pool',
             '_new_build'        => 'property_new_build',
+            '_resale'           => 'property_resale',
             '_town'             => 'property_town',
             '_province'         => 'property_province',
             '_latitude'         => 'property_latitude',
@@ -422,6 +436,7 @@ class PropertyCPT {
             'currency' => [get_post_meta($post_id, '_currency', true) ?: 'EUR'],
             'price_freq' => [get_post_meta($post_id, '_price_freq', true) ?: 'sale'],
             'new_build' => [get_post_meta($post_id, '_new_build', true) ?: '0'],
+            'resale' => [get_post_meta($post_id, '_resale', true) ?: '0'],
             'type' => [get_post_meta($post_id, '_type', true) ?: 'property'],
             'town' => [get_post_meta($post_id, '_town', true) ?: ''],
             'province' => [get_post_meta($post_id, '_province', true) ?: ''],

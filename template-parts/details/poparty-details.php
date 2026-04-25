@@ -119,7 +119,9 @@ $gallery_images_json = json_encode($images);
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
                     <div>
                         <?php if(!empty($property_data['new_build'][0])): ?>
-                            <span class="inline-block bg-primary text-white text-[10px] font-black px-3 py-1 rounded-xl uppercase tracking-widest mb-2"><?php echo esc_html(t('pages.property_details.new_build')); ?></span>
+                            <span class="inline-block bg-white text-slate-900 border border-slate-100 text-[10px] font-black px-3 py-1 rounded-xl uppercase tracking-widest mb-2 shadow-sm"><?php echo esc_html(t('pages.property_details.new_build')); ?></span>
+                        <?php elseif(!empty($property_data['resale'][0]) || (isset($property_data['new_build'][0]) && $property_data['new_build'][0] === '0')): ?>
+                            <span class="inline-block bg-slate-900 text-white text-[10px] font-black px-3 py-1 rounded-xl uppercase tracking-widest mb-2"><?php echo esc_html(t('pages.property_details.resale')); ?></span>
                         <?php endif; ?>
                         <?php 
                             $raw_type = strtolower($property_data['type'][0] ?? 'property');
@@ -139,13 +141,6 @@ $gallery_images_json = json_encode($images);
                             echo esc_html($price . ' ' . $currency); 
                             ?>
                         </div>
-                        <p class="text-xs text-slate-500 uppercase font-bold tracking-widest">
-                            <?php 
-                                $freq = strtolower($property_data['price_freq'][0] ?? 'sale');
-                                $translated_freq = t("pages.properties.meta.{$freq}") ?: $freq;
-                                echo esc_html(t('pages.property_details.for') . ' ' . $translated_freq); 
-                            ?>
-                        </p>
                     </div>
                 </div>
 

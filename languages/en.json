@@ -272,6 +272,7 @@
         "status": "Property Status",
         "all_tabs": "All",
         "new_build": "New Build",
+        "resale": "Resale",
         "features": "Amenities",
         "reset": "Reset Filters",
         "reset_button": "Reset all",
@@ -495,6 +496,7 @@
     },
     "property_details": {
       "new_build": "New Build",
+      "resale": "Resale",
       "for": "For",
       "description": "Description",
       "features": "Features",

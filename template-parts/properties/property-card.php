@@ -13,9 +13,15 @@ $property = $args['property'];
              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]">
         
         <div class="absolute top-6 left-6 flex flex-col gap-2">
-            <span class="bg-primary text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-xl">
-                <?php echo esc_html( t('pages.properties.filters.' . strtolower($property['type'])) ?? $property['type'] ); ?>
-            </span>
+            <?php if ( !empty($property['new_build']) ) : ?>
+                <span class="bg-white text-slate-900 text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-xl border border-slate-100">
+                    <?php echo esc_html( t('pages.properties.filters.new_build') ); ?>
+                </span>
+            <?php elseif ( !empty($property['resale']) ) : ?>
+                <span class="bg-slate-900 text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-xl">
+                    <?php echo esc_html( t('pages.properties.filters.resale') ); ?>
+                </span>
+            <?php endif; ?>
         </div>
 
         <div class="absolute bottom-6 left-4 right-4">

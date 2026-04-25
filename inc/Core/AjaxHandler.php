@@ -125,6 +125,8 @@ class AjaxHandler {
             if ($status !== 'all') {
                 if ($status === 'new_build') {
                     if (!$item['new_build']) continue;
+                } elseif ($status === 'resale') {
+                    if (!$item['resale']) continue;
                 } elseif (strtolower($item['type']) !== strtolower($status)) {
                     continue;
                 }

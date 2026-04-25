@@ -210,6 +210,7 @@ class Translator {
             'pool' => (int)($prop['pool'][0] ?? 0),
             'image' => $image,
             'new_build' => ($prop['new_build'][0] ?? '0') === '1',
+            'resale' => (($prop['resale'][0] ?? '0') === '1') || (($prop['new_build'][0] ?? '0') === '0'),
             'unix_date' => strtotime($prop['date'][0] ?? 'now')
         ];
     }

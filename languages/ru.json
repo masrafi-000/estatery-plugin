@@ -271,7 +271,8 @@
         "any": "Любое",
         "status": "Статус",
         "all_tabs": "Все",
-        "new_build": "Новостройка",
+        "new_build": "Новостройки",
+        "resale": "Вторичка",
         "features": "Удобства",
         "reset": "Сбросить фильтры",
         "reset_button": "Сбросить все",
@@ -469,6 +470,7 @@
     },
     "property_details": {
       "new_build": "Новостройка",
+      "resale": "Вторичка",
       "for": "Для",
       "description": "Описание",
       "features": "Характеристики",

@@ -272,7 +272,8 @@
         "status": "Statut",
         "all_tabs": "Tout",
         "new_build": "Neuf",
-        "features": "Équipements",
+        "resale": "Revente",
+        "features": "Commodités",
         "reset": "Réinitialiser les filtres",
         "reset_button": "Réinitialiser tout",
         "apply": "Appliquer les filtres",
@@ -474,6 +475,7 @@
     },
     "property_details": {
       "new_build": "Nouvelle Construction",
+      "resale": "Revente",
       "for": "À",
       "description": "Description",
       "features": "Caractéristiques",
