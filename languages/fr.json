@@ -423,6 +423,10 @@
           "button": "Obtenir le Guide d'Investissement"
         }
       },
+      "properties_label": "Opportunités Exclusives",
+      "properties_title": "Portefeuille d'Investissement Immobilier Prime",
+      "properties_subtitle": "Découvrez des propriétés sélectionnées avec soin avec un fort potentiel de rendement et une forte appréciation du capital dans les zones les plus prisées d'Alicante.",
+      "no_properties": "D'autres opportunités d'investissement sont en cours d'analyse. Revenez bientôt.",
       "onboarding": {
         "badge": "Intégration Exclusive",
         "title": "Commencez Votre Parcours d'Investissement",

@@ -137,10 +137,11 @@
         }
     }
 
-    if (document.readyState === 'loading') {
-        window.addEventListener('load', initInvestPhilosophy);
-    } else {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         initInvestPhilosophy();
+    } else {
+        window.addEventListener('load', initInvestPhilosophy);
+        setTimeout(initInvestPhilosophy, 700);
     }
 })();
 </script>

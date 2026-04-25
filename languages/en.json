@@ -439,6 +439,10 @@
           "button": "Get Investment Guide"
         }
       },
+      "properties_label": "Exclusive Opportunities",
+      "properties_title": "Prime Real Estate Investment Portfolio",
+      "properties_subtitle": "Discover hand-picked properties with high yield potential and strong capital appreciation in the most sought-after areas of Alicante.",
+      "no_properties": "More investment opportunities are being analyzed. Check back soon.",
       "onboarding": {
         "badge": "Exclusive Onboarding",
         "title": "Start Your Investment Journey",

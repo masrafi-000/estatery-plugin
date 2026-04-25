@@ -18,15 +18,15 @@ $breadcrumbs = isset($banner_breadcrumbs) ? $banner_breadcrumbs : [
     </div>
 
     <div class="absolute lg:bottom-[-20px] lg:right-[-10px] bottom-0 right-0 z-10 select-none pointer-events-none overflow-hidden max-w-full">
-        <h2 class="text-[6rem] md:text-[10rem] lg:text-[14rem] font-serif font-bold text-transparent opacity-10 uppercase whitespace-nowrap"
+        <h2 class="text-[6rem] md:text-[10rem] lg:text-[14rem] font-serif font-bold text-transparent opacity-10 uppercase whitespace-nowrap js-banner-bg-text"
             style="-webkit-text-stroke: 1.5px white; line-height: 0.9;">
             <?php echo $bg_text; ?>
         </h2>
     </div>
 
     <div class="container mx-auto px-6 lg:px-12 relative z-20">
-        <div class="max-w-4xl space-y-6">
-            <nav class="flex items-center gap-3 text-xs uppercase tracking-widest text-gray-300 mb-6 font-medium">
+        <div class="max-w-4xl space-y-6 js-banner-content">
+            <nav class="flex items-center gap-3 text-xs uppercase tracking-widest text-gray-300 mb-6 font-medium js-banner-item">
                 <?php foreach ($breadcrumbs as $index => $crumb): ?>
                     <?php if ($index > 0): ?>
                         <span class="opacity-50">/</span>
@@ -40,14 +40,63 @@ $breadcrumbs = isset($banner_breadcrumbs) ? $banner_breadcrumbs : [
                 <?php endforeach; ?>
             </nav>
 
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif text-white font-medium capitalize leading-[1.1] break-words">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif text-white font-medium capitalize leading-[1.1] break-words js-banner-item">
                 <?php echo strtolower($title); ?><span class="text-secondary">.</span>
             </h1>
 
             <p
-                class="text-lg md:text-xl text-gray-200 font-light max-w-2xl leading-relaxed border-l-2 border-secondary pl-6 mt-8">
+                class="text-lg md:text-xl text-gray-200 font-light max-w-2xl leading-relaxed border-l-2 border-secondary pl-6 mt-8 js-banner-item">
                 <?php echo $subtitle; ?>
             </p>
         </div>
     </div>
 </section>
+
+<script>
+(function() {
+    function initBannerAnims() {
+        if (typeof gsap === 'undefined') return;
+        
+        const content = document.querySelector(".js-banner-content");
+        if (!content) return;
+
+        const items = content.querySelectorAll(".js-banner-item");
+        const bgText = document.querySelector(".js-banner-bg-text");
+
+        const tl = gsap.timeline();
+
+        // 1. Content items stagger up
+        if (items.length) {
+            gsap.set(items, { opacity: 0, y: 40 });
+            tl.to(items, {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                stagger: 0.15,
+                ease: "power4.out",
+                delay: 0.2
+            });
+        }
+
+        // 2. Background text parallax/fade
+        if (bgText) {
+            gsap.set(bgText, { opacity: 0, x: 100 });
+            tl.to(bgText, {
+                opacity: 0.1,
+                x: 0,
+                duration: 2,
+                ease: "power3.out"
+            }, "-=1");
+        }
+    }
+
+    // Use a more resilient initialization that handles async/defer scripts
+    if (typeof gsap !== 'undefined') {
+        initBannerAnims();
+    } else {
+        window.addEventListener('load', initBannerAnims);
+        // Fallback for extremely fast loads or cached pages
+        setTimeout(initBannerAnims, 500);
+    }
+})();
+</script>

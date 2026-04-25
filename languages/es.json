@@ -420,6 +420,10 @@
           "button": "Obtener Guía de Inversión"
         }
       },
+      "properties_label": "Oportunidades Exclusivas",
+      "properties_title": "Portafolio de Inversión Inmobiliaria Prime",
+      "properties_subtitle": "Descubra propiedades seleccionadas a mano con alto potencial de rendimiento y fuerte revalorización del capital en las zonas más solicitadas de Alicante.",
+      "no_properties": "Se están analizando más oportunidades de inversión. Vuelva pronto.",
       "onboarding": {
         "badge": "Incorporación Exclusiva",
         "title": "Comience su Viaje de Inversión",

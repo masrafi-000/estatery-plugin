@@ -97,6 +97,10 @@ class ThemeSetup {
                 'title'    => 'Property Details',
                 'template' => 'page-property-details.php',
             ],
+            'investment-details' => [
+                'title'    => 'Investment Details',
+                'template' => 'page-investment-details.php',
+            ],
             'about' => [
                 'title'    => 'About',
                 'template' => 'page-about.php',

@@ -94,10 +94,11 @@
         }
     }
 
-    if (document.readyState === 'loading') {
-        window.addEventListener('load', initWealthGrowth);
-    } else {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         initWealthGrowth();
+    } else {
+        window.addEventListener('load', initWealthGrowth);
+        setTimeout(initWealthGrowth, 800);
     }
 })();
-</script>
+</script>

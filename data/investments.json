@@ -1,0 +1,309 @@
+{
+  "root": {
+    "property": [
+      {
+        "id": ["INV001"],
+        "date": ["2026-04-20 10:00:00"],
+        "price": ["1200000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["1"],
+        "type": ["villa"],
+        "town": ["Altea"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["Altea Hills"],
+        "beds": ["5"],
+        "baths": ["4"],
+        "surface_area": [{"built": ["350"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg"]},
+              {"url": ["https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["Luxury villa in Altea Hills with stunning sea views. High ROI potential through premium rentals."],
+          "es": ["Villa de lujo en Altea Hills con impresionantes vistas al mar. Alto potencial de ROI mediante alquileres premium."]
+        },
+        "features": {
+          "feature": ["Infinity Pool", "Sea View", "Gated Community", "Smart Home"]
+        }
+      },
+      {
+        "id": ["INV002"],
+        "date": ["2026-04-21 11:00:00"],
+        "price": ["450000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["1"],
+        "type": ["apartment"],
+        "town": ["Benidorm"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["Playa de Poniente"],
+        "beds": ["2"],
+        "baths": ["2"],
+        "surface_area": [{"built": ["95"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg"]},
+              {"url": ["https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["Modern apartment with sea views, perfect for vacation rentals in Benidorm."],
+          "es": ["Apartamento moderno con vistas al mar, perfecto para alquileres vacacionales en Benidorm."]
+        },
+        "features": {
+          "feature": ["Terrace", "Gym", "Pool", "Parking"]
+        }
+      },
+      {
+        "id": ["INV003"],
+        "date": ["2026-04-22 09:00:00"],
+        "price": ["2500000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["1"],
+        "type": ["villa"],
+        "town": ["Moraira"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["El Portet"],
+        "beds": ["6"],
+        "baths": ["5"],
+        "surface_area": [{"built": ["500"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg"]},
+              {"url": ["https://images.pexels.com/photos/209296/pexels-photo-209296.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["Exclusive frontline villa in Moraira. Prime investment for capital appreciation."],
+          "es": ["Villa exclusiva en primera línea en Moraira. Inversión de primer orden para revalorización de capital."]
+        },
+        "features": {
+          "feature": ["Beachfront", "Garden", "Wine Cellar", "Security"]
+        }
+      },
+      {
+        "id": ["INV004"],
+        "date": ["2026-04-23 14:00:00"],
+        "price": ["320000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["0"],
+        "type": ["apartment"],
+        "town": ["Alicante"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["City Center"],
+        "beds": ["3"],
+        "baths": ["2"],
+        "surface_area": [{"built": ["110"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["Renovated apartment in Alicante city center. Ideal for long-term rental income."],
+          "es": ["Apartamento renovado en el centro de Alicante. Ideal para ingresos por alquiler a largo plazo."]
+        },
+        "features": {
+          "feature": ["Elevator", "Air Conditioning", "Balcony"]
+        }
+      },
+      {
+        "id": ["INV005"],
+        "date": ["2026-04-24 08:30:00"],
+        "price": ["750000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["1"],
+        "type": ["townhouse"],
+        "town": ["Javea"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["Arenal"],
+        "beds": ["3"],
+        "baths": ["3"],
+        "surface_area": [{"built": ["180"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["Luxury townhouse in Javea. High demand area for holiday lets."],
+          "es": ["Adosado de lujo en Jávea. Zona de alta demanda para alquileres vacacionales."]
+        },
+        "features": {
+          "feature": ["Community Pool", "Private Garden", "Solarium"]
+        }
+      },
+      {
+        "id": ["INV006"],
+        "date": ["2026-04-24 12:00:00"],
+        "price": ["1800000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["1"],
+        "type": ["villa"],
+        "town": ["Calpe"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["Maryvilla"],
+        "beds": ["4"],
+        "baths": ["4"],
+        "surface_area": [{"built": ["300"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["Contemporary villa with panoramic views of the Rock of Ifach."],
+          "es": ["Villa contemporánea con vistas panorámicas al Peñón de Ifach."]
+        },
+        "features": {
+          "feature": ["Jacuzzi", "Home Cinema", "Domotics"]
+        }
+      },
+      {
+        "id": ["INV007"],
+        "date": ["2026-04-25 09:15:00"],
+        "price": ["280000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["0"],
+        "type": ["apartment"],
+        "town": ["Torrevieja"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["La Mata"],
+        "beds": ["2"],
+        "baths": ["1"],
+        "surface_area": [{"built": ["75"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["Beachside apartment in Torrevieja. Excellent entry-level investment."],
+          "es": ["Apartamento junto a la playa en Torrevieja. Excelente inversión de nivel de entrada."]
+        },
+        "features": {
+          "feature": ["Sea View", "Furniture Included", "Rental License"]
+        }
+      },
+      {
+        "id": ["INV008"],
+        "date": ["2026-04-25 11:45:00"],
+        "price": ["890000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["1"],
+        "type": ["villa"],
+        "town": ["Denia"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["Las Rotas"],
+        "beds": ["4"],
+        "baths": ["3"],
+        "surface_area": [{"built": ["220"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["Modern villa in the upscale area of Las Rotas, Denia."],
+          "es": ["Villa moderna en la exclusiva zona de Las Rotas, Dénia."]
+        },
+        "features": {
+          "feature": ["Mountain View", "Quiet Area", "Sustainable Design"]
+        }
+      },
+      {
+        "id": ["INV009"],
+        "date": ["2026-04-25 13:20:00"],
+        "price": ["550000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["1"],
+        "type": ["apartment"],
+        "town": ["Villajoyosa"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["Allonbay"],
+        "beds": ["3"],
+        "baths": ["2"],
+        "surface_area": [{"built": ["120"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["High-end beachfront apartment in Villajoyosa. New development project."],
+          "es": ["Apartamento de lujo en primera línea de playa en Villajoyosa. Proyecto de nueva construcción."]
+        },
+        "features": {
+          "feature": ["Spa", "Gym", "Concierge"]
+        }
+      },
+      {
+        "id": ["INV010"],
+        "date": ["2026-04-25 14:50:00"],
+        "price": ["1100000"],
+        "currency": ["EUR"],
+        "price_freq": ["sale"],
+        "new_build": ["1"],
+        "type": ["villa"],
+        "town": ["Polop"],
+        "province": ["Alicante"],
+        "country": ["Spain"],
+        "location_detail": ["Hills"],
+        "beds": ["4"],
+        "baths": ["4"],
+        "surface_area": [{"built": ["280"]}],
+        "images": [
+          {
+            "image": [
+              {"url": ["https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg"]}
+            ]
+          }
+        ],
+        "desc": {
+          "en": ["Modern villa in Polop with mountain and sea views. Great appreciation potential."],
+          "es": ["Villa moderna en Polop con vistas a la montaña y al mar. Gran potencial de revalorización."]
+        },
+        "features": {
+          "feature": ["Underfloor Heating", "EV Charging", "Storage Room"]
+        }
+      }
+    ]
+  }
+}
