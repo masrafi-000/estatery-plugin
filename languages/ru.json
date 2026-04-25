@@ -2,7 +2,7 @@
   "brand": {
     "name": "Capital Union Investment",
     "platform": "Capital Union Investment",
-    "email": "info@altara.com",
+    "email": "info@capitalunioninvestment.com",
     "tagline": "Мастерство в недвижимости"
   },
   "js": {
@@ -336,13 +336,13 @@
         "company": "Capital Union Investment",
         "description": "Свяжитесь с нами для получения экспертных консультаций по инвестициям в недвижимость и первоклассных решений в сфере недвижимости в Аликанте.",
         "office_label": "Адрес офиса",
-        "office_address": "Avenidad de La Constitucion, Formentera del Segura 03179 (Alicante)",
+        "office_address": "Avenidad de La Constitucion\nFormentera del Segura 03179\n(Alicante)",
         "email_label": "Напишите нам",
         "email_value": "info@capitalunioninvestment.com",
-        "phone_label": "Позвоните напрямую",
+        "phone_label": "Позвоните нам",
         "phone_value": "+34 639 31 58 61",
-        "hours_label": "Рабочее время",
-        "hours_value": "Пн-Пт 9:00 - 20:30"
+        "hours_label": "Часы работы",
+        "hours_value": "Пн-Пт 9 am - 8.30 pm"
       },
       "form": {
         "title": "Отправьте нам сообщение",

@@ -2209,6 +2209,9 @@
   .text-slate-500 {
     color: var(--color-slate-500);
   }
+  .text-slate-500\! {
+    color: var(--color-slate-500) !important;
+  }
   .text-slate-600 {
     color: var(--color-slate-600);
   }
