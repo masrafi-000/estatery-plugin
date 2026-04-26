@@ -61,7 +61,11 @@ $data_url = get_template_directory_uri() . '/data/investments.json';
         const title = prop.town[0] + ' ' + (prop.type[0] || 'Property');
         const price = formatPrice(prop.price[0]);
         const description = prop.desc && prop.desc[CONFIG.lang] ? prop.desc[CONFIG.lang][0] : (prop.desc && prop.desc['en'] ? prop.desc['en'][0] : '');
-        const image = prop.images[0].image[0].url[0];
+        let image = prop.images[0].image[0].url[0];
+        // Optimization: If it's a pexels image, add resize params
+        if (image.includes('pexels.com')) {
+            image += '?auto=compress&cs=tinysrgb&w=800';
+        }
         const detailUrl = `${CONFIG.baseUrl}/investment-details/?id=${encodeURIComponent(prop.id[0])}`;
         
         const badge = prop.new_build[0] === "1" 
@@ -69,16 +73,16 @@ $data_url = get_template_directory_uri() . '/data/investments.json';
             : `<span class="bg-slate-900 text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-xl">${CONFIG.i18n.resale}</span>`;
 
         return `
-            <article class="property-card group bg-white overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="${image}" alt="${title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]">
+            <article class="property-card group bg-white overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full" style="will-change: transform, opacity;">
+                <div class="relative h-64 overflow-hidden bg-slate-100">
+                    <img src="${image}" alt="${title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]">
                     <div class="absolute top-6 left-6 flex flex-col gap-2">${badge}</div>
                     <div class="absolute bottom-6 left-2 right-2">
                         <div class="bg-white/90 backdrop-blur-md py-3 px-1.5 shadow-lg border border-white/20">
                             <div class="flex justify-between items-center gap-2">
                                 <div class="text-primary font-black text-base tracking-tighter w-[35%]">${price}</div>
                                 <div class="text-end text-[11px] text-slate-500 uppercase font-medium tracking-widest w-[65%] flex items-center justify-end">
-                                    <svg class="w-4 h-4 text-primary mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                                    <svg class="w-4 h-4 text-primary mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
                                     ${prop.town[0]}
                                 </div>
                             </div>
@@ -115,17 +119,32 @@ $data_url = get_template_directory_uri() . '/data/investments.json';
     async function loadInvestments() {
         const $container = $('#investments-container');
         try {
-            const response = await fetch(CONFIG.dataUrl);
+            const response = await fetch(CONFIG.dataUrl, { cache: 'force-cache' });
             const data = await response.json();
             const properties = data.root.property;
 
             if (properties && properties.length) {
+                // Fragment for better performance
                 let html = '';
                 properties.forEach(prop => {
                     html += renderPropertyCard(prop);
                 });
-                $container.html(html);
-                initInvestPropsAnims();
+
+                // Smooth injection via RequestAnimationFrame
+                requestAnimationFrame(() => {
+                    $container.css('opacity', 0);
+                    $container.html(html);
+                    
+                    // Allow images to start loading before fading in
+                    setTimeout(() => {
+                        $container.animate({ opacity: 1 }, 400);
+                        initInvestPropsAnims();
+                        // Sync Lenis/ScrollTrigger
+                        if (typeof ScrollTrigger !== 'undefined') {
+                            ScrollTrigger.refresh();
+                        }
+                    }, 50);
+                });
             } else {
                 $container.html(`<div class="col-span-full py-20 text-center text-slate-400 font-medium italic">${CONFIG.i18n.no_properties}</div>`);
             }
@@ -140,10 +159,35 @@ $data_url = get_template_directory_uri() . '/data/investments.json';
         gsap.registerPlugin(ScrollTrigger);
         const section = document.querySelector(".js-invest-props-section");
         const cards = section.querySelectorAll(".property-card");
-        const tl = gsap.timeline({ scrollTrigger: { trigger: section, start: "top 80%", once: true } });
+        
+        // Kill existing triggers if any
+        ScrollTrigger.getAll().filter(t => t.trigger === section).forEach(t => t.kill());
+
+        const tl = gsap.timeline({ 
+            scrollTrigger: { 
+                trigger: section, 
+                start: "top 85%", 
+                once: true,
+                onEnter: () => {
+                    // Force refresh to account for dynamic content height
+                    ScrollTrigger.refresh();
+                }
+            } 
+        });
+
         if (cards.length) {
-            gsap.set(cards, { opacity: 0, y: 50 });
-            tl.to(cards, { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power4.out", clearProps: "transform,opacity" });
+            gsap.set(cards, { opacity: 0, y: 30 });
+            tl.to(cards, { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.8, 
+                stagger: {
+                    amount: 0.4,
+                    ease: "power2.out"
+                }, 
+                ease: "expo.out", 
+                clearProps: "transform,opacity" 
+            });
         }
     }
 
@@ -153,9 +197,19 @@ $data_url = get_template_directory_uri() . '/data/investments.json';
 
 <style>
 .skeleton-card {
-    background: linear-gradient(90deg, #f1f5f9 25%, #f8fafc 50%, #f1f5f9 75%);
+    background: linear-gradient(90deg, #f8fafc 25%, #f1f5f9 50%, #f8fafc 75%);
     background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
+    animation: skeleton-loading 1.5s infinite linear;
 }
 @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Hardware Acceleration for smooth scrolling */
+.js-invest-props-section {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.property-card {
+    will-change: transform, opacity;
+}
 </style>
