@@ -48,7 +48,7 @@
   },
   "home": {
     "hero": {
-      "agency_label": "Agencia Inmobiliaria",
+      "agency_label": "Asesor Inmobiliario Exclusivo en la Costa Blanca",
       "title": "Encuentre el Apartamento <br class=\"hidden md:block\"> de sus Sueños",
       "description": "Explore nuestra lista curada de propiedades de lujo diseñadas para su máxima comodidad y estilo.",
       "tabs": {
@@ -85,32 +85,32 @@
       "view_all": "TODAS LAS PROPIEDADES"
     },
     "why_choose": {
-      "title": "Por Qué Elegir Capital Union",
-      "description": "Ofrecemos todo lo que necesita para encontrar, comprar o alquilar su propiedad perfecta con confianza.",
+      "title": "¿Por qué elegir Capital Union Investment?",
+      "description": "Desde 2008 ayudando a más de 200 familias internacionales a comprar, vender e invertir con éxito en propiedades en España.",
       "features": [
         {
-          "title": "Listados Verificados",
-          "description": "Todas las propiedades están verificadas y autenticadas para garantizar que obtenga información precisa."
+          "title": "Asesoramiento independiente centrado en el cliente",
+          "description": "Capital Union Investment representa al comprador y al inversor, no a la propiedad, garantizando recomendaciones objetivas sin conflictos de intereses."
         },
         {
-          "title": "Información del Mercado",
-          "description": "Acceda a datos y tendencias del mercado en tiempo real para tomar decisiones de inversión informadas."
+          "title": "Estrategia de inversión a medida (sin catálogos)",
+          "description": "Cada proyecto empieza de cero en función de su perfil, sus objetivos y su nivel de riesgo, no de listados preseleccionados o carteras fijas."
         },
         {
-          "title": "Agentes Expertos",
-          "description": "Trabaje con profesionales inmobiliarios experimentados que entienden sus necesidades."
+          "title": "Acceso total al mercado",
+          "description": "Las propiedades se buscan en todo el mercado, sin limitarse a listados internos o promotores específicos, lo que permite acceder a oportunidades reales."
         },
         {
-          "title": "Soporte 24\/7",
-          "description": "Nuestro dedicado equipo de soporte está disponible las 24 horas para ayudarle."
+          "title": "Servicio integral (de principio a fin)",
+          "description": "Desde la búsqueda y la negociación hasta el apoyo jurídico, administrativo y posventa, todo el proceso se gestiona con precisión y continuidad."
         },
         {
-          "title": "Las Mejores Ofertas",
-          "description": "Obtenga acceso a listados exclusivos y las mejores ofertas del mercado."
+          "title": "Experiencia probada en inversiones",
+          "description": "La experiencia en activos residenciales, de alquiler, comerciales, hoteleros e industriales garantiza un enfoque estratégico y basado en datos para las decisiones de inversión."
         },
         {
-          "title": "Servicio Personalizado",
-          "description": "Reciba recomendaciones personalizadas basadas en sus preferencias y requisitos."
+          "title": "Profundo conocimiento jurídico y transaccional",
+          "description": "Casi dos décadas de experiencia práctica coordinando transacciones garantizan la prevención de riesgos, la seguridad jurídica y una ejecución sin contratiempos."
         }
       ]
     },

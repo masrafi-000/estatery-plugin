@@ -48,13 +48,9 @@
   },
   "home": {
     "hero": {
-      "agency_label": "Real Estate Agency",
+      "agency_label": "Exclusive Real Estate Advisor in Costa Blanca",
       "title": "Find Your Dream <br class=\"hidden md:block\"> Apartment",
       "description": "Explore our curated list of luxury properties designed for your ultimate comfort and style.",
-      "tabs": {
-        "buy": "Buy",
-        "rent": "Rent"
-      },
       "form": {
         "search_label": "Search Property",
         "search_placeholder": "Property name...",
@@ -85,32 +81,32 @@
       "view_all": "ALL PROPERTIES"
     },
     "why_choose": {
-      "title": "Why Choose Capital Union",
-      "description": "We provide everything you need to find, buy, or rent your perfect property with confidence.",
+      "title": "Why choose Capital Union Investment",
+      "description": "From 2008 helping over 200 international families successfully buy, sell, and invest in property in Spain",
       "features": [
         {
-          "title": "Verified Listings",
-          "description": "All properties are verified and authenticated to ensure you get accurate information."
+          "title": "Independent, Client-First Advisory",
+          "description": "Capital Union Investment represents the buyer and the investor — not the property, ensuring objective recommendations with no conflict of interest."
         },
         {
-          "title": "Market Insights",
-          "description": "Access real-time market data and trends to make informed investment decisions."
+          "title": "Tailored Investment Strategy (No Catalogs)",
+          "description": "Every project starts from scratch based on your profile, goals, and risk level — not from pre-selected listings or fixed portfolios."
         },
         {
-          "title": "Expert Agents",
-          "description": "Work with experienced real estate professionals who understand your needs."
+          "title": "Full Market Access",
+          "description": "Properties are sourced across the entire market, not limited to internal listings or specific developers, allowing access to real opportunities."
         },
         {
-          "title": "24\/7 Support",
-          "description": "Our dedicated support team is available around the clock to assist you."
+          "title": "End-to-End Service",
+          "description": "From search and negotiation to legal, administrative, and after-sales support, the entire process is managed with precision and continuity."
         },
         {
-          "title": "Best Deals",
-          "description": "Get access to exclusive listings and the best deals in the market."
+          "title": "Proven Investment Expertise",
+          "description": "Experience in residential, rental, commercial, hotel, and industrial assets ensures a strategic and data-driven approach to investment decisions."
         },
         {
-          "title": "Personalized Service",
-          "description": "Receive tailored recommendations based on your preferences and requirements."
+          "title": "Deep Legal & Transactional Knowledge",
+          "description": "Nearly two decades of hands-on experience coordinating transactions ensures risk prevention, legal security, and smooth execution."
         }
       ]
     },
