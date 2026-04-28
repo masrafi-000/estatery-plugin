@@ -11,6 +11,52 @@
 <body <?php body_class('font-["Inter"] antialiased'); ?>>
     <?php wp_body_open(); ?>
 
+    <!-- Premium Page Transition Overlay -->
+    <div id="page-loader" class="fixed inset-0 z-[10000] bg-secondary flex items-center justify-center pointer-events-auto">
+        <!-- Progress Bar -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-white/5 overflow-hidden">
+            <div id="loader-progress" class="h-full bg-primary w-0 transition-all duration-300 ease-out"></div>
+        </div>
+        
+        <!-- Logo & Spinner -->
+        <div class="relative flex flex-col items-center gap-8">
+            <div class="relative w-24 h-24 flex items-center justify-center">
+                <!-- Decorative Ring -->
+                <div class="absolute inset-0 border border-white/10 rounded-full scale-150 animate-[ping_3s_infinite]"></div>
+                
+                <!-- Logo Image (Styled for Loader) -->
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/logo-ll.png' ); ?>" 
+                     alt="Loading..." 
+                     class="w-full h-auto object-contain brightness-0 invert opacity-80 scale-150">
+            </div>
+            
+            <div class="flex flex-col items-center gap-3">
+                <div class="flex gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-bounce [animation-delay:-0.3s]"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-bounce [animation-delay:-0.15s]"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-bounce"></span>
+                </div>
+                <span class="text-[10px] uppercase tracking-[0.4em] text-white/40 font-bold ml-1">Estatery Premium</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Progress bar simulation
+        (function() {
+            var progress = document.getElementById('loader-progress');
+            if (progress) {
+                var width = 0;
+                var interval = setInterval(function() {
+                    if (width >= 90) clearInterval(interval);
+                    width += Math.random() * 5;
+                    progress.style.width = Math.min(width, 95) + '%';
+                }, 200);
+            }
+        })();
+    </script>
+
+
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-drawer" class="fixed inset-0 z-100 invisible pointer-events-none transition-all duration-500">
         <!-- Overlay -->

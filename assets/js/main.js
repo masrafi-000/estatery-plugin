@@ -5,11 +5,13 @@
 
 import SmoothScroll from './modules/SmoothScroll.js';
 import Animations from './modules/Animations.js';
+import PageTransition from './modules/PageTransition.js';
 import LanguageHandler from './modules/LanguageHandler.js';
 import LanguageSwitcher from './modules/LanguageSwitcher.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Controller-like initialization
+    new PageTransition();
     new SmoothScroll();
     new Animations();
     new LanguageHandler();

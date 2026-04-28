@@ -1,5 +1,6 @@
 /**
  * Smooth Scroll Module (Lenis)
+ * Refactored to remove GSAP dependency
  */
 export default class SmoothScroll {
     constructor() {
@@ -8,21 +9,27 @@ export default class SmoothScroll {
     }
 
     init() {
+        if (typeof Lenis === 'undefined') return;
+
         this.lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
+            gestureDirection: 'vertical',
             smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
         });
 
-        // Integration with GSAP ScrollTrigger
-        this.lenis.on('scroll', ScrollTrigger.update);
+        const raf = (time) => {
+            this.lenis.raf(time);
+            requestAnimationFrame(raf);
+        };
 
-        gsap.ticker.add((time) => {
-            this.lenis.raf(time * 1000);
-        });
+        requestAnimationFrame(raf);
 
-        gsap.ticker.lagSmoothing(0);
-        console.log('Lenis Module Initialized');
+        console.log('Lenis Module Initialized (Vanilla)');
     }
 }

@@ -21,118 +21,30 @@
                 </div>
             </div>
 
-            <div class="w-full lg:w-7/12 lg:pl-24 space-y-8 js-leadership-content">
-                <div class="inline-block">
-                    <span class="text-secondary font-bold uppercase tracking-[0.3em] text-xs flex items-center gap-3">
-                        <span class="w-10 h-[1px] bg-secondary"></span>
-                        <?php echo esc_html($leadership['badge']); ?>
-                    </span>
+            <div class="w-full lg:w-7/12 lg:pl-24 space-y-8 js-leadership-content js-reveal-fade">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary/5 rounded-full">
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                        <span class="text-secondary font-bold uppercase tracking-widest text-[10px]"><?php echo esc_html($leadership['badge']); ?></span>
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-secondary tracking-tight leading-[1.1] js-reveal-text">
+                        <?php echo $leadership['title']; ?>
+                    </h2>
                 </div>
 
-                <h2 class="text-4xl font-extrabold text-secondary mb-6">
-                    <?php echo $leadership['title']; ?>
-                </h2>
-
                 <div class="relative">
-                    <p class="border-l-2 text-secondary border-primary/90 pl-8">
-                        <?php echo esc_html($leadership['message']); ?>
+                    <div class="absolute -left-6 top-0 w-1 h-full bg-primary/20"></div>
+                    <p class="text-lg md:text-xl text-secondary/80 leading-relaxed font-medium pl-2">
+                        <?php echo wp_kses_post($leadership['message']); ?>
                     </p>
                 </div>
 
-                <div class="flex items-center gap-6 pt-6">
-                    <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-secondary shadow-md">
-                        <img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=100"
-                            class="w-full h-full object-cover" alt="">
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold text-secondary tracking-tight"><?php echo esc_html($leadership['name']); ?></h4>
-                        <p class="text-secondary text-xs uppercase tracking-widest font-bold"><?php echo esc_html($leadership['role']); ?></p>
-                    </div>
+                <div class="pt-6">
+                    <h4 class="text-2xl font-bold text-secondary mb-1 js-reveal-text"><?php echo esc_html($leadership['name']); ?></h4>
+                    <p class="text-primary font-bold uppercase tracking-[0.2em] text-xs"><?php echo esc_html($leadership['role']); ?></p>
                 </div>
             </div>
 
         </div>
     </div>
 </section>
-
-<script>
-(function () {
-    function initLeadership() {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-        gsap.registerPlugin(ScrollTrigger);
-
-        var section      = document.querySelector('.js-leadership-section');
-        if (!section) return;
-
-        var imageWrap    = section.querySelector('.js-leadership-image');
-        var contentItems = section.querySelectorAll('.js-leadership-content > *');
-        var card         = section.querySelector('.js-leadership-card');
-        var counter      = section.querySelector('.js-count-up');
-
-        var tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: section,
-                start: 'top 95%',
-                toggleActions: 'play none none none',
-                once: true
-            }
-        });
-
-        // 1. Image container slides up
-        if (imageWrap) {
-            gsap.set(imageWrap, { opacity: 0, y: 25 });
-            tl.to(imageWrap, {
-                opacity: 1,
-                y: 0,
-                duration: 0.7,
-                ease: 'power3.out'
-            });
-        }
-
-        // 2. Content children stagger in from right
-        if (contentItems.length) {
-            gsap.set(contentItems, { opacity: 0, x: 20 });
-            tl.to(contentItems, {
-                opacity: 1,
-                x: 0,
-                duration: 0.6,
-                stagger: 0.08,
-                ease: 'power3.out'
-            }, '-=0.5');
-        }
-
-        // 3. Floating card pops in
-        if (card) {
-            gsap.set(card, { opacity: 0, scale: 0.85 });
-            tl.to(card, {
-                opacity: 1,
-                scale: 1,
-                duration: 0.5,
-                ease: 'back.out(1.6)'
-            }, '-=0.4');
-        }
-
-        // 4. Counter — runs only when the card is visible
-        if (counter) {
-            var target = parseInt(counter.getAttribute('data-target'), 10) || 0;
-            var obj = { val: 0 };
-
-            tl.to(obj, {
-                val: target,
-                duration: 1.6,
-                ease: 'power2.inOut',
-                onUpdate: function () {
-                    counter.textContent = Math.ceil(obj.val);
-                }
-            }, '-=0.4');
-        }
-    }
-
-    if (document.readyState === 'loading') {
-        window.addEventListener('load', initLeadership);
-    } else {
-        initLeadership();
-    }
-})();
-</script>

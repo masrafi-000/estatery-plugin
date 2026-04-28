@@ -151,34 +151,11 @@ $social_links = [
     </div>
 </footer>
 
-<script>
-(function() {
-    function initFooterAnims() {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        gsap.registerPlugin(ScrollTrigger);
-        const footer = document.querySelector(".js-footer-section");
-        if (!footer) return;
+    </div>
+</footer>
 
-        gsap.from(footer.querySelectorAll(".container > *"), {
-            scrollTrigger: {
-                trigger: footer,
-                start: "top 95%",
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            y: 40,
-            duration: 1,
-            stagger: 0.15,
-            ease: "power3.out"
-        });
-    }
-    if (document.readyState === 'loading') {
-        window.addEventListener('load', initFooterAnims);
-    } else {
-        initFooterAnims();
-    }
-})();
-</script>
+    </div>
+</footer>
 
 <?php wp_footer(); ?>
 </body>

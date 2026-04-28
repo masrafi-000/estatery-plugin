@@ -21,9 +21,8 @@ class Enqueue {
         // Swiper CSS
         wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0' );
 
-        // GSAP CDN
-        wp_enqueue_script( 'gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', array(), '3.12.5', true );
-        wp_enqueue_script( 'gsap-scroll-trigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js', array('gsap'), '3.12.5', true );
+        // Motion Library (Framer Motion for Vanilla JS)
+        wp_enqueue_script( 'motion', 'https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.js', array(), '11.11.17', true );
 
         // Swiper JS
         wp_enqueue_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.0', true );
@@ -31,8 +30,19 @@ class Enqueue {
         // Lenis Smooth Scroll CDN
         wp_enqueue_script( 'lenis-cdn', 'https://cdn.jsdelivr.net/npm/lenis@1.1.9/dist/lenis.min.js', array(), '1.1.9', true );
 
-        // Theme JS (Refactored jQuery version)
-        wp_enqueue_script( 'estatery-theme', get_template_directory_uri() . '/assets/js/theme.js', array('jquery', 'gsap', 'swiper-js'), '1.0.0', true );
+        // Theme JS
+        wp_enqueue_script( 'estatery-theme', get_template_directory_uri() . '/assets/js/theme.js', array('jquery', 'motion', 'swiper-js'), '1.0.0', true );
+
+        // Page-specific Scripts
+        if ( is_front_page() ) {
+            wp_enqueue_script( 'estatery-home', get_template_directory_uri() . '/assets/js/pages/home.js', array('motion', 'swiper-js'), '1.0.0', true );
+        }
+        if ( is_page('about') ) {
+            wp_enqueue_script( 'estatery-about', get_template_directory_uri() . '/assets/js/pages/about.js', array('motion', 'lenis-cdn'), '1.0.0', true );
+        }
+        if ( is_page('contact') ) {
+            wp_enqueue_script( 'estatery-contact', get_template_directory_uri() . '/assets/js/pages/contact.js', array('motion'), '1.0.0', true );
+        }
 
         // Localize search/data for JS
         $feature_icons = [
@@ -62,12 +72,13 @@ class Enqueue {
             'why_choose_features' => $features
         ]);
 
-        // Custom Main JS (Legacy/Other)
+        // Custom Main JS (Module-based)
         wp_enqueue_script( 'estatery-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true );
         
-        // Add module type to main.js if needed
+        // Add module type to JS files
         add_filter('script_loader_tag', function($tag, $handle, $src) {
-            if ('estatery-main' !== $handle) {
+            $modules = ['estatery-main', 'estatery-home', 'estatery-about', 'estatery-contact'];
+            if (!in_array($handle, $modules)) {
                 return $tag;
             }
             return '<script type="module" src="' . esc_url($src) . '"></script>';

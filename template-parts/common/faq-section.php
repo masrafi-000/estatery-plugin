@@ -119,7 +119,6 @@ $active_index = 0;
 <script>
 (function () {
     'use strict';
-
     function initFAQ() {
         const section = document.querySelector('.js-faq-section');
         if (!section) return;
@@ -127,12 +126,9 @@ $active_index = 0;
         const tabs   = section.querySelectorAll('.js-faq-tab');
         const panels = section.querySelectorAll('.js-faq-panel');
 
-        // ── Tab switching ─────────────────────────────────────────────────────
         tabs.forEach(function (tab) {
             tab.addEventListener('click', function () {
                 const key = tab.dataset.tab;
-
-                // Update tab states
                 tabs.forEach(function (t) {
                     const active = t.dataset.tab === key;
                     t.classList.toggle('is-active', active);
@@ -143,121 +139,53 @@ $active_index = 0;
                     t.setAttribute('aria-selected', active ? 'true' : 'false');
                 });
 
-                // Show / hide panels (reset open accordions on switch)
                 panels.forEach(function (panel) {
                     if (panel.dataset.panel === key) {
                         panel.classList.remove('hidden');
-                        // Entrance: stagger items if GSAP available
-                        if (typeof gsap !== 'undefined') {
-                            const items = panel.querySelectorAll('.js-faq-item');
-                            gsap.fromTo(items,
-                                { opacity: 0, y: 10 },
-                                { opacity: 1, y: 0, duration: 0.4, stagger: 0.06, ease: 'power2.out', clearProps: 'opacity,transform' }
-                            );
-                        }
                     } else {
-                        // Close any open accordion before hiding
-                        panel.querySelectorAll('.js-faq-item.is-open').forEach(function (openItem) {
-                            var c = openItem.querySelector('.js-faq-content');
-                            if (typeof gsap !== 'undefined') {
-                                gsap.set(c, { height: 0, opacity: 0 });
-                            } else {
-                                c.style.height  = '0';
-                                c.style.opacity = '0';
-                            }
-                            openItem.classList.remove('is-open');
-                        });
                         panel.classList.add('hidden');
                     }
                 });
             });
         });
 
-        // ── Accordion helper ──────────────────────────────────────────────────
         function initAccordion(panel) {
             var items = panel.querySelectorAll('.js-faq-item');
-
             items.forEach(function (item) {
                 var trigger = item.querySelector('.js-faq-trigger');
                 var content = item.querySelector('.js-faq-content');
-                var icon    = item.querySelector('.js-faq-icon');
 
                 trigger.addEventListener('click', function () {
                     var isOpen = item.classList.contains('is-open');
 
-                    // Close siblings in this panel
                     items.forEach(function (other) {
                         if (other !== item && other.classList.contains('is-open')) {
                             var oc = other.querySelector('.js-faq-content');
-                            var oi = other.querySelector('.js-faq-icon');
-                            if (typeof gsap !== 'undefined') {
-                                gsap.to(oc, { height: 0, opacity: 0, duration: 0.3, ease: 'power2.inOut' });
-                                gsap.to(oi, { rotation: 0, duration: 0.3, ease: 'power2.inOut' });
-                            } else {
-                                oc.style.height  = '0';
-                                oc.style.opacity = '0';
-                            }
+                            oc.style.height = '0';
+                            oc.style.opacity = '0';
                             other.classList.remove('is-open');
                         }
                     });
 
                     if (isOpen) {
-                        if (typeof gsap !== 'undefined') {
-                            gsap.to(content, { height: 0, opacity: 0, duration: 0.3, ease: 'power2.inOut' });
-                            gsap.to(icon, { rotation: 0, duration: 0.3, ease: 'power2.inOut' });
-                        } else {
-                            content.style.height  = '0';
-                            content.style.opacity = '0';
-                        }
+                        content.style.height = '0';
+                        content.style.opacity = '0';
                         item.classList.remove('is-open');
                     } else {
-                        if (typeof gsap !== 'undefined') {
-                            gsap.set(content, { height: 'auto', opacity: 1 });
-                            var nat = content.offsetHeight;
-                            gsap.fromTo(content,
-                                { height: 0, opacity: 0 },
-                                { height: nat, opacity: 1, duration: 0.38, ease: 'power3.out' }
-                            );
-                            gsap.to(icon, { rotation: 45, duration: 0.35, ease: 'back.out(1.4)' });
-                        } else {
-                            content.style.height  = 'auto';
+                        content.style.height = 'auto';
+                        content.style.opacity = '1';
+                        var height = content.scrollHeight + 'px';
+                        content.style.height = '0';
+                        setTimeout(() => {
+                            content.style.height = height;
                             content.style.opacity = '1';
-                        }
+                        }, 10);
                         item.classList.add('is-open');
                     }
                 });
             });
         }
-
-        panels.forEach(function (panel) { initAccordion(panel); });
-
-        // ── Entrance animation (GSAP optional) ───────────────────────────────
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-
-            var header = section.querySelector('.js-faq-header');
-            var navBtns = section.querySelectorAll('.js-faq-tab');
-            var firstPanel = section.querySelector('.js-faq-panel:not(.hidden) .js-faq-item');
-
-            var tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 82%',
-                    toggleActions: 'play none none none',
-                }
-            });
-
-            if (header) {
-                gsap.set(header, { opacity: 0, y: 20 });
-                tl.to(header, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', clearProps: 'opacity,transform' });
-            }
-            if (navBtns.length) {
-                gsap.set(navBtns, { opacity: 0, x: -10 });
-                tl.to(navBtns, { opacity: 1, x: 0, duration: 0.5, stagger: 0.07, ease: 'power2.out', clearProps: 'opacity,transform' }, '-=0.4');
-            }
-
-            setTimeout(function () { ScrollTrigger.refresh(); }, 150);
-        }
+        panels.forEach(initAccordion);
     }
 
     if (document.readyState === 'loading') {
@@ -267,3 +195,15 @@ $active_index = 0;
     }
 })();
 </script>
+
+<style>
+    .js-faq-content {
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    }
+    .js-faq-icon svg {
+        transition: transform 0.3s ease;
+    }
+    .js-faq-item.is-open .js-faq-icon svg {
+        transform: rotate(45deg);
+    }
+</style>

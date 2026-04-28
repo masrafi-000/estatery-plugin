@@ -34,9 +34,6 @@
 
         /**
          * 2. Language Switcher — jQuery CSS layer ONLY
-         * This handler manages the dropdown's CSS state (open/close classes).
-         * ALL cookie-setting, AJAX, and navigation is owned exclusively by
-         * LanguageSwitcher.js (ES module) to avoid race conditions.
          */
         const $langTrigger    = $('#lang-select-trigger');
         const $langMenu       = $('#lang-options-list');
@@ -64,8 +61,6 @@
                 toggleLangMenu();
             });
 
-            // Option click: Only close the CSS menu state.
-            // LanguageSwitcher.js will handle AJAX save + navigation.
             $langOptionBtns.on('click', function() {
                 if ($langMenu.hasClass('active-menu')) toggleLangMenu();
             });
@@ -88,189 +83,7 @@
             $('#listing-type-input').val($(this).data('type'));
         });
 
-
-        /**
-         * 4. Swiper Initialization (Featured Properties)
-         */
-        if ($('.propertySlider').length && typeof Swiper !== 'undefined') {
-            new Swiper('.propertySlider', {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                loop: true,
-                speed: 1000,
-                autoplay: { delay: 5000, disableOnInteraction: false },
-                pagination: {
-                    el: '.swiper-pagination-premium',
-                    clickable: true,
-                    renderBullet: (index, className) => `<span class="${className} custom-dot"></span>`
-                },
-                breakpoints: {
-                    640: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 },
-                    1280: { slidesPerView: 4, spaceBetween: 24 }
-                }
-            });
-        }
-
-
-        /**
-         * 5. Why Choose Us (Dynamic Features & GSAP)
-         */
-        const $featureWrapper = $('#dynamic-features-wrapper');
-        const features = (typeof estateryData !== 'undefined') ? estateryData.why_choose_features : [];
-
-        if ($featureWrapper.length && features.length) {
-            $featureWrapper.html(features.map(feature => `
-                <div class="feature-box p-10 bg-white rounded-[2.5rem] border border-transparent hover:border-primary/20 transition-all flex flex-col items-start shadow-sm group hover:shadow-xl duration-500">
-                    <div class="w-16 h-16 ${feature.bgColor} text-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                        ${feature.icon}
-                    </div>
-                    <h3 class="text-2xl font-bold text-secondary mb-4">${feature.title}</h3>
-                    <p class="text-text-gray text-base leading-relaxed">
-                        ${feature.description}
-                    </p>
-                </div>
-            `).join(''));
-
-            if (typeof gsap !== 'undefined') {
-                gsap.registerPlugin(ScrollTrigger);
-                
-                if (document.querySelector('.reveal')) {
-                    gsap.to(".reveal", {
-                        scrollTrigger: { trigger: "#why-choose", start: "top 95%", toggleActions: "play none none none" },
-                        opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power4.out"
-                    });
-                }
-                
-                if (document.querySelector('.feature-box')) {
-                    gsap.to(".feature-box", {
-                        scrollTrigger: { trigger: "#dynamic-features-wrapper", start: "top 95%", toggleActions: "play none none none" },
-                        opacity: 1, y: 0, scale: 1, stagger: 0.08, duration: 0.6, ease: "power4.out"
-                    });
-                }
-            }
-        }
-
-
-        /**
-         * 6. Scroll Triggered Counter
-         */
-        if ($('#stats-counter-section').length && typeof gsap !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-            const $counters = $('.counter-value');
-            if ($counters.length) {
-                $counters.each(function() {
-                    const $this = $(this);
-                    const targetValue = parseInt($this.data('target'));
-                    gsap.to(this, {
-                        innerText: targetValue,
-                        duration: 1.5,
-                        ease: "power2.out",
-                        snap: { innerText: 1 },
-                        scrollTrigger: { trigger: "#stats-counter-section", start: "top 85%", toggleActions: "play none none none" },
-                        onUpdate: function() {
-                            $this.text(Math.ceil(this.targets()[0].innerText));
-                        }
-                    });
-                });
-            }
-        }
-
-
-        /**
-         * 7. FAQ Accordion (GSAP)
-         */
-        const $faqSection = $('#faq-section');
-        if ($faqSection.length && typeof gsap !== 'undefined') {
-            const $faqToggles = $('.faq-toggle');
-            const $faqCards = $('.faq-card');
-
-            $faqToggles.on('click', function() {
-                const $parent = $(this).parent();
-                const $answer = $(this).next();
-                const isActive = $parent.hasClass('active');
-
-                if (!isActive) {
-                    $parent.addClass('active');
-                    gsap.set($answer[0], { display: 'block' });
-                    gsap.fromTo($answer[0], { opacity: 0, height: 0 }, { opacity: 1, height: 'auto', duration: 0.4, ease: "power4.out" });
-
-                    $faqCards.not($parent).each(function(index) {
-                        const xSide = index % 2 === 0 ? -150 : 150;
-                        gsap.to(this, { xPercent: xSide, autoAlpha: 0, scale: 0.7, height: 0, marginBottom: 0, pointerEvents: 'none', duration: 0.8, ease: "expo.inOut" });
-                    });
-                } else {
-                    $parent.removeClass('active');
-                    gsap.to($answer[0], {
-                        height: 0, opacity: 0, duration: 0.3,
-                        onComplete: () => gsap.set($answer[0], { display: 'none' })
-                    });
-                    $faqCards.each(function() {
-                        gsap.to(this, { xPercent: 0, autoAlpha: 1, scale: 1, height: 'auto', marginBottom: '1rem', pointerEvents: 'auto', duration: 0.8, ease: "back.out(1.2)", clearProps: "transform,scale,margin-bottom" });
-                    });
-                }
-            });
-        }
-
-
-        /**
-         * 8. 404 Page Animations (GSAP)
-         */
-        const $errorPage = $('.error-404-section');
-        if ($errorPage.length && typeof gsap !== 'undefined') {
-            // Parallax 404 Text - Subtle mouse follow
-            const $parallax404 = $('#gsap-404-parallax');
-            $(document).on('mousemove', function(e) {
-                const { clientX, clientY } = e;
-                const xPos = (clientX / window.innerWidth - 0.5) * 80;
-                const yPos = (clientY / window.innerHeight - 0.5) * 80;
-                
-                gsap.to($parallax404[0], {
-                    x: xPos,
-                    y: yPos,
-                    duration: 1.5,
-                    ease: "power2.out"
-                });
-            });
-
-            // Content Reveal Sequence (Now moved outside so it works globally)
-
-            // Floating Background Shapes
-            gsap.to(".error-shape", {
-                y: "random(-40, 40)",
-                x: "random(-30, 30)",
-                rotation: "random(-15, 15)",
-                duration: "random(4, 7)",
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-        }
-        
-        /**
-         * 9. Global Hero / Title Reveal Sequence
-         * Animates .reveal-fade and .reveal-up classes on page load
-         */
-        if (typeof gsap !== 'undefined') {
-            if (document.querySelector('.reveal-fade') || document.querySelector('.reveal-up')) {
-                const revealTl = gsap.timeline({ defaults: { ease: "power4.out" } });
-                
-                if (document.querySelector('.reveal-fade')) {
-                    revealTl.fromTo(".reveal-fade", 
-                        { opacity: 0, scale: 0.95, y: 15 }, 
-                        { opacity: 1, scale: 1, y: 0, duration: 0.6, delay: 0.05 }
-                    );
-                }
-                
-                if (document.querySelector('.reveal-up')) {
-                    revealTl.fromTo(".reveal-up", 
-                        { opacity: 0, y: 20 }, 
-                        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 }, 
-                        document.querySelector('.reveal-fade') ? "-=0.4" : 0
-                    );
-                }
-            }
-        }
+        console.log('Theme Base Logic Initialized');
     });
 
 })(jQuery);

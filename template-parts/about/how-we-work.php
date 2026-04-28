@@ -2,15 +2,17 @@
 <section class="py-14 bg-[#fcfcfc] overflow-hidden js-how-we-work">
     <div class="container mx-auto px-6 lg:px-12">
 
-        <div class="text-center max-w-3xl mx-auto mb-20 js-process-header">
-            <span class="text-secondary font-bold uppercase text-xs pb-2 flex justify-center items-center gap-3">
-                <span class="w-8 h-[1px] bg-secondary"></span>
-                <?php echo esc_html($how_we_work['badge']); ?>
-                <span class="w-8 h-[1px] bg-secondary"></span>
-            </span>
-            <h2 class="text-4xl font-extrabold text-secondary mb-6">
+        <div class="max-w-3xl mb-16 lg:mb-24 js-process-header js-reveal-fade">
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 border border-secondary/20 mb-8">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                <span class="text-secondary font-bold uppercase tracking-[0.3em] text-[10px]"><?php echo esc_html($how_we_work['badge']); ?></span>
+            </div>
+            <h2 class="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-secondary tracking-tight leading-[1.1] mb-8 js-reveal-text">
                 <?php echo $how_we_work['title']; ?>
             </h2>
+            <p class="text-secondary/70 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
+                <?php echo esc_html($how_we_work['subtitle']); ?>
+            </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative js-process-grid">
@@ -36,73 +38,4 @@
 
         </div>
     </div>
-</section>
-
-<script>
-(function () {
-    function initHowWeWork() {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-        gsap.registerPlugin(ScrollTrigger);
-
-        var section     = document.querySelector('.js-how-we-work');
-        if (!section) return;
-
-        var headerItems = section.querySelectorAll('.js-process-header > *');
-        var line        = section.querySelector('.js-process-line');
-        var cards       = section.querySelectorAll('.js-process-step');
-
-        // Set initial states immediately so nothing flashes visible
-        if (headerItems.length) gsap.set(headerItems, { opacity: 0, y: 15 });
-        if (cards.length)       gsap.set(cards,       { opacity: 0, y: 20 });
-        // line starts at width:0 via CSS class — no extra set() needed
-
-        var tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: section,
-                start: 'top 95%',
-                toggleActions: 'play none none none',
-                once: true
-            }
-        });
-
-        // 1. Header children stagger down
-        if (headerItems.length) {
-            tl.to(headerItems, {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                stagger: 0.1,
-                ease: 'power3.out'
-            });
-        }
-
-        // 2. Connector line expands (desktop only — element is hidden on mobile via CSS)
-        if (line) {
-            tl.to(line, {
-                width: '100%',
-                duration: 0.7,
-                ease: 'power3.inOut'
-            }, '-=0.4');
-        }
-
-        // 3. Cards stagger up — clearProps so CSS hover transitions work after
-        if (cards.length) {
-            tl.to(cards, {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                stagger: 0.1,
-                ease: 'power3.out',
-                clearProps: 'transform,opacity'
-            }, '-=0.5');
-        }
-    }
-
-    if (document.readyState === 'loading') {
-        window.addEventListener('load', initHowWeWork);
-    } else {
-        initHowWeWork();
-    }
-})();
-</script>
+</section>
