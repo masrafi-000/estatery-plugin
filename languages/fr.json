@@ -121,40 +121,10 @@
       "satisfaction": "Satisfaction Client"
     },
     "faq": {
-      "title": "Foire Aux Questions",
-      "description": "Trouvez des réponses aux questions courantes sur le processus d'achat immobilier et nos services spécialisés.",
-      "help_title": "Besoin d'aide supplémentaire ?",
-      "help_description": "Notre équipe de support est là pour vous guider à chaque étape.",
-      "contact_button": "Contacter le Support",
-      "items": [
-        {
-          "question": "Quel est le processus d'achat d'un bien immobilier en Espagne ?",
-          "answer": "Le processus comprend la sélection d'un bien, la réservation, la signature d'un contrat privé et la finalisation de l'achat chez le notaire."
-        },
-        {
-          "question": "Combien de temps faut-il pour finaliser l'achat d'un bien immobilier ?",
-          "answer": "Pour l'achat d'un bien d'occasion, cela prend entre 4 et 8 semaines, selon les contrôles juridiques et le financement. Pour le neuf, cela peut prendre de 1 mois à 3 ans, selon l'état d'avancement de la construction au moment de l'achat."
-        },
-        {
-          "question": "Puis-je acheter un bien immobilier en Espagne sans être physiquement présent ?",
-          "answer": "Oui, l'achat peut être effectué à distance grâce à une procuration notariée."
-        },
-        {
-          "question": "Quels services proposez-vous au-delà de l'achat ?",
-          "answer": "Je propose un service immobilier complet de bout en bout sur la Costa Blanca, adapté aux acheteurs et investisseurs internationaux. Mon travail couvre l'ensemble du processus immobilier, garantissant la sécurité juridique, la transparence et une approche entièrement personnalisée. Cela comprend la recherche et l'acquisition de biens, le conseil en vente et en investissement, l'analyse du marché et la négociation. Je coordonne tous les aspects juridiques et notariaux pour garantir des transactions sécurisées, tout en aidant aux procédures administratives telles que l'obtention du NIE, l'ouverture de comptes bancaires et la gestion du financement."
-        },
-        {
-          "question": "Aidez-vous pour les services publics, les impôts et l'administration ?",
-          "answer": "Oui, une assistance est fournie pour les services publics (eau, électricité), les impôts et les procédures administratives afin d'assurer une transition en douceur."
-        },
-        {
-          "question": "Pouvez-vous aider au déménagement et à l'installation en Espagne ?",
-          "answer": "Oui, un soutien est disponible pour le déménagement, la résidence et l'installation en Espagne pour les clients s'installant dans la région de la Costa Blanca."
-        }
-      ],
       "eyebrow": "FAQ",
       "common_subtitle": "Tout ce que vous devez savoir sur l'achat, l'investissement et la vie sur la Costa Blanca.",
-      "frequently_asked": "Questions<br>Fréquentes"
+      "frequently_asked": "Questions<br>Fréquentes",
+      "contact_button": "Contacter le Support"
     }
   },
   "pages": {
@@ -162,17 +132,17 @@
       "hero": {
         "title": "À Propos De Nous",
         "bg_text": "À Propos",
-        "subtitle": "Contactez Altara pour des solutions élégantes en investissements immobiliers"
+        "subtitle": "Contactez Capital Union Investment pour des solutions élégantes en investissements immobiliers"
       },
       "story": {
         "badge": "Notre Histoire",
-        "title": "Nous développons des projets de qualité depuis 1988",
-        "description": "Nulla et sapien felis. Cras ex sapien, eleifend ac orci id, maximus aliquet ipsum. Duis in maximus nisl. Curabitur vitae mi fermentum, ullamcorper.",
+        "title": "Nous développons des projets de qualité depuis 2008",
+        "description": "Fondée avec la vision de redéfinir l'expérience immobilière sur la Costa Blanca, Capital Union Investment est devenue un conseiller de confiance pour les familles internationales. Notre parcours repose sur l'intégrité, la transparence et une connaissance approfondie du marché immobilier espagnol.",
         "features": [
-          "Duis semper, nisi eget accumsan cursus, nisl ligula sagittis.",
-          "Pellentesque metus turpis, efficitur at turpis semper.",
-          "Curabitur efficitur et massa in elementum.",
-          "Morbi gravida sit amet sem a pharetra."
+          "Analyse complète du marché pour chaque investissement.",
+          "Accès exclusif à des propriétés haut de gamme hors marché.",
+          "Soutien juridique et administratif complet.",
+          "Conseils personnalisés adaptés à vos objectifs financiers."
         ]
       },
       "how_we_work": {
@@ -229,28 +199,6 @@
         "message": "Notre voyage a commencé en 1988 avec un plan simple : construire avec une qualité sans compromis. Aujourd'hui, nous continuons à combler le fossé entre l'innovation architecturale et le design centré sur l'humain. Nous ne développons pas seulement des projets ; nous cultivons des héritages.",
         "name": "Asif Ahamed",
         "role": "Fondateur et Directeur Général"
-      },
-      "faq": {
-        "title": "FAQ sur l'agence et la vision",
-        "description": "Découvrez notre histoire, nos valeurs et comment nous garantissons l'excellence dans chaque projet immobilier depuis 1988.",
-        "items": [
-          {
-            "question": "Qu'est-ce qui définit l'approche d'Estatery en matière d'immobilier ?",
-            "answer": "Nous combinons des décennies d'expertise traditionnelle avec une intégration technologique moderne, en nous concentrant sur la valeur à long terme et l'intégrité architecturale plutôt que sur les tendances du marché à court terme."
-          },
-          {
-            "question": "Comment sélectionnez-vous les propriétés de votre portefeuille ?",
-            "answer": "Chaque propriété est soumise à un processus de vérification rigoureux en 50 points, couvrant le statut juridique, la qualité structurelle, le potentiel de rendement locatif et la durabilité environnementale."
-          },
-          {
-            "question": "Proposez-vous des services de gestion après achat ?",
-            "answer": "Oui, notre engagement ne s'arrête pas à la vente. Nous fournissons une gestion immobilière complète, une coordination de la maintenance et une optimisation locative pour nos clients internationaux."
-          },
-          {
-            "question": "Puis-je visiter votre bureau sur la Costa Blanca ?",
-            "answer": "Absolument. Nous accueillons nos clients dans notre bureau de Formentera del Segura pour discuter en personne de leur stratégie d'investissement avec nos conseillers dédiés."
-          }
-        ]
       }
     },
     "properties": {
@@ -367,43 +315,14 @@
         "badge_secure": "Transactions sécurisées",
         "badge_support": "Support client 24/7",
         "badge_verified": "Annonces vérifiées uniquement"
-      },
-      "faq": {
-        "title": "FAQ sur les Propriétés",
-        "description": "Informations sur les types de propriétés, la sécurité juridique et le processus d'achat pour les clients internationaux.",
-        "items": [
-          {
-            "question": "Quelle est la différence entre les propriétés neuves et les propriétés de revente ?",
-            "answer": "Les propriétés neuves sont de construction récente avec des normes et garanties modernes, tandis que les propriétés de revente ont eu des propriétaires précédents et sont généralement disponibles pour un emménagement immédiat."
-          },
-          {
-            "question": "Les propriétés neuves sont-elles plus sûres à acheter ?",
-            "answer": "Les constructions neuves offrent des normes et des garanties modernes, mais nécessitent une évaluation appropriée du projet, y compris l'évaluation du promoteur et la vérification des garanties bancaires."
-          },
-          {
-            "question": "Que dois-je prendre en compte lors d'un achat sur plan ?",
-            "answer": "Il est important d'évaluer le promoteur, les délais du projet et les garanties légales, en s'assurant spécifiquement que les garanties bancaires couvrent tous les paiements échelonnés."
-          },
-          {
-            "question": "Qu'est-ce qu'un numéro NIE et comment l'obtenir ?",
-            "answer": "Le NIE est un numéro d'identification étranger requis pour toute transaction juridique ou financière en Espagne. Nous aidons nos clients à l'obtenir par les voies administratives appropriées."
-          },
-          {
-            "question": "Ai-je besoin d'un avocat pour acheter un bien en Espagne ?",
-            "answer": "Un avocat est fortement recommandé pour garantir la sécurité juridique, examiner toute la documentation et protéger vos intérêts tout au long de la transaction."
-          },
-          {
-            "question": "Vérifiez-vous la documentation de la propriété avant l'achat ?",
-            "answer": "Oui, toute la documentation clé est minutieusement examinée avant de procéder à l'achat pour s'assurer que la propriété est juridiquement saine et libre de dettes."
-          }
-        ]
+      
       }
     },
     "contact": {
       "hero": {
         "title": "Contactez-nous",
         "bg_text": "Contact",
-        "subtitle": "Contactez l'équipe dédiée d'Altara pour des stratégies d'investissement immobilier sur mesure et des conseils d'experts."
+        "subtitle": "Contactez l'équipe dédiée de Capital Union Investment pour des stratégies d'investissement immobilier sur mesure et des conseils d'experts."
       },
       "info": {
         "badge": "Capital Union Investment",
@@ -537,37 +456,8 @@
           "submit": "Envoyer la Demande",
           "footer": "Portail Chiffré et Confidentiel"
         }
-      },
-      "faq": {
-        "title": "FAQ sur l'Investissement",
-        "description": "Questions courantes sur l'investissement immobilier, le financement et le ROI sur la Costa Blanca.",
-        "items": [
-          {
-            "question": "La Costa Blanca est-elle un bon endroit pour l'investissement immobilier ?",
-            "answer": "La Costa Blanca offre une forte demande, un attrait pour le style de vie, une valeur stable à long terme et des rendements attractifs, ce qui en fait l'un des marchés les plus résilients d'Espagne."
-          },
-          {
-            "question": "Quel type de propriétés génère les meilleurs revenus locatifs ?",
-            "answer": "Les appartements de 1 à 2 chambres dans des emplacements de choix près de la plage ou des complexes de golf affichent systématiquement la plus forte demande locative et les meilleurs rendements."
-          },
-          {
-            "question": "Quels facteurs affectent la rentabilité des propriétés ?",
-            "answer": "L'emplacement, le type de propriété, la demande saisonnière, la qualité de la gestion et les réglementations/restrictions des autorités locales jouent tous un rôle dans la rentabilité finale."
-          },
-          {
-            "question": "Les étrangers peuvent-ils obtenir un prêt hypothécaire en Espagne ?",
-            "answer": "Oui, les non-résidents peuvent obtenir un prêt hypothécaire en Espagne, finançant généralement entre 60 % et 70 % de la valeur de la propriété, sous réserve de justificatifs de revenus."
-          },
-          {
-            "question": "À quels coûts supplémentaires dois-je m'attendre lors de l'achat d'un bien ?",
-            "answer": "Les acheteurs doivent s'attendre à environ 12 à 13 % de coûts supplémentaires en plus du prix d'achat, couvrant les taxes (TVA ou droits de mutation), les frais de notaire, l'enregistrement et les frais juridiques."
-          },
-          {
-            "question": "Quel montant de dépôt est requis ?",
-            "answer": "Un dépôt de 10 % est généralement requis pour les propriétés de revente. Pour les nouveaux développements, les dépôts de réservation varient généralement de 6 000 € à 25 000 € selon le prix du bien."
-          }
-        ]
       }
+    
     },
     "error_404": {
       "bg_text": "404",

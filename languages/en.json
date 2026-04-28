@@ -117,40 +117,10 @@
       "satisfaction": "Customer Satisfaction"
     },
     "faq": {
-      "title": "Frequently Asked Questions",
-      "description": "Find answers to common questions about the property buying process and our specialized services.",
-      "help_title": "Need More Help?",
-      "help_description": "Our support team is here to guide you through every step.",
-      "contact_button": "Contact Support",
-      "items": [
-        {
-          "question": "What is the process of buying a property in Spain?",
-          "answer": "The process involves selecting a property, making a reservation, signing a private contract, and completing the purchase in the notary."
-        },
-        {
-          "question": "How long does it take to complete a property purchase?",
-          "answer": "For second hand property purchase takes between 4 to 8 weeks, depending on legal checks and financing and for the newbuild can take from 1 month till 3 years, it depends of the stage of the construction when you buy the property."
-        },
-        {
-          "question": "Can I buy a property in Spain without being physically present?",
-          "answer": "Yes, the purchase can be completed remotely through a power of attorney."
-        },
-        {
-          "question": "What services do you provide beyond the purchase?",
-          "answer": "I offer a comprehensive, end-to-end real estate service in Costa Blanca tailored to international buyers and investors. My work covers the entire property process, ensuring legal security, transparency, and a fully personalized approach. This includes property search and acquisition, sales and investment advisory, market analysis, and negotiation. I coordinate all legal and notarial aspects to guarantee secure transactions, while also assisting with administrative procedures such as obtaining an NIE, opening bank accounts, and managing financing."
-        },
-        {
-          "question": "Do you help with utilities, taxes, and administration?",
-          "answer": "Yes, assistance is provided with utilities, taxes, and administrative procedures to ensure a smooth transition."
-        },
-        {
-          "question": "Can you assist with relocation and settling in Spain?",
-          "answer": "Yes, support is available for relocation, residency, and settling in Spain for clients moving to the Costa Blanca region."
-        }
-      ],
       "eyebrow": "FAQ",
       "common_subtitle": "Everything you need to know about buying, investing, and living in Costa Blanca.",
-      "frequently_asked": "Frequently Asked<br>Questions"
+      "frequently_asked": "Frequently Asked<br>Questions",
+      "contact_button": "Contact Support"
     }
   },
   "pages": {
@@ -158,17 +128,17 @@
       "hero": {
         "title": "About Us",
         "bg_text": "About",
-        "subtitle": "Contact Altara for Elegant Solutions in Property Investments"
+        "subtitle": "Contact Capital Union Investment for Elegant Solutions in Property Investments"
       },
       "story": {
         "badge": "Our Story",
-        "title": "We Develop Quality Project Since 1988",
-        "description": "Nulla et sapien felis. Cras ex sapien, eleifend ac orci id, maximus aliquet ipsum. Duis in maximus nisl. Curabitur vitae mi fermentum, ullamcorper.",
+        "title": "We Develop Quality Project Since 2008",
+        "description": "Founded with a vision to redefine the real estate experience in Costa Blanca, Capital Union Investment has grown into a trusted advisor for international families. Our journey is built on integrity, transparency, and a deep understanding of the Spanish property market.",
         "features": [
-          "Duis semper, nisi eget accumsan cursus, nisl ligula sagittis.",
-          "Pellentesque metus turpis, efficitur at turpis semper.",
-          "Curabitur efficitur et massa in elementum.",
-          "Morbi gravida sit amet sem a pharetra."
+          "Comprehensive market analysis for every investment.",
+          "Exclusive access to premium off-market properties.",
+          "End-to-end legal and administrative support.",
+          "Personalized advisory tailored to your financial goals."
         ]
       },
       "how_we_work": {
@@ -225,29 +195,8 @@
         "message": "Our journey began in 1988 with a simple blueprint: to build with uncompromising quality. Today, we continue to bridge the gap between architectural innovation and human-centric design. We don't just develop projects; we cultivate legacies.",
         "name": "Asif Ahamed",
         "role": "Founder & Managing Director"
-      },
-      "faq": {
-        "title": "Agency & Vision FAQ",
-        "description": "Learn more about our history, our values, and how we ensure excellence in every real estate project since 1988.",
-        "items": [
-          {
-            "question": "What defines the Estatery approach to real estate?",
-            "answer": "We combine decades of traditional expertise with modern technological integration, focusing on long-term value and architectural integrity rather than short-term market trends."
-          },
-          {
-            "question": "How do you select the properties in your portfolio?",
-            "answer": "Every property undergoes a rigorous 50-point vetting process, covering legal status, structural quality, investment yield potential, and environmental sustainability."
-          },
-          {
-            "question": "Do you offer post-purchase management services?",
-            "answer": "Yes, our commitment doesn't end at the sale. We provide comprehensive property management, maintenance coordination, and rental optimization for our international clients."
-          },
-          {
-            "question": "Can I visit your office in Costa Blanca?",
-            "answer": "Absolutely. We welcome clients to our Formentera del Segura office to discuss their investment strategy in person with our dedicated advisors."
-          }
-        ]
       }
+      
     },
     "properties": {
       "title": "Exclusive Properties",
@@ -367,36 +316,7 @@
         "badge_secure": "Secure Transactions",
         "badge_support": "24/7 Client Support",
         "badge_verified": "Verified Listings Only"
-      },
-      "faq": {
-        "title": "Properties FAQ",
-        "description": "Information about property types, legal security, and the buying process for international clients.",
-        "items": [
-          {
-            "question": "What is the difference between new build and resale properties?",
-            "answer": "New build properties are newly constructed with modern standards and guarantees, while resale properties have previous owners and are typically available for immediate move-in."
-          },
-          {
-            "question": "Are new build properties safer to buy?",
-            "answer": "New builds offer modern standards and guarantees, but require proper project evaluation, including assessing the developer and ensuring bank guarantees are in place."
-          },
-          {
-            "question": "What should I consider when buying off-plan?",
-            "answer": "It is important to assess the developer, project timelines, and legal guarantees, specifically ensuring that bank guarantees cover all stage payments."
-          },
-          {
-            "question": "What is an NIE number and how do I obtain it?",
-            "answer": "The NIE is a foreign identification number required for any legal or financial transaction in Spain. We assist our clients in obtaining this through the proper administrative channels."
-          },
-          {
-            "question": "Do I need a lawyer to buy property in Spain?",
-            "answer": "A lawyer is highly recommended to ensure legal security, review all documentation, and protect your interests throughout the transaction."
-          },
-          {
-            "question": "Do you check property documentation before purchase?",
-            "answer": "Yes, all key documentation is thoroughly reviewed before proceeding with the purchase to ensure the property is legally sound and free of debts."
-          }
-        ]
+      
       }
     },
     "contact": {
@@ -537,36 +457,7 @@
           "submit": "Submit Application",
           "footer": "Encrypted & Confidential Portal"
         }
-      },
-      "faq": {
-        "title": "Investment FAQ",
-        "description": "Common questions about real estate investment, financing, and ROI in Costa Blanca.",
-        "items": [
-          {
-            "question": "Is Costa Blanca a good place for real estate investment?",
-            "answer": "Costa Blanca offers strong demand, lifestyle appeal, stable long-term value, and attractive returns, making it one of the most resilient markets in Spain."
-          },
-          {
-            "question": "What type of properties generate the best rental income?",
-            "answer": "Apartments with 1-2 bedrooms in prime locations close to the beach or golf resorts consistently show the strongest rental demand and highest yields."
-          },
-          {
-            "question": "What factors affect property profitability?",
-            "answer": "Location, property type, seasonal demand, management quality, and local council regulations/restrictions all play a role in determining final profitability."
-          },
-          {
-            "question": "Can foreigners get a mortgage in Spain?",
-            "answer": "Yes, non-residents can obtain a mortgage in Spain, usually financing between 60% and 70% of the property value, subject to proof of income."
-          },
-          {
-            "question": "What additional costs should I expect when buying a property?",
-            "answer": "Buyers should expect around 12–13% in additional costs above the purchase price, which covers taxes (VAT or Transfer Tax), notary fees, registration, and legal expenses."
-          },
-          {
-            "question": "How much deposit is required?",
-            "answer": "A deposit of 10% is typically required for resale properties. For new developments, reservation deposits usually range from €6,000 to €25,000 depending on the property price."
-          }
-        ]
+      
       }
     },
     "error_404": {

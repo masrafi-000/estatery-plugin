@@ -121,40 +121,10 @@
       "satisfaction": "Satisfacción del Cliente"
     },
     "faq": {
-      "title": "Preguntas Frecuentes",
-      "description": "Encuentre respuestas a las preguntas comunes sobre el proceso de compra de propiedades y nuestros servicios especializados.",
-      "help_title": "¿Necesita más ayuda?",
-      "help_description": "Nuestro equipo de soporte está aquí para guiarle en cada paso.",
-      "contact_button": "Contactar Soporte",
-      "items": [
-        {
-          "question": "¿Cuál es el proceso de compra de una propiedad en España?",
-          "answer": "El proceso implica seleccionar una propiedad, realizar una reserva, firmar un contrato privado y completar la compra ante notario."
-        },
-        {
-          "question": "¿Cuánto tiempo se tarda en completar la compra de una propiedad?",
-          "answer": "Para la compra de una propiedad de segunda mano se tarda entre 4 y 8 semanas, dependiendo de los controles legales y la financiación, y para la obra nueva puede tardar desde 1 mes hasta 3 años, dependiendo de la fase de construcción en el momento de la compra."
-        },
-        {
-          "question": "¿Puedo comprar una propiedad en España sin estar físicamente presente?",
-          "answer": "Sí, la compra puede completarse a distancia mediante un poder notarial."
-        },
-        {
-          "question": "¿Qué servicios ofrece más allá de la compra?",
-          "answer": "Ofrezco un servicio inmobiliario integral de principio a fin en la Costa Blanca adaptado a compradores e inversores internacionales. Mi trabajo cubre todo el proceso inmobiliario, garantizando seguridad jurídica, transparencia y un enfoque totalmente personalizado. Esto incluye la búsqueda y adquisición de propiedades, asesoramiento en ventas e inversiones, análisis de mercado y negociación. Coordino todos los aspectos legales y notariales para garantizar transacciones seguras, al tiempo que asisto en trámites administrativos como la obtención del NIE, la apertura de cuentas bancarias y la gestión de la financiación."
-        },
-        {
-          "question": "¿Ayudan con los suministros, impuestos y administración?",
-          "answer": "Sí, se ofrece asistencia con los suministros, impuestos y trámites administrativos para garantizar una transición fluida."
-        },
-        {
-          "question": "¿Pueden ayudar con el traslado y el asentamiento en España?",
-          "answer": "Sí, disponemos de apoyo para el traslado, la residencia y el asentamiento en España para los clientes que se muden a la región de la Costa Blanca."
-        }
-      ],
       "eyebrow": "Preguntas Frecuentes",
       "common_subtitle": "Todo lo que necesita saber sobre comprar, invertir y vivir en la Costa Blanca.",
-      "frequently_asked": "Preguntas<br>Frecuentes"
+      "frequently_asked": "Preguntas<br>Frecuentes",
+      "contact_button": "Contactar Soporte"
     }
   },
   "pages": {
@@ -162,17 +132,17 @@
       "hero": {
         "title": "Sobre Nosotros",
         "bg_text": "Nosotros",
-        "subtitle": "Contacte a Altara para soluciones elegantes en inversiones inmobiliarias"
+        "subtitle": "Contacte a Capital Union Investment para soluciones elegantes en inversiones inmobiliarias"
       },
       "story": {
         "badge": "Nuestra Historia",
-        "title": "Desarrollamos proyectos de calidad desde 1988",
-        "description": "Nulla et sapien felis. Cras ex sapien, eleifend ac orci id, maximus aliquet ipsum. Duis in maximus nisl. Curabitur vitae mi fermentum, ullamcorper.",
+        "title": "Desarrollamos proyectos de calidad desde 2008",
+        "description": "Fundada con la visión de redefinir la experiencia inmobiliaria en la Costa Blanca, Capital Union Investment se ha convertido en un asesor de confianza para familias internacionales. Nuestra trayectoria se basa en la integridad, la transparencia y un profundo conocimiento del mercado inmobiliario español.",
         "features": [
-          "Duis semper, nisi eget accumsan cursus, nisl ligula sagittis.",
-          "Pellentesque metus turpis, efficitur at turpis semper.",
-          "Curabitur efficitur et massa in elementum.",
-          "Morbi gravida sit amet sem a pharetra."
+          "Análisis integral del mercado para cada inversión.",
+          "Acceso exclusivo a propiedades premium fuera del mercado.",
+          "Soporte legal y administrativo integral.",
+          "Asesoramiento personalizado adaptado a sus objetivos financieros."
         ]
       },
       "how_we_work": {
@@ -229,28 +199,7 @@
         "message": "Nuestro viaje comenzó en 1988 con un plano simple: construir con una calidad inquebrantable. Hoy, continuamos cerrando la brecha entre la innovación arquitectónica y el diseño centrado en el ser humano. No solo desarrollamos proyectos; cultivamos legados.",
         "name": "Asif Ahamed",
         "role": "Fundador y Director Gerente"
-      },
-      "faq": {
-        "title": "Preguntas frecuentes sobre la agencia y la visión",
-        "description": "Obtenga más información sobre nuestra historia, nuestros valores y cómo garantizamos la excelencia en cada proyecto inmobiliario desde 1988.",
-        "items": [
-          {
-            "question": "¿Qué define el enfoque de Estatery en el sector inmobiliario?",
-            "answer": "Combinamos décadas de experiencia tradicional con la integración tecnológica moderna, centrándonos en el valor a largo plazo y la integridad arquitectónica en lugar de las tendencias del mercado a corto plazo."
-          },
-          {
-            "question": "¿Cómo seleccionan las propiedades de su cartera?",
-            "answer": "Cada propiedad se somete a un riguroso proceso de evaluación de 50 puntos, que abarca el estado legal, la calidad estructural, el potencial de rendimiento de la inversión y la sostenibilidad ambiental."
-          },
-          {
-            "question": "¿Ofrecen servicios de gestión posteriores a la compra?",
-            "answer": "Sí, nuestro compromiso no termina en la venta. Ofrecemos una gestión integral de la propiedad, coordinación del mantenimiento y optimización del alquiler para nuestros clientes internacionales."
-          },
-          {
-            "question": "¿Puedo visitar su oficina en la Costa Blanca?",
-            "answer": "Por supuesto. Damos la bienvenida a los clientes a nuestra oficina de Formentera del Segura para hablar sobre su estrategia de inversión en persona con nuestros asesores dedicados."
-          }
-        ]
+      
       }
     },
     "properties": {
@@ -288,7 +237,6 @@
         "buy": "En venta",
         "rent": "En alquiler",
         "type": "Tipo de propiedad",
-        "loading": "Cargando...",
         "location": "Ubicación",
         "location_placeholder": "Ciudad, dirección, código postal…",
         "price": "Rango de precios",
@@ -368,43 +316,14 @@
         "badge_secure": "Transacciones seguras",
         "badge_support": "Soporte al cliente 24/7",
         "badge_verified": "Solo listados verificados"
-      },
-      "faq": {
-        "title": "Preguntas Frecuentes sobre Propiedades",
-        "description": "Información sobre tipos de propiedades, seguridad jurídica y el proceso de compra para clientes internacionales.",
-        "items": [
-          {
-            "question": "¿Cuál es la diferencia entre las propiedades de obra nueva y las de reventa?",
-            "answer": "Las propiedades de obra nueva son de reciente construcción con estándares y garantías modernos, mientras que las de reventa han tenido propietarios anteriores y suelen estar disponibles para entrar a vivir de inmediato."
-          },
-          {
-            "question": "¿Es más seguro comprar propiedades de obra nueva?",
-            "answer": "Las obras nuevas ofrecen estándares y garantías modernos, pero requieren una evaluación adecuada del proyecto, incluyendo la valoración del promotor y asegurando que existan avales bancarios."
-          },
-          {
-            "question": "¿Qué debo tener en cuenta al comprar sobre plano?",
-            "answer": "Es importante evaluar al promotor, los plazos del proyecto y las garantías legales, asegurándose específicamente de que los avales bancarios cubran todos los pagos fraccionados."
-          },
-          {
-            "question": "¿Qué es un número NIE y cómo lo obtengo?",
-            "answer": "El NIE es un número de identificación de extranjeros necesario para cualquier transacción legal o financiera en España. Ayudamos a nuestros clientes a obtenerlo a través de los canales administrativos adecuados."
-          },
-          {
-            "question": "¿Necesito un abogado para comprar una propiedad en España?",
-            "answer": "Es muy recomendable contar con un abogado para garantizar la seguridad jurídica, revisar toda la documentación y proteger sus intereses durante la transacción."
-          },
-          {
-            "question": "¿Comprueban la documentación de la propiedad antes de la compra?",
-            "answer": "Sí, toda la documentación clave se revisa minuciosamente antes de proceder con la compra para garantizar que la propiedad sea legalmente sólida y esté libre de cargas."
-          }
-        ]
+      
       }
     },
     "contact": {
       "hero": {
         "title": "Póngase en contacto",
         "bg_text": "Contacto",
-        "subtitle": "Póngase en contacto con el equipo dedicado de Capital Union para obtener estrategias de inversión inmobiliaria a medida y orientación expertas."
+        "subtitle": "Póngase en contacto con el equipo dedicado de Capital Union Investment para obtener estrategias de inversión inmobiliaria a medida y orientación expertas."
       },
       "info": {
         "badge": "Ponerse en contacto",
@@ -538,36 +457,7 @@
           "submit": "Enviar Solicitud",
           "footer": "Portal Encriptado y Confidencial"
         }
-      },
-      "faq": {
-        "title": "Preguntas Frecuentes sobre Inversión",
-        "description": "Preguntas comunes sobre inversión inmobiliaria, financiación y ROI en la Costa Blanca.",
-        "items": [
-          {
-            "question": "¿Es la Costa Blanca un buen lugar para la inversión inmobiliaria?",
-            "answer": "La Costa Blanca ofrece una fuerte demanda, atractivo estilo de vida, valor estable a largo plazo y rentabilidades atractivas, lo que la convierte en uno de los mercados más resilientes de España."
-          },
-          {
-            "question": "¿Qué tipo de propiedades generan los mejores ingresos por alquiler?",
-            "answer": "Los apartamentos de 1 o 2 dormitorios en ubicaciones privilegiadas cerca de la playa o de campos de golf muestran constantemente la mayor demanda de alquiler y los mejores rendimientos."
-          },
-          {
-            "question": "¿Qué factores afectan a la rentabilidad de la propiedad?",
-            "answer": "La ubicación, el tipo de propiedad, la demanda estacional, la calidad de la gestión y las normativas y restricciones de los ayuntamientos locales influyen en la rentabilidad final."
-          },
-          {
-            "question": "¿Pueden los extranjeros obtener una hipoteca en España?",
-            "answer": "Sí, los no residentes pueden obtener una hipoteca en España, financiando normalmente entre el 60% y el 70% del valor de la propiedad, sujeto a la acreditación de ingresos."
-          },
-          {
-            "question": "¿Qué costes adicionales debo esperar al comprar una propiedad?",
-            "answer": "Los compradores deben esperar entre un 12% y un 13% de costes adicionales sobre el precio de compra, lo que cubre impuestos (IVA o ITP), gastos de notaría, registro y honorarios legales."
-          },
-          {
-            "question": "¿Cuánto depósito se requiere?",
-            "answer": "Normalmente se requiere un depósito del 10% para las propiedades de reventa. Para las promociones de obra nueva, los depósitos de reserva suelen oscilar entre los 6.000 € y los 25.000 €, dependiendo del precio de la propiedad."
-          }
-        ]
+      
       }
     },
     "error_404": {
