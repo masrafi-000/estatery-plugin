@@ -2296,6 +2296,12 @@
       color: color-mix(in oklab, var(--color-secondary) 20%, transparent);
     }
   }
+  .text-secondary\/30 {
+    color: color-mix(in srgb, #4b5563 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-secondary) 30%, transparent);
+    }
+  }
   .text-secondary\/40 {
     color: color-mix(in srgb, #4b5563 40%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -2783,6 +2789,13 @@
         @supports (color: color-mix(in lab, red, red)) {
           border-color: color-mix(in oklab, var(--color-primary) 30%, transparent);
         }
+      }
+    }
+  }
+  .group-hover\:border-secondary {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        border-color: var(--color-secondary);
       }
     }
   }

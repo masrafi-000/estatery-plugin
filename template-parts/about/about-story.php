@@ -96,7 +96,7 @@
         var tl = gsap.timeline({
             scrollTrigger: {
                 trigger: section,
-                start: 'top 80%',
+                start: 'top 95%',
                 toggleActions: 'play none none none',
                 once: true
             }
@@ -104,36 +104,36 @@
 
         // 1. Images — staggered slide-up + fade
         if (images.length) {
-            gsap.set(images, { opacity: 0, y: 50, scale: 1.04 });
+            gsap.set(images, { opacity: 0, y: 25, scale: 1.02 });
             tl.to(images, {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                duration: 0.85,
-                stagger: 0.12,
+                duration: 0.7,
+                stagger: 0.1,
                 ease: 'power3.out'
             });
         }
 
         // 2. Text children — staggered slide-in from right
         if (textItems.length) {
-            gsap.set(textItems, { opacity: 0, x: 35 });
+            gsap.set(textItems, { opacity: 0, x: 20 });
             tl.to(textItems, {
                 opacity: 1,
                 x: 0,
-                duration: 0.75,
-                stagger: 0.1,
+                duration: 0.6,
+                stagger: 0.08,
                 ease: 'power3.out'
-            }, '-=0.55');
+            }, '-=0.5');
         }
 
         // 3. Thumbnails — scale pop after text
         if (thumbnails.length) {
-            gsap.set(thumbnails, { opacity: 0, scale: 0.88 });
+            gsap.set(thumbnails, { opacity: 0, scale: 0.92 });
             tl.to(thumbnails, {
                 opacity: 1,
                 scale: 1,
-                duration: 0.55,
+                duration: 0.45,
                 stagger: 0.08,
                 ease: 'back.out(1.4)'
             }, '-=0.3');

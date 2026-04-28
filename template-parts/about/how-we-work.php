@@ -53,14 +53,14 @@
         var cards       = section.querySelectorAll('.js-process-step');
 
         // Set initial states immediately so nothing flashes visible
-        if (headerItems.length) gsap.set(headerItems, { opacity: 0, y: 30 });
-        if (cards.length)       gsap.set(cards,       { opacity: 0, y: 40 });
+        if (headerItems.length) gsap.set(headerItems, { opacity: 0, y: 15 });
+        if (cards.length)       gsap.set(cards,       { opacity: 0, y: 20 });
         // line starts at width:0 via CSS class — no extra set() needed
 
         var tl = gsap.timeline({
             scrollTrigger: {
                 trigger: section,
-                start: 'top 82%',
+                start: 'top 95%',
                 toggleActions: 'play none none none',
                 once: true
             }
@@ -71,8 +71,8 @@
             tl.to(headerItems, {
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
-                stagger: 0.12,
+                duration: 0.6,
+                stagger: 0.1,
                 ease: 'power3.out'
             });
         }
@@ -81,9 +81,9 @@
         if (line) {
             tl.to(line, {
                 width: '100%',
-                duration: 0.9,
+                duration: 0.7,
                 ease: 'power3.inOut'
-            }, '-=0.45');
+            }, '-=0.4');
         }
 
         // 3. Cards stagger up — clearProps so CSS hover transitions work after
@@ -91,11 +91,11 @@
             tl.to(cards, {
                 opacity: 1,
                 y: 0,
-                duration: 0.75,
-                stagger: 0.12,
+                duration: 0.6,
+                stagger: 0.1,
                 ease: 'power3.out',
                 clearProps: 'transform,opacity'
-            }, '-=0.65');
+            }, '-=0.5');
         }
     }
 

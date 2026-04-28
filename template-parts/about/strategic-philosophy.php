@@ -61,18 +61,18 @@
 
         // --- Header ---
         if (headerItems.length) {
-            gsap.set(headerItems, { opacity: 0, y: 30 });
+            gsap.set(headerItems, { opacity: 0, y: 15 });
 
             ScrollTrigger.create({
                 trigger: section.querySelector('.js-philosophy-header'),
-                start: 'top 82%',
+                start: 'top 95%',
                 once: true,
                 onEnter: function () {
                     gsap.to(headerItems, {
                         opacity: 1,
                         y: 0,
-                        duration: 0.8,
-                        stagger: 0.12,
+                        duration: 0.6,
+                        stagger: 0.1,
                         ease: 'power3.out'
                     });
                 }
@@ -81,19 +81,19 @@
 
         // --- Cards ---
         if (cards.length) {
-            gsap.set(cards, { opacity: 0, y: 45, scale: 0.97 });
+            gsap.set(cards, { opacity: 0, y: 20, scale: 0.98 });
 
             ScrollTrigger.create({
                 trigger: section.querySelector('.js-philosophy-cards'),
-                start: 'top 82%',
+                start: 'top 95%',
                 once: true,
                 onEnter: function () {
                     gsap.to(cards, {
                         opacity: 1,
                         y: 0,
                         scale: 1,
-                        duration: 0.8,
-                        stagger: 0.13,
+                        duration: 0.6,
+                        stagger: 0.1,
                         ease: 'power3.out',
                         clearProps: 'transform,opacity'
                     });

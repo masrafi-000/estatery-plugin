@@ -137,15 +137,15 @@
                 
                 if (document.querySelector('.reveal')) {
                     gsap.to(".reveal", {
-                        scrollTrigger: { trigger: "#why-choose", start: "top 85%", toggleActions: "play none none none" },
-                        opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power4.out"
+                        scrollTrigger: { trigger: "#why-choose", start: "top 95%", toggleActions: "play none none none" },
+                        opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power4.out"
                     });
                 }
                 
                 if (document.querySelector('.feature-box')) {
                     gsap.to(".feature-box", {
-                        scrollTrigger: { trigger: "#dynamic-features-wrapper", start: "top 80%", toggleActions: "play none none none" },
-                        opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.8, ease: "power4.out"
+                        scrollTrigger: { trigger: "#dynamic-features-wrapper", start: "top 95%", toggleActions: "play none none none" },
+                        opacity: 1, y: 0, scale: 1, stagger: 0.08, duration: 0.6, ease: "power4.out"
                     });
                 }
             }
@@ -233,17 +233,7 @@
                 });
             });
 
-            // Content Reveal Sequence
-            const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-            tl.fromTo(".reveal-fade", 
-                { opacity: 0, scale: 0.9, y: 20 }, 
-                { opacity: 1, scale: 1, y: 0, duration: 0.8, delay: 0.1 }
-            )
-            .fromTo(".reveal-up", 
-                { opacity: 0, y: 30 }, 
-                { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 }, 
-                "-=0.6"
-            );
+            // Content Reveal Sequence (Now moved outside so it works globally)
 
             // Floating Background Shapes
             gsap.to(".error-shape", {
@@ -255,6 +245,31 @@
                 yoyo: true,
                 ease: "sine.inOut"
             });
+        }
+        
+        /**
+         * 9. Global Hero / Title Reveal Sequence
+         * Animates .reveal-fade and .reveal-up classes on page load
+         */
+        if (typeof gsap !== 'undefined') {
+            if (document.querySelector('.reveal-fade') || document.querySelector('.reveal-up')) {
+                const revealTl = gsap.timeline({ defaults: { ease: "power4.out" } });
+                
+                if (document.querySelector('.reveal-fade')) {
+                    revealTl.fromTo(".reveal-fade", 
+                        { opacity: 0, scale: 0.95, y: 15 }, 
+                        { opacity: 1, scale: 1, y: 0, duration: 0.6, delay: 0.05 }
+                    );
+                }
+                
+                if (document.querySelector('.reveal-up')) {
+                    revealTl.fromTo(".reveal-up", 
+                        { opacity: 0, y: 20 }, 
+                        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 }, 
+                        document.querySelector('.reveal-fade') ? "-=0.4" : 0
+                    );
+                }
+            }
         }
     });
 

@@ -14,7 +14,7 @@
     .reveal,
     .feature-box {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(20px);
         will-change: transform, opacity;
     }
 </style>

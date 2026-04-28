@@ -73,7 +73,7 @@
         var tl = gsap.timeline({
             scrollTrigger: {
                 trigger: section,
-                start: 'top 80%',
+                start: 'top 95%',
                 toggleActions: 'play none none none',
                 once: true
             }
@@ -81,36 +81,36 @@
 
         // 1. Image container slides up
         if (imageWrap) {
-            gsap.set(imageWrap, { opacity: 0, y: 60 });
+            gsap.set(imageWrap, { opacity: 0, y: 25 });
             tl.to(imageWrap, {
                 opacity: 1,
                 y: 0,
-                duration: 0.9,
+                duration: 0.7,
                 ease: 'power3.out'
             });
         }
 
         // 2. Content children stagger in from right
         if (contentItems.length) {
-            gsap.set(contentItems, { opacity: 0, x: 35 });
+            gsap.set(contentItems, { opacity: 0, x: 20 });
             tl.to(contentItems, {
                 opacity: 1,
                 x: 0,
-                duration: 0.75,
-                stagger: 0.1,
+                duration: 0.6,
+                stagger: 0.08,
                 ease: 'power3.out'
-            }, '-=0.6');
+            }, '-=0.5');
         }
 
         // 3. Floating card pops in
         if (card) {
-            gsap.set(card, { opacity: 0, scale: 0.78 });
+            gsap.set(card, { opacity: 0, scale: 0.85 });
             tl.to(card, {
                 opacity: 1,
                 scale: 1,
-                duration: 0.65,
+                duration: 0.5,
                 ease: 'back.out(1.6)'
-            }, '-=0.5');
+            }, '-=0.4');
         }
 
         // 4. Counter — runs only when the card is visible
