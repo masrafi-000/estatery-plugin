@@ -365,7 +365,7 @@ if (!empty($categories)) {
     margin: 0 auto;
     padding: 0 16px 60px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 40px;
     align-items: start;
 }
@@ -376,10 +376,14 @@ if (!empty($categories)) {
 
 @media (min-width: 1024px) {
     .np-layout {
-        grid-template-columns: 1fr 300px;
+        grid-template-columns: minmax(0, 1fr) 300px;
         gap: 60px;
         padding-bottom: 80px;
     }
+}
+
+.np-layout main {
+    min-width: 0;
 }
 
 /* ============================================================
@@ -458,6 +462,11 @@ if (!empty($categories)) {
     line-height: 1.85;
     color: var(--ink-mid);
     font-weight: 300;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
+    max-width: 72ch; /* Constrain line length for readability */
 }
 
 /* Drop cap — disable on mobile to avoid layout issues */
@@ -1219,11 +1228,6 @@ if (!empty($categories)) {
    (ensures 200-sentence articles remain comfortable to read)
    ============================================================ */
 
-/* Constrain line length for readability in wide viewports */
-.np-article__body {
-    max-width: 72ch;
-}
-
 /* Ensure images inside long articles stay responsive */
 .np-article__body img {
     max-width: 100%;
@@ -1429,7 +1433,10 @@ if (!empty($categories)) {
             <!-- Article Body -->
             <article class="np-article">
                 <div class="np-article__body">
-                    <?php echo wp_kses_post(get_blog_field('content', $post_id)); ?>
+                    <?php 
+                    $content = get_blog_field('content', $post_id);
+                    echo apply_filters('the_content', $content); 
+                    ?>
                 </div>
 
                 <!-- Tags -->
