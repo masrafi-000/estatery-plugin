@@ -33,8 +33,8 @@ if ($view_cat === 'news') {
 } elseif ($view_cat === 'blog') {
     $blog_query = get_blog_type_query('blog', 9, $paged);
 } else {
-    $news_query = get_blog_type_query('news', 3, 1);
-    $blog_query = get_blog_type_query('blog', 3, 1);
+    $news_query = get_blog_type_query('news', 6, 1);
+    $blog_query = get_blog_type_query('blog', 6, 1);
 }
 ?>
 
