@@ -1351,7 +1351,7 @@ if (!empty($categories)) {
 
     <!-- TOP BAR -->
     <div class="np-topbar">
-        <span class="np-topbar__date"><?php echo date('l, F j, Y'); ?></span>
+        <span class="np-topbar__date"><?php echo get_blog_publish_date('l, F j, Y'); ?></span>
         <span class="np-topbar__edition">Costa Blanca Property Review</span>
         <div class="np-topbar__share">
             <a href="#" aria-label="Share on X">
@@ -1401,7 +1401,7 @@ if (!empty($categories)) {
             <div class="np-byline__meta">
                 <div class="np-byline__meta-item">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <?php echo get_the_date('F j, Y'); ?>
+                    <?php echo get_blog_publish_date('F j, Y'); ?>
                 </div>
                 <div class="np-byline__meta-item">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -1599,7 +1599,7 @@ if (!empty($categories)) {
                             <div class="np-story-card__body">
                                 <div class="np-story-card__cat"><?php echo esc_html($rp_cat); ?></div>
                                 <div class="np-story-card__title"><?php echo esc_html(get_blog_field('title', $rp->ID)); ?></div>
-                                <div class="np-story-card__meta"><?php echo get_the_date('M j, Y', $rp->ID); ?> &middot; <?php echo $rp_time; ?> min</div>
+                                <div class="np-story-card__meta"><?php echo get_blog_publish_date('M j, Y', $rp->ID); ?> &middot; <?php echo $rp_time; ?> min</div>
                             </div>
                         </a>
                     <?php endforeach; ?>

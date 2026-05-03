@@ -294,6 +294,11 @@ class BlogCPT {
             <label>Job Title / Designation</label>
             <input type="text" name="author_designation" class="estatery-control-alt" value="<?php echo esc_attr($role); ?>" placeholder="e.g. Estate Advisor">
         </div>
+        <div class="estatery-meta-field">
+            <label>Publish Date (Override)</label>
+            <input type="date" name="publish_date" class="estatery-control-alt" value="<?php echo esc_attr(get_post_meta($post->ID, '_publish_date', true)); ?>">
+            <p class="eb-hint">💡 Leave blank to use the standard WordPress publish date.</p>
+        </div>
         <?php
     }
 
@@ -390,6 +395,9 @@ class BlogCPT {
         }
         if (isset($_POST['author_designation'])) {
             update_post_meta($post_id, '_author_designation', sanitize_text_field($_POST['author_designation']));
+        }
+        if (isset($_POST['publish_date'])) {
+            update_post_meta($post_id, '_publish_date', sanitize_text_field($_POST['publish_date']));
         }
 
         // Multilingual fields

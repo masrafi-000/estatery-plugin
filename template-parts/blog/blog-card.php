@@ -29,7 +29,7 @@ $read_time  = max(1, ceil($word_count / 200));
         <!-- Badges -->
         <div class="absolute top-6 left-6 right-6 flex justify-between items-start">
             <span class="bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-xl border border-white/20">
-                <?php echo get_the_date('M d, Y'); ?>
+                <?php echo get_blog_publish_date('M d, Y'); ?>
             </span>
             <span class="bg-primary text-white text-[9px] font-bold px-3 py-1.5 rounded-lg uppercase tracking-widest shadow-lg shadow-primary/20">
                 <?php echo esc_html($category); ?>

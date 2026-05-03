@@ -70,6 +70,25 @@ function get_blog_field($field, $post_id = null) {
     return '';
 }
 
+/**
+ * Returns the effective publish date for a blog post.
+ * Checks for a custom override first, falls back to WordPress post date.
+ *
+ * @param string $format  PHP date format
+ * @param int    $post_id Post ID
+ * @return string
+ */
+function get_blog_publish_date($format = 'F j, Y', $post_id = null) {
+    if (!$post_id) $post_id = get_the_ID();
+    $custom_date = get_post_meta($post_id, '_publish_date', true);
+
+    if (!empty($custom_date)) {
+        return date($format, strtotime($custom_date));
+    }
+
+    return get_the_date($format, $post_id);
+}
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 // LANGUAGE SWITCH HANDLER  (replaces AJAX — zero race conditions)
