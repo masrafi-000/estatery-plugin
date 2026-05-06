@@ -4,8 +4,7 @@ $_POST = [
     'action' => 'get_filtered_properties',
     'lang'   => 'en',
     'paged'  => 1,
-    'sort'   => 'newest',
-    'view'   => 'grid'
+    'status' => 'sale'
 ];
 
 $handler = new \Estatery\Core\AjaxHandler();

@@ -114,12 +114,8 @@ class AjaxHandler {
             $item['is_admin_added'] = $prop['is_admin_added'] ?? false;
             $item['category'] = strtolower($prop['type'][0] ?? '');
 
-            // Search text
-            if ($search && 
-                stripos($item['title'], $search) === false && 
-                stripos($item['location'], $search) === false &&
-                stripos($item['location_detail'], $search) === false &&
-                stripos($item['description'], $search) === false) {
+            // Location search
+            if ($search !== '' && stripos($item['location'], $search) === false) {
                 continue;
             }
 
@@ -135,7 +131,7 @@ class AjaxHandler {
             }
 
             // Property Types
-            if (!empty($types) && !in_array($item['category'], array_map('strtolower', $types))) {
+            if (!empty($types) && !in_array(strtolower($item['category'] ?? ''), array_map('strtolower', $types))) {
                 continue;
             }
 

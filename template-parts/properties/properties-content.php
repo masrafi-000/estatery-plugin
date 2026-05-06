@@ -60,12 +60,8 @@
                     $baths     = (int)($_GET['baths'] ?? 0);
 
                     $all_properties = array_filter($all_properties, function($item) use ($search, $status, $types, $min_price, $max_price, $beds, $baths) {
-                        // Search text
-                        if ($search && 
-                            stripos($item['title'], $search) === false && 
-                            stripos($item['location'], $search) === false &&
-                            stripos($item['location_detail'], $search) === false &&
-                            stripos($item['description'], $search) === false) {
+                        // Location search
+                        if ($search !== '' && stripos($item['location'], $search) === false) {
                             return false;
                         }
 
@@ -73,6 +69,8 @@
                         if ($status !== 'all') {
                             if ($status === 'new_build') {
                                 if (!$item['new_build']) return false;
+                            } elseif ($status === 'resale') {
+                                if (!$item['resale']) return false;
                             } elseif (strtolower($item['type']) !== strtolower($status)) {
                                 return false;
                             }
