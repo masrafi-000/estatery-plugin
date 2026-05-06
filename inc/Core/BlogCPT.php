@@ -12,6 +12,7 @@ class BlogCPT {
         'es' => 'Español (Spanish)',
         'pl' => 'Polski (Polish)',
         'ru' => 'Русский (Russian)',
+        'hu' => 'Magyar (Hungarian)',
     ];
 
     public function __construct() {
@@ -162,7 +163,7 @@ class BlogCPT {
         // 3. Multilingual translations
         add_meta_box(
             'estatery_blog_translations',
-            '🌍 Multilingual Content (ES / PL / RU)',
+            '🌍 Multilingual Content (ES / PL / RU / HU)',
             [$this, 'render_translations_metabox'],
             'blog', 'normal', 'high'
         );

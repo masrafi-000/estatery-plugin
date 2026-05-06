@@ -1290,7 +1290,8 @@ class AdminDashboard {
                     'en' => [$_POST['desc_en']],
                     'es' => [$_POST['desc_es']],
                     'pl' => [$_POST['desc_pl']],
-                    'ru' => [$_POST['desc_ru']]
+                    'ru' => [$_POST['desc_ru']],
+                    'hu' => [$_POST['desc_hu']]
                 ],
                 'features'        => $_POST['property_features'] ?? [],
                 'lat'             => $_POST['lat'] ?? '',
@@ -1686,6 +1687,7 @@ class AdminDashboard {
                                     <button type="button" class="estatery-inner-tab-btn" data-target="desc-es">Spanish</button>
                                     <button type="button" class="estatery-inner-tab-btn" data-target="desc-pl">Polish</button>
                                     <button type="button" class="estatery-inner-tab-btn" data-target="desc-ru">Russian</button>
+                                    <button type="button" class="estatery-inner-tab-btn" data-target="desc-hu">Hungarian</button>
                                 </div>
                                 <div id="desc-en" class="estatery-inner-tab-content active">
                                     <textarea name="desc_en" rows="10" class="estatery-control" placeholder="English description..."><?php echo esc_textarea($descriptions['en'][0] ?? ''); ?></textarea>
@@ -1698,6 +1700,9 @@ class AdminDashboard {
                                 </div>
                                 <div id="desc-ru" class="estatery-inner-tab-content" style="display:none;">
                                     <textarea name="desc_ru" rows="10" class="estatery-control" placeholder="Russian description..."><?php echo esc_textarea($descriptions['ru'][0] ?? ''); ?></textarea>
+                                </div>
+                                <div id="desc-hu" class="estatery-inner-tab-content" style="display:none;">
+                                    <textarea name="desc_hu" rows="10" class="estatery-control" placeholder="Hungarian description..."><?php echo esc_textarea($descriptions['hu'][0] ?? ''); ?></textarea>
                                 </div>
                             </div>
                         </div>
