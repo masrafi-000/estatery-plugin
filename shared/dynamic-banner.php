@@ -11,43 +11,94 @@ $breadcrumbs = isset($banner_breadcrumbs) ? $banner_breadcrumbs : [
 ];
 ?>
 
-<section class="relative min-h-[500px] lg:h-[65vh] w-full flex items-center overflow-hidden bg-[#1a1a1a] py-20 lg:py-0">
+<section
+    class="relative min-h-[420px] sm:min-h-[500px] lg:h-[65vh] w-full flex items-center overflow-hidden bg-[#1a1a1a] py-20 sm:py-24 lg:py-0">
+
+    <!-- Background -->
     <div class="absolute inset-0 z-0">
-        <img src="<?php echo $image; ?>" alt="<?php echo $title; ?>" class="w-full h-full object-cover">
+        <img
+            src="<?php echo esc_url($image); ?>"
+            alt="<?php echo esc_attr($title); ?>"
+            class="w-full h-full object-cover">
+
         <div class="absolute inset-0 bg-black/65"></div>
     </div>
 
-    <div class="absolute lg:bottom-[-20px] lg:right-[-10px] bottom-0 right-0 z-10 select-none pointer-events-none overflow-hidden max-w-full">
-        <h2 class="text-[3.5rem] md:text-[8rem] lg:text-[12rem] font-serif font-bold text-transparent opacity-10 uppercase whitespace-nowrap js-banner-bg-text"
-            style="-webkit-text-stroke: 1.5px white; line-height: 0.9;">
-            <?php echo $bg_text; ?>
+    <!-- Background Text -->
+    <div
+        class="absolute bottom-2 right-0 sm:bottom-0 lg:bottom-[-20px] lg:right-[-10px] z-10 select-none pointer-events-none overflow-hidden max-w-full px-2">
+
+        <h2
+            class="text-[3.5rem] sm:text-[4rem] md:text-[6rem] lg:text-[12rem]
+                   font-serif font-bold text-transparent opacity-10 uppercase
+                   whitespace-nowrap js-banner-bg-text"
+            style="-webkit-text-stroke: 1px white; line-height: 0.9;">
+
+            <?php echo esc_html($bg_text); ?>
         </h2>
     </div>
 
-    <div class="container mx-auto px-6 lg:px-12 relative z-20">
-        <div class="max-w-4xl space-y-6 js-banner-content js-reveal-stagger">
-            <nav class="flex items-center gap-3 text-xs uppercase tracking-widest text-gray-300 mb-6 font-medium js-banner-item js-reveal-fade">
+    <!-- Content -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-12 relative z-20 w-full">
+
+        <div class="max-w-4xl space-y-5 sm:space-y-6 js-banner-content js-reveal-stagger">
+
+            <!-- Breadcrumb -->
+            <nav
+                class="flex flex-wrap items-center gap-x-2 gap-y-1
+                       text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-widest
+                       text-gray-300 mb-4 sm:mb-6 font-medium
+                       js-banner-item js-reveal-fade">
+
                 <?php foreach ($breadcrumbs as $index => $crumb): ?>
+
                     <?php if ($index > 0): ?>
                         <span class="opacity-50">/</span>
                     <?php endif; ?>
-                    
+
                     <?php if ($index === count($breadcrumbs) - 1): ?>
-                        <span class="text-white"><?php echo esc_html($crumb['label']); ?></span>
+
+                        <span class="text-white">
+                            <?php echo esc_html($crumb['label']); ?>
+                        </span>
+
                     <?php else: ?>
-                        <a href="<?php echo esc_url($crumb['url']); ?>" class="hover:text-secondary transition-colors"><?php echo esc_html($crumb['label']); ?></a>
+
+                        <a
+                            href="<?php echo esc_url($crumb['url']); ?>"
+                            class="hover:text-secondary transition-colors duration-300">
+
+                            <?php echo esc_html($crumb['label']); ?>
+                        </a>
+
                     <?php endif; ?>
+
                 <?php endforeach; ?>
             </nav>
 
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif text-white font-medium capitalize leading-[1.1] wrap-break-word js-banner-item js-reveal-text">
-                <?php echo strtolower($title); ?><span class="text-secondary">.</span>
+            <!-- Title -->
+            <h1
+                class="text-3xl sm:text-5xl md:text-6xl lg:text-8xl
+                       font-serif text-white font-medium capitalize
+                       leading-[1.1] break-words
+                       js-banner-item js-reveal-text">
+
+                <?php echo strtolower(esc_html($title)); ?>
+                <span class="text-secondary">.</span>
             </h1>
 
+            <!-- Subtitle -->
             <p
-                class="text-lg md:text-xl text-gray-200 font-light max-w-2xl leading-relaxed border-l-2 border-secondary pl-6 mt-8 js-banner-item js-reveal-fade">
-                <?php echo $subtitle; ?>
+                class="text-sm sm:text-base md:text-lg lg:text-xl
+                       text-gray-200 font-light
+                       max-w-2xl leading-relaxed
+                       border-l-2 border-secondary
+                       pl-4 sm:pl-6 mt-6 sm:mt-8
+                       js-banner-item js-reveal-fade">
+
+                <?php echo esc_html($subtitle); ?>
             </p>
+
         </div>
     </div>
 </section>

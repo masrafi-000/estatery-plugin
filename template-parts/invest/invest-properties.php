@@ -151,7 +151,6 @@ $data_url = get_template_directory_uri() . '/data/investments.json';
                     // Allow images to start loading before fading in
                     setTimeout(() => {
                         $container.animate({ opacity: 1 }, 400);
-                        initInvestPropsAnims();
                         // Sync Lenis/ScrollTrigger
                         if (typeof ScrollTrigger !== 'undefined') {
                             ScrollTrigger.refresh();
