@@ -18,7 +18,7 @@ $breadcrumbs = isset($banner_breadcrumbs) ? $banner_breadcrumbs : [
     </div>
 
     <div class="absolute lg:bottom-[-20px] lg:right-[-10px] bottom-0 right-0 z-10 select-none pointer-events-none overflow-hidden max-w-full">
-        <h2 class="text-[6rem] md:text-[10rem] lg:text-[14rem] font-serif font-bold text-transparent opacity-10 uppercase whitespace-nowrap js-banner-bg-text"
+        <h2 class="text-[3.5rem] md:text-[8rem] lg:text-[12rem] font-serif font-bold text-transparent opacity-10 uppercase whitespace-nowrap js-banner-bg-text"
             style="-webkit-text-stroke: 1.5px white; line-height: 0.9;">
             <?php echo $bg_text; ?>
         </h2>

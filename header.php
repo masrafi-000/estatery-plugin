@@ -12,34 +12,58 @@
     <?php wp_body_open(); ?>
 
     <!-- Premium Page Transition Overlay -->
-    <div id="page-loader" class="fixed inset-0 z-10000 bg-gray-50 flex items-center justify-center pointer-events-auto">
-        <!-- Progress Bar -->
-        <div class="absolute top-0 left-0 w-full h-1 bg-white overflow-hidden">
-            <div id="loader-progress" class="h-full bg-primary w-0 transition-all duration-300 ease-out"></div>
-        </div>
-        
-        <!-- Logo & Spinner -->
-        <div class="relative flex flex-col items-center gap-8">
-            <div class="relative max-w-60 max-h-40  flex items-center justify-center">
-                <!-- Decorative Ring -->
-                <div class="absolute inset-0 border border-white/10 rounded-full scale-150 animate-[ping_3s_infinite]"></div>
-                
-                <!-- Logo Image (Styled for Loader) -->
-                <img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/logo-ll.png' ); ?>" 
-                     alt="Loading..." 
-                     class="w-full h-auto object-contain opacity-100 scale-150">
-            </div>
-            
-            <div class="flex flex-col items-center gap-3">
-                <div class="flex gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-bounce [animation-delay:-0.3s]"></span>
-                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-bounce [animation-delay:-0.15s]"></span>
-                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-bounce"></span>
-                </div>
-                <span class="text-[10px] uppercase tracking-[0.4em] text-gray-600 font-bold ml-1">Capital Union Investments</span>
-            </div>
+    <div id="page-loader"
+    class="fixed inset-0 z-[10000] bg-gray-50 flex items-center justify-center overflow-hidden px-4">
+
+    <!-- Progress Bar -->
+    <div class="absolute top-0 left-0 w-full h-[3px] sm:h-1 bg-white overflow-hidden">
+        <div id="loader-progress"
+            class="h-full bg-primary w-0 transition-all duration-300 ease-out">
         </div>
     </div>
+
+    <!-- Loader Content -->
+    <div class="relative flex flex-col items-center justify-center gap-6 sm:gap-8 text-center">
+
+        <!-- Logo Wrapper -->
+        <div
+            class="relative w-[140px] xs:w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] aspect-[3/2] flex items-center justify-center">
+
+            <!-- Decorative Ring -->
+            <div
+                class="absolute inset-0 border border-white/10 rounded-full scale-125 sm:scale-140 md:scale-150 animate-[ping_3s_infinite]">
+            </div>
+
+            <!-- Logo -->
+            <img
+                src="<?php echo esc_url( get_template_directory_uri() . '/public/images/logo-ll.png' ); ?>"
+                alt="Loading..."
+                class="w-full h-full object-contain scale-110 sm:scale-125 md:scale-140 lg:scale-150 select-none">
+        </div>
+
+        <!-- Bottom Content -->
+        <div class="flex flex-col items-center gap-3">
+
+            <!-- Animated Dots -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <span
+                    class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary animate-bounce [animation-delay:-0.3s]"></span>
+
+                <span
+                    class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary animate-bounce [animation-delay:-0.15s]"></span>
+
+                <span
+                    class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary animate-bounce"></span>
+            </div>
+
+            <!-- Company Name -->
+            <span
+                class="max-w-[90vw] text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] md:tracking-[0.4em] text-gray-600 font-bold leading-relaxed break-words">
+                Capital Union Investments
+            </span>
+        </div>
+    </div>
+</div>
 
     <script>
         // Progress bar simulation
@@ -145,7 +169,7 @@
                 </nav>
 
                 <!-- Right: Actions & Language -->
-                <div class="flex-1 flex justify-end items-center gap-6">
+                <div class="flex-1 flex justify-end items-center gap-2 md:gap-4">
                     <!-- Language Switcher Component -->
                     <?php get_template_part('template-parts/header/language-switcher'); ?>
 
