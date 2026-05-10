@@ -29,7 +29,7 @@ $breadcrumbs = isset($banner_breadcrumbs) ? $banner_breadcrumbs : [
         class="absolute bottom-2 right-0 sm:bottom-0 lg:bottom-[-20px] lg:right-[-10px] z-10 select-none pointer-events-none overflow-hidden max-w-full px-2">
 
         <h2
-            class="text-[3.5rem] sm:text-[4rem] md:text-[6rem] lg:text-[12rem]
+            class="text-[3.5rem] sm:text-[4rem] md:text-[6rem] lg:text-[10rem]
                    font-serif font-bold text-transparent opacity-10 uppercase
                    whitespace-nowrap js-banner-bg-text"
             style="-webkit-text-stroke: 1px white; line-height: 0.9;">
@@ -78,7 +78,7 @@ $breadcrumbs = isset($banner_breadcrumbs) ? $banner_breadcrumbs : [
 
             <!-- Title -->
             <h1
-                class="text-3xl sm:text-5xl md:text-6xl lg:text-8xl
+                class="text-3xl sm:text-5xl md:text-5xl lg:text-6xl
                        font-serif text-white font-medium capitalize
                        leading-[1.1] break-words
                        js-banner-item js-reveal-text">

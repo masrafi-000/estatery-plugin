@@ -436,6 +436,10 @@
       "properties_title": "Prémium ingatlanbefektetési portfólió",
       "properties_subtitle": "Fedezze fel kézzel válogatott, magas hozamú és erős tőkenövekedési potenciállal rendelkező ingatlanjainkat Alicante legkeresettebb területein.",
       "no_properties": "További befektetési lehetőségek elemzése folyamatban. Nézzen vissza hamarosan.",
+      "see_all_button": "Összes Befektetési Ingatlan",
+      "hero_banner": {
+        "bg_text": "Portfólió"
+      },
       "onboarding": {
         "badge": "Exkluzív jelentkezés",
         "title": "Kezdje el befektetési útját",

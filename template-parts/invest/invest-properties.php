@@ -28,6 +28,45 @@ $data_url = get_template_directory_uri() . '/data/investments.json';
             <?php endfor; ?>
         </div>
 
+        <div class="mt-12 sm:mt-16 text-center px-4 js-reveal-fade">
+
+    <a
+        href="<?php echo esc_url( home_url('/investment-properties/') ); ?>"
+        class="inline-flex items-center justify-center gap-2 sm:gap-3
+               px-5 sm:px-8 md:px-10
+               py-3.5 sm:py-4 md:py-5
+               w-full sm:w-auto
+               max-w-full
+               bg-slate-900 text-white
+               font-black
+               text-[10px] sm:text-xs md:text-sm
+               uppercase
+               tracking-[0.12em] sm:tracking-[0.2em]
+               rounded-full
+               hover:bg-primary
+               transition-all duration-300
+               shadow-2xl shadow-slate-900/20
+               active:scale-[0.98]
+               text-center">
+
+        <span class="break-words leading-relaxed">
+            <?php echo esc_html( t('pages.invest.see_all_button') ?: 'See All Investment Property' ); ?>
+        </span>
+
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3">
+
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+    </a>
+
+</div>
+
     </div>
 </section>
 
@@ -127,6 +166,7 @@ $data_url = get_template_directory_uri() . '/data/investments.json';
             const formData = new FormData();
             formData.append('action', 'get_investments');
             formData.append('lang', CONFIG.lang);
+            formData.append('limit', 12);
 
             const response = await fetch(CONFIG.ajaxUrl, { 
                 method: 'POST',

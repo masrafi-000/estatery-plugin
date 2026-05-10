@@ -438,6 +438,10 @@
       "properties_title": "Portfel Najlepszych Inwestycji w Nieruchomości",
       "properties_subtitle": "Odkryj starannie wyselekcjonowane nieruchomości z wysokim potencjałem zwrotu i silnym wzrostem wartości kapitału w najbardziej poszukiwanych obszarach Alicante.",
       "no_properties": "Kolejne możliwości inwestycyjne są analizowane. Sprawdź ponownie wkrótce.",
+      "see_all_button": "Zobacz Wszystkie Inwestycje",
+      "hero_banner": {
+        "bg_text": "Portfolio"
+      },
       "onboarding": {
         "badge": "Ekskluzywne Wdrożenie",
         "title": "Rozpocznij Swoją Podróż Inwestycyjną",

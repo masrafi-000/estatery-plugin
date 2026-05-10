@@ -12,6 +12,8 @@ class AjaxHandler {
         add_action('wp_ajax_nopriv_get_filtered_properties', [$this, 'get_filtered_properties']);
         add_action('wp_ajax_get_investments', [$this, 'get_investments']);
         add_action('wp_ajax_nopriv_get_investments', [$this, 'get_investments']);
+        add_action('wp_ajax_get_filtered_investments', [$this, 'get_filtered_investments']);
+        add_action('wp_ajax_nopriv_get_filtered_investments', [$this, 'get_filtered_investments']);
     }
 
     public function get_featured_properties() {
@@ -214,8 +216,156 @@ class AjaxHandler {
         ]);
     }
 
+    public function get_filtered_investments() {
+        $lang      = sanitize_key($_POST['lang'] ?? 'en');
+        $search    = strtolower(sanitize_text_field($_POST['search'] ?? ''));
+        $status    = sanitize_text_field($_POST['status'] ?? 'all');
+        $types     = isset($_POST['types']) ? array_filter(explode(',', $_POST['types'])) : [];
+        $min_price = (float)($_POST['min_price'] ?? 0);
+        $max_price = (float)($_POST['max_price'] ?? 0);
+        $beds      = (int)($_POST['beds'] ?? 0);
+        $baths     = (int)($_POST['baths'] ?? 0);
+        $paged     = (int)($_POST['paged'] ?? 1);
+        $sort      = sanitize_text_field($_POST['sort'] ?? 'newest');
+        $view      = sanitize_text_field($_POST['view'] ?? 'grid');
+
+        $portfolio_handler = new InvestPortfolioHandler();
+        $all_raw = [];
+
+        // 1. Load Custom DB Table Investment Portfolio
+        $db_items = $portfolio_handler->get_all();
+        foreach ($db_items as $row) {
+            $all_raw[] = $portfolio_handler->map_to_frontend($row);
+        }
+
+        // 2. Load JSON Source (Legacy/Fallback)
+        $json_file = get_template_directory() . '/data/investments.json';
+        if (file_exists($json_file)) {
+            $json_data = file_get_contents($json_file);
+            $parsed_data = json_decode($json_data, true);
+            $raw_json_properties = $parsed_data['root']['property'] ?? [];
+            
+            $db_external_ids = array_column($all_raw, 'id');
+            $db_external_ids = array_map(function($id_arr) { return $id_arr[0]; }, $db_external_ids);
+
+            foreach ($raw_json_properties as $rp) {
+                if (!in_array($rp['id'][0], $db_external_ids)) {
+                    $all_raw[] = $rp;
+                }
+            }
+        }
+
+        // 3. Filter & Map
+        $filtered = [];
+        foreach ($all_raw as $raw_prop) {
+            // Note: Investment data structure is slightly different from standard Kyero JSON
+            // It's already in the "Kyero-like" array format with values in arrays.
+            $item = Translator::map_property_data($raw_prop, $lang);
+            $item['is_investment'] = true;
+            $item['category'] = strtolower($raw_prop['type'][0] ?? '');
+            $item['unix_date'] = strtotime($raw_prop['date'][0] ?? 'now');
+
+            // Location search
+            if ($search !== '' && stripos($item['location'], $search) === false) {
+                continue;
+            }
+
+            // Status
+            if ($status !== 'all') {
+                if ($status === 'new_build') {
+                    if (!$item['new_build']) continue;
+                } elseif ($status === 'resale') {
+                    if (!$item['resale']) continue;
+                } elseif (strtolower($item['type']) !== strtolower($status)) {
+                    continue;
+                }
+            }
+
+            // Property Types
+            if (!empty($types) && !in_array(strtolower($item['category'] ?? ''), array_map('strtolower', $types))) {
+                continue;
+            }
+
+            // Price
+            if ($min_price > 0 && $item['raw_price'] < $min_price) continue;
+            if ($max_price > 0 && $item['raw_price'] > $max_price) continue;
+
+            // Beds & Baths Logic
+            if ($beds > 0) {
+                if ($beds === 4) { if ($item['beds'] < 4) continue; }
+                else { if ((int)$item['beds'] !== $beds) continue; }
+            }
+            if ($baths > 0) {
+                if ($baths === 4) { if ($item['baths'] < 4) continue; }
+                else { if ((int)$item['baths'] !== $baths) continue; }
+            }
+
+            $filtered[] = $item;
+        }
+
+        // 4. Sorting
+        usort($filtered, function($a, $b) use ($sort) {
+            switch ( $sort ) {
+                case 'newest':
+                    return $b['unix_date'] <=> $a['unix_date'];
+                case 'oldest':
+                    return $a['unix_date'] <=> $b['unix_date'];
+                case 'price_asc':
+                    return $a['raw_price'] <=> $b['raw_price'];
+                case 'price_desc':
+                    return $b['raw_price'] <=> $a['raw_price'];
+                case 'area_asc':
+                    return $a['raw_sqft'] <=> $b['raw_sqft'];
+                case 'area_desc':
+                    return $b['raw_sqft'] <=> $a['raw_sqft'];
+                default:
+                    return $b['unix_date'] <=> $a['unix_date'];
+            }
+        });
+
+        // 5. Pagination
+        $per_page = 12;
+        $total_results = count($filtered);
+        $total_pages = ceil($total_results / $per_page);
+        $current_page = max(1, min($total_pages ?: 1, $paged));
+        $offset = ($current_page - 1) * $per_page;
+        $paged_properties = array_slice($filtered, $offset, $per_page);
+
+        // 6. Render HTML
+        ob_start();
+        get_template_part('template-parts/properties/grid', 'header', [
+            'total_results' => $total_results,
+            'current_page'  => $current_page,
+            'per_page'      => $per_page,
+            'current_sort'  => $sort,
+            'current_view'  => $view
+        ]);
+        get_template_part('template-parts/properties/grid', 'results', [
+            'properties' => $paged_properties,
+            'view'       => $view
+        ]);
+        $html_results = ob_get_clean();
+
+        ob_start();
+        get_template_part('template-parts/properties/pagination', null, [
+            'current_page' => $current_page,
+            'total_pages'  => $total_pages
+        ]);
+        $html_pagination = ob_get_clean();
+
+        wp_send_json_success([
+            'html_results'    => $html_results,
+            'html_pagination' => $html_pagination,
+            'total_results'   => $total_results,
+            'current_page'    => $current_page,
+            'total_pages'     => $total_pages
+        ]);
+    }
+
     public function get_investments() {
         $lang = sanitize_key($_POST['lang'] ?? 'en');
+        $limit = isset($_POST['limit']) ? intval($_POST['limit']) : -1;
+        
         $portfolio_handler = new InvestPortfolioHandler();
         
         $all_investments = [];
@@ -242,6 +392,11 @@ class AjaxHandler {
                     $all_investments[] = $rp;
                 }
             }
+        }
+
+        // Apply limit if specified
+        if ($limit > 0) {
+            $all_investments = array_slice($all_investments, 0, $limit);
         }
 
         // 3. Return JSON to match the current JS expectation in invest-properties.php
