@@ -97,7 +97,7 @@
                         }
                     });
 
-                    $per_page      = 12; 
+                    $per_page      = 9; 
                     $total_results = count($all_investments);
                     $paged         = get_query_var('paged') ?: (get_query_var('page') ?: 1);
                     $total_pages   = ceil($total_results / $per_page);

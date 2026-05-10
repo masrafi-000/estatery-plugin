@@ -178,7 +178,7 @@ class AjaxHandler {
         });
 
         // 4. Pagination
-        $per_page = 12;
+        $per_page = 9;
         $total_results = count($filtered);
         $total_pages = ceil($total_results / $per_page);
         $current_page = max(1, min($total_pages ?: 1, $paged));
@@ -324,7 +324,7 @@ class AjaxHandler {
         });
 
         // 5. Pagination
-        $per_page = 12;
+        $per_page = 6;
         $total_results = count($filtered);
         $total_pages = ceil($total_results / $per_page);
         $current_page = max(1, min($total_pages ?: 1, $paged));
