@@ -113,6 +113,10 @@ class ThemeSetup {
                 'title'    => 'Invest',
                 'template' => 'page-invest.php',
             ],
+            'investment-properties' => [
+                'title'    => 'Investment Properties',
+                'template' => 'page-investment-properties.php',
+            ],
             'privacy-policy' => [
                 'title'    => 'Privacy Policy',
                 'template' => 'page-privacy-policy.php',
