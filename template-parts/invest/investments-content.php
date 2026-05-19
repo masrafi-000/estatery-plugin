@@ -53,15 +53,26 @@
                     }
                     
                     // 1.5 Apply Filters
-                    $search    = strtolower($_GET['search'] ?? '');
-                    $status    = $_GET['status']   ?? 'all';
-                    $types     = isset($_GET['types']) ? array_filter(explode(',', $_GET['types'])) : [];
-                    $min_price = (float)($_GET['min_price'] ?? 0);
-                    $max_price = (float)($_GET['max_price'] ?? 0);
-                    $beds      = (int)($_GET['beds'] ?? 0);
-                    $baths     = (int)($_GET['baths'] ?? 0);
+                    $search       = strtolower($_GET['search'] ?? '');
+                    $status       = $_GET['status']   ?? 'all';
+                    $types        = isset($_GET['types']) ? array_filter(explode(',', $_GET['types'])) : [];
+                    $budget_range = $_GET['budget_range'] ?? '';
+                    $budget_map   = [
+                        'range_1' => ['min' => 1000000,  'max' => 10000000],
+                        'range_2' => ['min' => 10000000, 'max' => 50000000],
+                        'range_3' => ['min' => 50000000, 'max' => 0],
+                    ];
+                    if ($budget_range && isset($budget_map[$budget_range])) {
+                        $min_price = (float)$budget_map[$budget_range]['min'];
+                        $max_price = (float)$budget_map[$budget_range]['max'];
+                    } else {
+                        $min_price = (float)($_GET['min_price'] ?? 0);
+                        $max_price = (float)($_GET['max_price'] ?? 0);
+                    }
+                    $beds  = (int)($_GET['beds']  ?? 0);
+                    $baths = (int)($_GET['baths'] ?? 0);
 
-                    $all_investments = array_filter($all_investments, function($item) use ($search, $status, $types, $min_price, $max_price, $beds, $baths) {
+                     $all_investments = array_filter($all_investments, function($item) use ($search, $status, $types, $min_price, $max_price, $beds, $baths) {
                         if ($search !== '' && stripos($item['location'], $search) === false) return false;
                         if ($status !== 'all') {
                             if ($status === 'new_build') { if (!$item['new_build']) return false; }

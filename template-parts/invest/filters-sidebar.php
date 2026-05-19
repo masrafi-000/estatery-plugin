@@ -73,47 +73,128 @@
                     </div>
                 </div>
 
-                <!-- Property Type Filter -->
+                <!-- Investment Property Type Filter -->
                 <div class="filter-group">
-                    <div class="text-[11px] font-medium text-slate-400 tracking-[0.06em] uppercase mb-2.5"><?php echo esc_html( t('pages.properties.filters.type') ); ?></div>
+                    <div class="text-[11px] font-medium text-slate-400 tracking-[0.06em] uppercase mb-2.5">Property Type</div>
                     <div class="flex flex-col gap-1.5" id="type-list">
-                        <?php 
-                        $types = t('pages.properties.categories.types');
-                        if ( is_array($types) ) :
-                            foreach ( $types as $type ) :
-                                ?>
-                                <div class="type-item group flex items-center justify-between px-2.5 py-2 rounded-2xl cursor-pointer border-[0.5px] border-transparent transition-all hover:bg-slate-50 [&.selected]:bg-primary/5 [&.selected]:border-primary/20" data-type="<?php echo esc_attr($type['slug']); ?>">
-                                    <div class="w-4 h-4 border-[1.5px] border-slate-200 rounded-[4px] flex-shrink-0 flex items-center justify-center transition-all group-[.selected]:bg-primary group-[.selected]:border-primary">
-                                        <svg class="w-2.5 h-2.5 text-white opacity-0 transition-opacity group-[.selected]:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-[13px] text-slate-900 ml-2.5 flex-1"><?php echo esc_html($type['name']); ?></span>
-                                </div>
-                                <?php
-                            endforeach;
-                        endif;
+                        <?php
+                        $portfolio_handler = new \Estatery\Core\InvestPortfolioHandler();
+                        $db_items = $portfolio_handler->get_all();
+                        $dynamic_types = [];
+
+                        foreach ($db_items as $row) {
+                            if (!empty($row['type'])) {
+                                $slug = strtolower(trim($row['type']));
+                                $dynamic_types[$slug] = $row['type'];
+                            }
+                        }
+
+                        $json_file = get_template_directory() . '/data/investments.json';
+                        if (file_exists($json_file)) {
+                            $json_data = json_decode(file_get_contents($json_file), true);
+                            $raw_properties = $json_data['root']['property'] ?? [];
+                            foreach ($raw_properties as $prop) {
+                                if (!empty($prop['type'][0])) {
+                                    $slug = strtolower(trim($prop['type'][0]));
+                                    $dynamic_types[$slug] = $prop['type'][0];
+                                }
+                            }
+                        }
+
+                        // Map slugs to display names and SVG path icons
+                        $type_labels = [
+                            'villa'      => 'Villas',
+                            'apartment'  => 'Apartments',
+                            'penthouse'  => 'Penthouses',
+                            'townhouse'  => 'Townhouses',
+                            'bungalow'   => 'Bungalows',
+                            'plot'       => 'Plots / Land',
+                            'land'       => 'Land Plots',
+                            'hotel'      => 'Hotels',
+                            'commercial' => 'Commercial Properties',
+                        ];
+
+                        $type_icons = [
+                            'villa'      => 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+                            'apartment'  => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
+                            'penthouse'  => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
+                            'townhouse'  => 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+                            'bungalow'   => 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+                            'plot'       => 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064',
+                            'land'       => 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064',
+                            'hotel'      => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
+                            'commercial' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
+                        ];
+
+                        $default_icon = 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6';
+
+                        foreach ($dynamic_types as $slug => $original_name) :
+                            $name = isset($type_labels[$slug]) ? $type_labels[$slug] : ucfirst($original_name);
+                            $icon = isset($type_icons[$slug]) ? $type_icons[$slug] : $default_icon;
                         ?>
+                            <div class="type-item group flex items-center px-2.5 py-2.5 rounded-2xl cursor-pointer border-[0.5px] border-transparent transition-all hover:bg-slate-50 [&.selected]:bg-primary/5 [&.selected]:border-primary/20" data-type="<?php echo esc_attr($slug); ?>">
+                                <div class="w-5 h-5 border-[1.5px] border-slate-200 rounded-[5px] flex-shrink-0 flex items-center justify-center transition-all group-[.selected]:bg-primary group-[.selected]:border-primary">
+                                    <svg class="w-3 h-3 text-white opacity-0 transition-opacity group-[.selected]:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div class="w-7 h-7 rounded-xl bg-slate-50 group-[.selected]:bg-primary/10 flex items-center justify-center ml-2.5 flex-shrink-0 transition-all">
+                                    <svg class="w-3.5 h-3.5 text-slate-400 group-[.selected]:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="<?php echo esc_attr($icon); ?>"/>
+                                    </svg>
+                                </div>
+                                <span class="text-[13px] text-slate-900 ml-2 flex-1 font-medium"><?php echo esc_html($name); ?></span>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
                 <div class="h-[0.5px] bg-slate-100"></div>
 
-                <!-- Price Range Filter -->
+                <!-- Budget Range Filter -->
                 <div class="filter-group">
-                    <div class="text-[11px] font-medium text-slate-400 tracking-[0.06em] uppercase mb-2.5"><?php echo esc_html( t('pages.properties.filters.price') ); ?></div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="relative">
-                            <span class="absolute left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-slate-400">€</span>
-                            <input type="number" id="price-min" placeholder="<?php echo esc_attr( t('pages.properties.filters.min_placeholder') ); ?>" 
-                                   class="w-full pl-[22px] pr-2.5 py-[9px] text-[13px] bg-slate-50 border-[0.5px] border-slate-100 rounded-2xl text-slate-900 outline-none transition-all focus:border-primary/50">
+                    <div class="text-[11px] font-medium text-slate-400 tracking-[0.06em] uppercase mb-2.5">Investment Budget</div>
+                    <div class="flex flex-col gap-1.5" id="budget-list">
+                        <div class="budget-item group flex items-center justify-between px-3 py-3 rounded-2xl cursor-pointer border-[0.5px] border-transparent transition-all hover:bg-slate-50 [&.selected]:bg-primary/5 [&.selected]:border-primary/20"
+                             data-min="1000000" data-max="10000000" data-label="range_1">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-5 h-5 border-[1.5px] border-slate-200 rounded-full flex-shrink-0 flex items-center justify-center transition-all group-[.selected]:bg-primary group-[.selected]:border-primary">
+                                    <div class="w-2 h-2 rounded-full bg-white opacity-0 group-[.selected]:opacity-100 transition-opacity"></div>
+                                </div>
+                                <div>
+                                    <span class="text-[13px] font-semibold text-slate-900 block">€1M – €10M</span>
+                                    <span class="text-[11px] text-slate-400">Mid-range investment</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="relative">
-                            <span class="absolute left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-slate-400">€</span>
-                            <input type="number" id="price-max" placeholder="<?php echo esc_attr( t('pages.properties.filters.max_placeholder') ); ?>" 
-                                   class="w-full pl-[22px] pr-2.5 py-[9px] text-[13px] bg-slate-50 border-[0.5px] border-slate-100 rounded-2xl text-slate-900 outline-none transition-all focus:border-primary/50">
+                        <div class="budget-item group flex items-center justify-between px-3 py-3 rounded-2xl cursor-pointer border-[0.5px] border-transparent transition-all hover:bg-slate-50 [&.selected]:bg-primary/5 [&.selected]:border-primary/20"
+                             data-min="10000000" data-max="50000000" data-label="range_2">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-5 h-5 border-[1.5px] border-slate-200 rounded-full flex-shrink-0 flex items-center justify-center transition-all group-[.selected]:bg-primary group-[.selected]:border-primary">
+                                    <div class="w-2 h-2 rounded-full bg-white opacity-0 group-[.selected]:opacity-100 transition-opacity"></div>
+                                </div>
+                                <div>
+                                    <span class="text-[13px] font-semibold text-slate-900 block">€10M – €50M</span>
+                                    <span class="text-[11px] text-slate-400">Large-scale investment</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="budget-item group flex items-center justify-between px-3 py-3 rounded-2xl cursor-pointer border-[0.5px] border-transparent transition-all hover:bg-slate-50 [&.selected]:bg-primary/5 [&.selected]:border-primary/20"
+                             data-min="50000000" data-max="0" data-label="range_3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-5 h-5 border-[1.5px] border-slate-200 rounded-full flex-shrink-0 flex items-center justify-center transition-all group-[.selected]:bg-primary group-[.selected]:border-primary">
+                                    <div class="w-2 h-2 rounded-full bg-white opacity-0 group-[.selected]:opacity-100 transition-opacity"></div>
+                                </div>
+                                <div>
+                                    <span class="text-[13px] font-semibold text-slate-900 block">€50M+</span>
+                                    <span class="text-[11px] text-slate-400">Institutional / ultra-premium</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- Hidden inputs still carry values for AJAX -->
+                    <input type="hidden" id="price-min" value="">
+                    <input type="hidden" id="price-max" value="">
                 </div>
 
                 <!-- Bedrooms Filter -->
@@ -159,15 +240,16 @@
         const urlParams = new URLSearchParams(window.location.search);
         // Declare state globally
         window.filterState = {
-            search:   urlParams.get('search')    || '',
-            status:   urlParams.get('status')    || 'all',
-            types:    urlParams.get('types')     ? urlParams.get('types').split(',') : [],
-            min_price: urlParams.get('min_price') || '',
-            max_price: urlParams.get('max_price') || '',
-            beds:     urlParams.get('beds')      || 'any',
-            baths:    urlParams.get('baths')     || 'any',
-            sort:     urlParams.get('sort')      || 'newest',
-            view:     urlParams.get('view')      || 'grid'
+            search:       urlParams.get('search')       || '',
+            status:       urlParams.get('status')       || 'all',
+            types:        urlParams.get('types')        ? urlParams.get('types').split(',') : [],
+            min_price:    urlParams.get('min_price')    || '',
+            max_price:    urlParams.get('max_price')    || '',
+            budget_range: urlParams.get('budget_range') || '',
+            beds:         urlParams.get('beds')         || 'any',
+            baths:        urlParams.get('baths')        || 'any',
+            sort:         urlParams.get('sort')         || 'newest',
+            view:         urlParams.get('view')         || 'grid'
         };
         const state = window.filterState;
 
@@ -175,6 +257,7 @@
             searchInput:     document.getElementById('search-input'),
             statusTabs:      document.querySelectorAll('#status-tabs .tab-btn'),
             typeItems:       document.querySelectorAll('#type-list .type-item'),
+            budgetItems:     document.querySelectorAll('#budget-list .budget-item'),
             priceMin:        document.getElementById('price-min'),
             priceMax:        document.getElementById('price-max'),
             activeBadge:     document.getElementById('active-badge'),
@@ -231,21 +314,40 @@
             });
         });
 
+        // Budget Range: single-select radio-style
+        selectors.budgetItems.forEach(item => {
+            const label = item.dataset.label;
+            if (state.budget_range === label) item.classList.add('selected');
+
+            item.addEventListener('click', () => {
+                const alreadySelected = item.classList.contains('selected');
+                // Deselect all
+                selectors.budgetItems.forEach(i => i.classList.remove('selected'));
+                if (!alreadySelected) {
+                    item.classList.add('selected');
+                    state.budget_range = label;
+                    state.min_price    = item.dataset.min;
+                    state.max_price    = item.dataset.max;
+                    if (selectors.priceMin) selectors.priceMin.value = state.min_price;
+                    if (selectors.priceMax) selectors.priceMax.value = state.max_price;
+                } else {
+                    state.budget_range = '';
+                    state.min_price    = '';
+                    state.max_price    = '';
+                    if (selectors.priceMin) selectors.priceMin.value = '';
+                    if (selectors.priceMax) selectors.priceMax.value = '';
+                }
+                updateUI();
+                autoUpdateFast();
+            });
+        });
+
         selectors.searchInput.addEventListener('input', e => { 
             state.search = e.target.value; 
             updateUI(); 
             autoUpdateSlow(); 
         });
-        selectors.priceMin.addEventListener('input', e => { 
-            state.min_price = e.target.value; 
-            updateUI(); 
-            autoUpdateSlow(); 
-        });
-        selectors.priceMax.addEventListener('input', e => { 
-            state.max_price = e.target.value; 
-            updateUI(); 
-            autoUpdateSlow(); 
-        });
+        // Hidden price inputs are driven by budget chips — no direct listener needed.
 
         function setupChips(groupId, stateKey) {
             const container = document.getElementById(groupId);
@@ -273,7 +375,7 @@
             if (state.search.trim()) n++;
             if (state.status !== 'all') n++;
             n += state.types.length;
-            if (state.min_price || state.max_price) n++;
+            if (state.budget_range) n++;
             if (state.beds !== 'any') n++;
             if (state.baths !== 'any') n++;
             return n;
@@ -331,6 +433,7 @@
             if (state.search.trim()) params.set('search', state.search.trim());
             if (state.status !== 'all') params.set('status', state.status);
             if (state.types.length) params.set('types', state.types.join(','));
+            if (state.budget_range) params.set('budget_range', state.budget_range);
             if (state.min_price) params.set('min_price', state.min_price);
             if (state.max_price) params.set('max_price', state.max_price);
             if (state.beds !== 'any') params.set('beds', state.beds);
@@ -348,6 +451,7 @@
             formData.append('search', state.search.trim());
             formData.append('status', state.status);
             formData.append('types', state.types.join(','));
+            formData.append('budget_range', state.budget_range || '');
             formData.append('min_price', state.min_price);
             formData.append('max_price', state.max_price);
             formData.append('beds', state.beds === 'any' ? 0 : state.beds);
@@ -375,21 +479,23 @@
         };
 
         window.resetFilters = function() {
-            state.search = '';
-            state.status = 'all';
-            state.types = [];
-            state.min_price = '';
-            state.max_price = '';
-            state.beds = 'any';
-            state.baths = 'any';
+            state.search       = '';
+            state.status       = 'all';
+            state.types        = [];
+            state.budget_range = '';
+            state.min_price    = '';
+            state.max_price    = '';
+            state.beds         = 'any';
+            state.baths        = 'any';
             if (selectors.searchInput) selectors.searchInput.value = '';
-            if (selectors.priceMin)    selectors.priceMin.value = '';
-            if (selectors.priceMax)    selectors.priceMax.value = '';
+            if (selectors.priceMin)    selectors.priceMin.value    = '';
+            if (selectors.priceMax)    selectors.priceMax.value    = '';
             selectors.statusTabs.forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.dataset.val === 'all') btn.classList.add('active');
             });
-            selectors.typeItems.forEach(item => item.classList.remove('selected'));
+            selectors.typeItems.forEach(item  => item.classList.remove('selected'));
+            selectors.budgetItems.forEach(item => item.classList.remove('selected'));
             document.querySelectorAll('#beds-chips .chip').forEach(c => {
                 c.classList.remove('active');
                 if (c.dataset.val === 'any') c.classList.add('active');

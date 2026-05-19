@@ -220,14 +220,30 @@ class AjaxHandler {
         $lang      = sanitize_key($_POST['lang'] ?? 'en');
         $search    = strtolower(sanitize_text_field($_POST['search'] ?? ''));
         $status    = sanitize_text_field($_POST['status'] ?? 'all');
-        $types     = isset($_POST['types']) ? array_filter(explode(',', $_POST['types'])) : [];
-        $min_price = (float)($_POST['min_price'] ?? 0);
-        $max_price = (float)($_POST['max_price'] ?? 0);
-        $beds      = (int)($_POST['beds'] ?? 0);
-        $baths     = (int)($_POST['baths'] ?? 0);
+        $types     = isset($_POST['types']) ? array_filter(explode(',', sanitize_text_field($_POST['types']))) : [];
         $paged     = (int)($_POST['paged'] ?? 1);
         $sort      = sanitize_text_field($_POST['sort'] ?? 'newest');
         $view      = sanitize_text_field($_POST['view'] ?? 'grid');
+
+        // Budget range presets override manual min/max
+        $budget_range = sanitize_text_field($_POST['budget_range'] ?? '');
+        $budget_map   = [
+            'range_1' => ['min' => 1000000,  'max' => 10000000],
+            'range_2' => ['min' => 10000000, 'max' => 50000000],
+            'range_3' => ['min' => 50000000, 'max' => 0],
+        ];
+        if ($budget_range && isset($budget_map[$budget_range])) {
+            $min_price = (float)$budget_map[$budget_range]['min'];
+            $max_price = (float)$budget_map[$budget_range]['max'];
+        } else {
+            $min_price = (float)($_POST['min_price'] ?? 0);
+            $max_price = (float)($_POST['max_price'] ?? 0);
+        }
+
+        $beds  = (int)($_POST['beds']  ?? 0);
+        $baths = (int)($_POST['baths'] ?? 0);
+
+
 
         $portfolio_handler = new InvestPortfolioHandler();
         $all_raw = [];
@@ -281,7 +297,7 @@ class AjaxHandler {
                 }
             }
 
-            // Property Types
+            // Investment Property Type filter (exact match on dynamic categories)
             if (!empty($types) && !in_array(strtolower($item['category'] ?? ''), array_map('strtolower', $types))) {
                 continue;
             }

@@ -172,6 +172,12 @@ class Translator {
         $price_raw = $prop['price'][0] ?? '0';
         // Handle cases where price might be an array within an array or contain ranges
         $price_str = is_array($price_raw) ? ($price_raw[0] ?? '0') : $price_raw;
+        
+        // Strip decimal places (.00 or .0) if present to avoid multiplying price by 10 or 100
+        if (is_string($price_str) && preg_match('/\.(\d{1,2})$/', $price_str, $matches)) {
+            $price_str = substr($price_str, 0, -strlen($matches[0]));
+        }
+        
         $price_clean = preg_replace('/[^0-9]/', '', (string)$price_str);
         
         $currency = $prop['currency'][0] ?? 'EUR';
